@@ -1,3 +1,17 @@
-<p>
-  quest works!
-</p>
+  <div class="card mb-4" *ngFor="let quest of quests">
+  <div class="card-body" (click)="open(quest)">
+    <h5 class="card-title">{{ quest.name }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Autor: {{ quest.author.name }} - Inscritos: {{ quest.players.length }}</h6>
+    <p class="card-text">{{ quest.detail.substr(0, 100) }} {{ (quest.detail.length > 100)?"...":"" }}</p>
+    <ul>
+      <li *ngFor="let item of quest.items">
+        {{ item.name }}
+      </li>
+    </ul>
+  </div>
+    <div class="card-footer text-center">
+      <a class="card-link text-warning">{{ quest.gold }} Gold</a>
+      <a class="card-link text-primary">{{ quest.cash }} Cash</a>
+      <button type="button" class="btn btn-outline-primary card-link">Inscrever-se</button>
+    </div>
+</div>
