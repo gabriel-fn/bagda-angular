@@ -6,6 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { ReportModule } from './report/report.module';
 import { QuestModule } from './quest/quest.module';
+import { RpgModule } from './rpg/rpg.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { QuestModule } from './quest/quest.module';
     BrowserModule,
     ReportModule,
     QuestModule,
+    RpgModule,
     NgbModule.forRoot()
   ],
   providers: [],

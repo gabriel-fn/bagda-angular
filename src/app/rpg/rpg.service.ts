@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,5 +6,11 @@ import { Injectable } from '@angular/core';
 })
 export class RpgService {
 
-  constructor() { }
+  private baseUrl = 'http://localhost:8000';
+
+  constructor(private http: HttpClient) { console.log('rpg service active') }
+
+  rpgs() {
+    return this.http.get(`${this.baseUrl}/api/rpgs`);
+  }
 }
