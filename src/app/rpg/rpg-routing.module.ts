@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [];
+import { RpgComponent } from './rpg/rpg.component';
+
+const routes: Routes = [
+  { path: 'rpgs', component: RpgComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

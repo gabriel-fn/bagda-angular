@@ -12,7 +12,7 @@ import { ReportModalComponent } from '../report-modal/report-modal.component';
 })
 export class ReportComponent implements OnInit {
 
-  public _reports: any[];
+  public _reports: any[] = [];
   
   @Input() ofRpg: string|number = 'all';
   @Input() pageSize: number = 5;
@@ -39,7 +39,7 @@ export class ReportComponent implements OnInit {
   }
 
   get reports() {
-    return this._reports.slice((this.page-1)*this.pageSize, (this.page+1)*this.pageSize);
+    return this._reports.slice((this.page-1)*this.pageSize, (this.page)*this.pageSize);
   }
 
   open(report) {

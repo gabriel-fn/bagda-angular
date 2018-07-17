@@ -1,12 +1,28 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-3">
-            <div>
-                <eth-quest ofRpg="1"></eth-quest>
-            </div>
-        </div>
-        <div class="col-9">
-            <eth-report ofRpg="1"></eth-report>
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top mb-2">
+    <!-- Collapsed Hamburger -->
+    <div class="container">
+        <!-- Branding Image -->
+        <a class="navbar-brand">Mesa online</a>
+        <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Right Side Of Navbar -->
+        <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="reports">Notícias
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item" routerLink="rpgs">
+                    <a class="nav-link">Rpgs</a>
+                </li>
+            </ul>
         </div>
     </div>
+</nav>
+
+<div class="container">
+    <!--eth-report></eth-report-->
+    <router-outlet></router-outlet>
 </div>

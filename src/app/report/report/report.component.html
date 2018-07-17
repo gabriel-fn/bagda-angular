@@ -1,11 +1,15 @@
 <div class="row">
   <div class="col-12" *ngFor="let report of reports">
-    <div class="card mb-4" (click)="open(report)">
-      <img class="card-img-top" src="http://via.placeholder.com/900x300">
+    <div class="card mb-4">
+      <img class="card-img-top" (click)="open(report)" src="http://via.placeholder.com/900x300">
       <div class="card-body">
-        <h5 class="card-title">{{ report.name }}</h5>
+        <h5 class="card-title" (click)="open(report)">{{ report.name }}</h5>
         <h6 class="card-subtitle mb-2 text-muted">Autor: Rpg de {{ report.rpg.name }}</h6>
         <p class="card-text">{{ report.detail.substr(0, 250) }} {{ (report.detail.length > 250)?"...":"" }}</p>
+      </div>
+      <div class="card-footer text-center">
+        <small class="text-muted card-link"> Publicado em: {{ report.created_at }}</small> 
+        <button type="button" class="btn btn-outline-primary card-link" (click)="open(report)">Leia Mais</button>
       </div>
     </div>
   </div>

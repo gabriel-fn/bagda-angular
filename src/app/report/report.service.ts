@@ -8,7 +8,7 @@ export class ReportService {
 
   private baseUrl = 'http://localhost:8000';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { console.log('reports service active'); }
 
   reports(ofRpg: string|number = null) {
     if (ofRpg) {
