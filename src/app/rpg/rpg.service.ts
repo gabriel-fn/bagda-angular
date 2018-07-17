@@ -13,4 +13,8 @@ export class RpgService {
   rpgs() {
     return this.http.get(`${this.baseUrl}/api/rpgs`);
   }
+
+  userRpgs() {
+    return this.http.get(`${this.baseUrl}/api/rpgs/user`);
+  }
 }

@@ -10,12 +10,22 @@
         <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="reports">Notícias
+                    <a class="nav-link" routerLink="reports">
+                        Notícias
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
-                <li class="nav-item" routerLink="rpgs">
-                    <a class="nav-link">Rpgs</a>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="rpgs">Rpgs</a>
+                </li>
+                <li class="nav-item" *ngIf="!isLoggedIn">
+                    <a class="nav-link" routerLink="login">Login</a>
+                </li>
+                <li class="nav-item" *ngIf="isLoggedIn">
+                    <a class="nav-link" routerLink="rpgs/my">Meus Rpgs</a>
+                </li>       
+                <li class="nav-item" *ngIf="isLoggedIn">
+                    <a class="nav-link" (click)="logout()">Logout</a>
                 </li>
             </ul>
         </div>

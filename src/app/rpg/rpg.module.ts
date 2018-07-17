@@ -6,6 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RpgRoutingModule } from './rpg-routing.module';
 import { RpgComponent } from './rpg/rpg.component';
 import { RpgService } from './rpg.service';
+import { MyRpgComponent } from './my-rpg/my-rpg.component';
 
 @NgModule({
   imports: [
@@ -13,7 +14,7 @@ import { RpgService } from './rpg.service';
     NgbModule,
     RpgRoutingModule
   ],
-  declarations: [RpgComponent],
+  declarations: [RpgComponent, MyRpgComponent],
   exports: [RpgComponent],
   providers: [RpgService]
 })
