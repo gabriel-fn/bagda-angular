@@ -18,6 +18,7 @@ export class RpgService {
     }
   }
 
-  userRpgs() {
+  rpg(id: number) {
+    return this.http.get(`${this.baseUrl}/api/rpgs/${id}`);
   }
 }

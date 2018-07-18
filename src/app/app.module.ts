@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
 import { ReportModule } from './report/report.module';
-import { QuestModule } from './quest/quest.module';
 import { RpgModule } from './rpg/rpg.module';
 
 @NgModule({
@@ -18,7 +17,6 @@ import { RpgModule } from './rpg/rpg.module';
     BrowserModule,
     AuthModule,
     ReportModule,
-    QuestModule,
     RpgModule,
     NgbModule.forRoot(),
     AppRoutingModule

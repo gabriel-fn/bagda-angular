@@ -8,10 +8,14 @@ import { RpgComponent } from './rpg/rpg.component';
 import { RpgService } from './rpg.service';
 import { RpgPainelComponent } from './rpg-painel/rpg-painel.component';
 import { RpgGuard } from './guards/rpg.guard';
+import { ReportModule } from '../report/report.module';
+import { QuestModule } from '../quest/quest.module';
 
 @NgModule({
   imports: [
     CommonModule,
+    ReportModule,
+    QuestModule,
     NgbModule,
     RpgRoutingModule
   ],

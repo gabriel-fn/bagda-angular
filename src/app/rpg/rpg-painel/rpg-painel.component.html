@@ -1,17 +1,22 @@
-<ngb-tabset justify="justified">
-    <ngb-tab title="News">
-      <ng-template ngbTabContent>
-        <p>news content</p>
-      </ng-template>
-    </ngb-tab>
-    <ngb-tab title="Quests">
-      <ng-template ngbTabContent>
-        <p>quests content</p>
-      </ng-template>
-    </ngb-tab>
-    <ngb-tab title="Shop">
-      <ng-template ngbTabContent>
-        <p>shop content</p>
-      </ng-template>
-    </ngb-tab>
-  </ngb-tabset>
+<ngb-tabset justify="justified" *ngIf="rpg">
+  <ngb-tab title="News">
+    <ng-template ngbTabContent>
+      <eth-report [ofRpg]="rpg.id"></eth-report>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Quests">
+    <ng-template ngbTabContent>
+      <eth-quest [ofRpg]="rpg.id"></eth-quest>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Shop">
+    <ng-template ngbTabContent>
+      {{ rpg.shops | json }}
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Players">
+    <ng-template ngbTabContent>
+      {{ rpg.players | json }}
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>
