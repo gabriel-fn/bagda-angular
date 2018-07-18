@@ -13,7 +13,7 @@
       </ul>
       <div class="card-footer text-center">
         <small class="text-muted card-link"> Criado em: {{ rpg.created_at }}</small> 
-        <button type="button" class="btn btn-outline-primary card-link">Entrar</button>
+        <button type="button" class="btn btn-outline-primary card-link" [routerLink]="['/rpgs', rpg.id]" >Entrar</button>
       </div>
     </div>
   </div>

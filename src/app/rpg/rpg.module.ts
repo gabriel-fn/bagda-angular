@@ -6,6 +6,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RpgRoutingModule } from './rpg-routing.module';
 import { RpgComponent } from './rpg/rpg.component';
 import { RpgService } from './rpg.service';
+import { RpgPainelComponent } from './rpg-painel/rpg-painel.component';
+import { RpgGuard } from './guards/rpg.guard';
 
 @NgModule({
   imports: [
@@ -13,8 +15,8 @@ import { RpgService } from './rpg.service';
     NgbModule,
     RpgRoutingModule
   ],
-  declarations: [RpgComponent],
+  declarations: [RpgComponent, RpgPainelComponent],
   exports: [RpgComponent],
-  providers: [RpgService]
+  providers: [RpgService, RpgGuard]
 })
 export class RpgModule { }
