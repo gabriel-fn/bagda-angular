@@ -9,6 +9,7 @@
         <!-- Right Side Of Navbar -->
         <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed">
             <ul class="navbar-nav ml-auto">
+                <!-- Nav Items para todos os usuários -->
                 <li class="nav-item">
                     <a class="nav-link" routerLink="reports">
                         Notícias
@@ -18,11 +19,13 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="rpgs">Rpgs</a>
                 </li>
+                <!-- Nav Items para usuários não logados -->
                 <li class="nav-item" *ngIf="!isLoggedIn">
                     <a class="nav-link" routerLink="login">Login</a>
                 </li>
+                <!-- Nav Items para usuários logados -->
                 <li class="nav-item" *ngIf="isLoggedIn">
-                    <a class="nav-link" routerLink="rpgs/my">Meus Rpgs</a>
+                    <a class="nav-link" routerLink="rpgs/user">Meus Rpgs</a>
                 </li>       
                 <li class="nav-item" *ngIf="isLoggedIn">
                     <a class="nav-link" (click)="logout()">Logout</a>
@@ -33,6 +36,5 @@
 </nav>
 
 <div class="container">
-    <!--eth-report></eth-report-->
     <router-outlet></router-outlet>
 </div>

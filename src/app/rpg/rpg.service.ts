@@ -10,11 +10,14 @@ export class RpgService {
 
   constructor(private http: HttpClient) { console.log('rpg service active') }
 
-  rpgs() {
-    return this.http.get(`${this.baseUrl}/api/rpgs`);
+  rpgs(typeOfRpgList: string) {
+    if (typeOfRpgList === '/rpgs/user') {
+      return this.http.get(`${this.baseUrl}/api/rpgs/user`);
+    } else {
+      return this.http.get(`${this.baseUrl}/api/rpgs`);
+    }
   }
 
   userRpgs() {
-    return this.http.get(`${this.baseUrl}/api/rpgs/user`);
   }
 }

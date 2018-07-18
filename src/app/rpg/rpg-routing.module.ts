@@ -3,11 +3,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { RpgComponent } from './rpg/rpg.component';
-import { MyRpgComponent } from './my-rpg/my-rpg.component';
 
 const routes: Routes = [
   { path: 'rpgs', component: RpgComponent },
-  { path: 'rpgs/my', component:  MyRpgComponent, canActivate: [AuthGuard], canLoad: [AuthGuard]}
+  { path: 'rpgs/user', component:  RpgComponent, canActivate: [AuthGuard], canLoad: [AuthGuard]}
 ];
 
 @NgModule({

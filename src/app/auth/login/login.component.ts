@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if (this.form.invalid) {
-      alert('form invalid');
+      alert('Formulário Invalido! Verifique se os campos estão preenchidos corretamente.');
     } else {
       this.authenticate(this.form.value['email'], this.form.value['password']);
     }
