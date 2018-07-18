@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NgbActiveModal } from '../../../../node_modules/@ng-bootstrap/ng-bootstrap';
+
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'eth-report-modal',

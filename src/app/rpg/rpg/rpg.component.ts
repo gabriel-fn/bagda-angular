@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ActivatedRoute, UrlSegment } from '@angular/router';
 
-import { Subscription } from '../../../../node_modules/rxjs';
+import { Subscription } from 'rxjs';
 
 import { RpgService } from '../rpg.service';
-import { HttpErrorResponse } from '../../../../node_modules/@angular/common/http';
-import { ActivatedRoute, UrlSegment } from '../../../../node_modules/@angular/router';
 
 @Component({
   selector: 'eth-rpg',

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { Observable, BehaviorSubject } from 'rxjs';
 
-import { PasswordClient } from './password-client';
+import { PasswordClient } from './classes/password-client';
 
 @Injectable({
   providedIn: 'root'

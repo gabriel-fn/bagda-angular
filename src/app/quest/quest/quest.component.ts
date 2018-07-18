@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
-import { NgbModal } from '../../../../node_modules/@ng-bootstrap/ng-bootstrap';
-import { Subscription } from '../../../../node_modules/rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subscription } from 'rxjs';
 
-import { QuestService } from './../quest.service';
-import { HttpErrorResponse } from '../../../../node_modules/@angular/common/http';
+import { QuestService } from '../quest.service';
 import { QuestModalComponent } from '../quest-modal/quest-modal.component';
 
 @Component({

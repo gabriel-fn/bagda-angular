@@ -1,8 +1,10 @@
-import { ReportService } from './../report.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { HttpErrorResponse } from '../../../../node_modules/@angular/common/http';
-import { Subscription } from '../../../../node_modules/rxjs';
-import { NgbModal } from '../../../../node_modules/@ng-bootstrap/ng-bootstrap';
+import { HttpErrorResponse } from '@angular/common/http';
+
+import { Subscription } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { ReportService } from '../report.service';
 import { ReportModalComponent } from '../report-modal/report-modal.component';
 
 @Component({

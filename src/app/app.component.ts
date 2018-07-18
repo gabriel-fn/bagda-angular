@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 
+import { BehaviorSubject } from 'rxjs';
+
 import { AuthService } from './auth/auth.service';
-import { BehaviorSubject, Observable } from '../../node_modules/rxjs';
 
 @Component({
   selector: 'app-root',

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 import { AuthService } from './../auth.service';
-import { HttpErrorResponse } from '../../../../node_modules/@angular/common/http';
-import { Router } from '../../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
       (token) => {
         console.log(token);
         this.authService.authUser.next(token);
-        this.router.navigate(['rpgs']);
+        this.router.navigate(['rpgs/user']);
       },
       (error: HttpErrorResponse) => {
         console.log(error);

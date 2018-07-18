@@ -16,4 +16,4 @@
 </div>
 
 
-<ngb-pagination class="d-flex justify-content-center" [(page)]="page" [collectionSize]="_reports.length"  [maxSize]="5" [pageSize]="pageSize" [rotate]="true" [ellipses]="false"></ngb-pagination>
+<ngb-pagination *ngIf="reports.length" class="d-flex justify-content-center" [(page)]="page" [collectionSize]="_reports.length"  [maxSize]="5" [pageSize]="pageSize" [rotate]="true" [ellipses]="false"></ngb-pagination>
