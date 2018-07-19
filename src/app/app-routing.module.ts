@@ -10,14 +10,6 @@ const routes: Routes = [
       redirectTo: 'reports' 
     },
     { 
-      path: 'reports', 
-      loadChildren: './report/report.module#ReportModule' 
-    },
-    { 
-      path: 'rpgs', 
-      loadChildren: './rpg/rpg.module#RpgModule' 
-    },
-    { 
       path: 'login', 
       component: LoginComponent 
     },

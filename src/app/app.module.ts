@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -6,7 +7,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
-import { ReportModule } from './report/report.module';
 import { RpgModule } from './rpg/rpg.module';
 
 @NgModule({
@@ -15,13 +15,13 @@ import { RpgModule } from './rpg/rpg.module';
   ],
   imports: [
     BrowserModule,
-    AuthModule,
-    ReportModule,
+    HttpClientModule,
     RpgModule,
+    AuthModule,
     NgbModule.forRoot(),
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

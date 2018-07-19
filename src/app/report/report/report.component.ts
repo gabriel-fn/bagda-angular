@@ -16,7 +16,7 @@ export class ReportComponent implements OnInit {
 
   public _reports: any[] = [];
   
-  @Input() ofRpg: string|number = 'all';
+  @Input() ofRpg: number = null;
   @Input() pageSize: number = 5;
   @Input() page: number = 1;
 

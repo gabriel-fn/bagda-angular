@@ -6,6 +6,7 @@
   </ngb-tab>
   <ngb-tab title="Shop">
     <ng-template ngbTabContent>
+      <eth-shop [ofRpg]="rpg.id"></eth-shop>
       {{ rpg.shops | json }}
     </ng-template>
   </ngb-tab>

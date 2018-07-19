@@ -1,10 +1,10 @@
-import { AuthGuard } from './../auth/guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { RpgComponent } from './rpg/rpg.component';
 import { RpgPainelComponent } from './rpg-painel/rpg-painel.component';
 import { RpgGuard } from './guards/rpg.guard';
+import { AuthGuard } from './../auth/guards/auth.guard';
 
 const routes: Routes = [
   { 
@@ -14,14 +14,14 @@ const routes: Routes = [
   { 
     path: 'rpgs/user', 
     component:  RpgComponent, 
-    canActivate: [AuthGuard], 
-    canLoad: [AuthGuard]
+    canActivate: [ AuthGuard ], 
+    canLoad: [ AuthGuard ]
   },
   { 
-    path: 'rpgs/:id', 
+    path: 'rpgs/:idRpg', 
     component: RpgPainelComponent, 
-    canActivate: [RpgGuard], 
-    canLoad: [RpgGuard] 
+    canActivate: [ RpgGuard ], 
+    canLoad: [ RpgGuard ], 
   }
 ];
 

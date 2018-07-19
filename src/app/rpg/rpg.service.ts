@@ -3,9 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { AuthService } from './../auth/auth.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class RpgService {
 
   private baseUrl = 'http://localhost:8000';

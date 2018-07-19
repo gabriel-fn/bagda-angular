@@ -9,18 +9,26 @@ import { RpgService } from './rpg.service';
 import { RpgPainelComponent } from './rpg-painel/rpg-painel.component';
 import { RpgGuard } from './guards/rpg.guard';
 import { ReportModule } from '../report/report.module';
-import { QuestModule } from '../quest/quest.module';
+import { ShopModule } from '../shop/shop.module';
 
 @NgModule({
   imports: [
     CommonModule,
     ReportModule,
-    QuestModule,
+    ShopModule,
     NgbModule,
     RpgRoutingModule
   ],
-  declarations: [RpgComponent, RpgPainelComponent],
-  exports: [RpgComponent],
-  providers: [RpgService, RpgGuard]
+  declarations: [
+    RpgComponent, 
+    RpgPainelComponent
+  ],
+  exports: [
+    RpgComponent
+  ],
+  providers: [
+    RpgService, 
+    RpgGuard
+  ]
 })
 export class RpgModule { }

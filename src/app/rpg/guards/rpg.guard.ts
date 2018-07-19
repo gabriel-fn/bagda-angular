@@ -9,7 +9,7 @@ export class RpgGuard implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-    let id = route.params['id'];
+    let id = route.params['idRpg'];
     if (id && id > 0) {
       return true;
     } else {

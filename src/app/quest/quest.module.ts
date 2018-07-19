@@ -12,7 +12,6 @@ import { QuestModalComponent } from './quest-modal/quest-modal.component';
 @NgModule({
   imports: [
     CommonModule,
-    HttpClientModule,
     NgbModule,
     QuestRoutingModule
   ],

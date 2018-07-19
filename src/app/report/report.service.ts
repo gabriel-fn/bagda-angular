@@ -8,13 +8,12 @@ export class ReportService {
 
   constructor(private http: HttpClient) { console.log('reports service active'); }
 
-  reports(ofRpg: string|number = null) {
-    if (ofRpg) {
-      if (ofRpg === 'all') {
+  reports(ofRpg: number = null) {
+    if (!ofRpg) {
         return this.http.get(`${this.baseUrl}/api/reports`);
-      } else if (ofRpg > 0) {
+    } else if (ofRpg > 0) {
         return this.http.get(`${this.baseUrl}/api/rpgs/${ofRpg}/reports`);
-      }
     }
   }
+
 }

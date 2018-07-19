@@ -23,11 +23,10 @@ export class RpgPainelComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(
       (params: any) => {
-        let id = params['id'];
+        let id = params['idRpg'];
 
         this.rpgSubscription = this.rpgService.rpg(id).subscribe(
           (response: any) => {
-            console.log(response);
             this.rpg = response;
           },
           (error: HttpErrorResponse) => {
