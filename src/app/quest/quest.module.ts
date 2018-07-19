@@ -16,12 +16,18 @@ import { QuestModalComponent } from './quest-modal/quest-modal.component';
     NgbModule,
     QuestRoutingModule
   ],
-  entryComponents: [QuestModalComponent],
+  entryComponents: [
+    QuestModalComponent
+  ],
   declarations: [
     QuestComponent,
     QuestModalComponent
   ],
-  exports: [QuestComponent],
-  providers: [QuestService]
+  exports: [
+    QuestComponent
+  ],
+  providers: [
+    QuestService
+  ]
 })
 export class QuestModule { }

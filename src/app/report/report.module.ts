@@ -16,12 +16,18 @@ import { ReportModalComponent } from './report-modal/report-modal.component';
     NgbModule,
     ReportRoutingModule
   ],
-  entryComponents: [ReportModalComponent],
+  entryComponents: [
+    ReportModalComponent
+  ],
   declarations: [
     ReportComponent, 
     ReportModalComponent
   ],
-  exports: [ReportComponent],
-  providers: [ReportService]
+  exports: [
+    ReportComponent
+  ],
+  providers: [
+    ReportService
+  ]
 })
 export class ReportModule { }

@@ -10,7 +10,11 @@ import { ShopService } from './shop.service';
     CommonModule,
     ShopRoutingModule
   ],
-  declarations: [ShopComponent],
-  providers: [ShopService]
+  declarations: [
+    ShopComponent
+  ],
+  providers: [
+    ShopService
+  ]
 })
 export class ShopModule { }
