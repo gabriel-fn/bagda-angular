@@ -1,16 +1,15 @@
 <ngb-tabset justify="justified" *ngIf="rpg">
-  <ngb-tab title="News">
+  <ngb-tab title="Notícias">
     <ng-template ngbTabContent>
       <eth-report [ofRpg]="rpg.id"></eth-report>
     </ng-template>
   </ngb-tab>
-  <ngb-tab title="Shop">
+  <ngb-tab title="Lojas">
     <ng-template ngbTabContent>
       <eth-shop [ofRpg]="rpg.id"></eth-shop>
-      {{ rpg.shops | json }}
     </ng-template>
   </ngb-tab>
-  <ngb-tab title="Players">
+  <ngb-tab title="Jogadores">
     <ng-template ngbTabContent>
       {{ rpg.players | json }}
     </ng-template>

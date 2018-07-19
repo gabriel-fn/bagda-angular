@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <button type="button" class="close" (click)="activeModal.dismiss('Cross click')">
+    fechar  
+  </button>
+</div>
+<div class="modal-body">
+  <img class="img-fluid" src="http://via.placeholder.com/900x300">
+  <h5 class="mt-4">{{ item.name }} <span *ngIf="item.require_test" class="text-danger">(Requer Teste)</span></h5>
+  <p>{{ item.detail }}</p>
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-dark">Jogadores que o possuem</li>
+    <li class="list-group-item" *ngFor="let user of item.users">
+      {{ user.name }}
+    </li>
+    <li class="list-group-item" *ngIf="!item.users.length">Nenhum jogador possue este item</li>
+  </ul>       
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-secondary btn-lg" (click)="activeModal.dismiss('Cross click')">Fechar</button>
+  <button type="button" class="btn btn-outline-success btn-lg">Comprar</button>
+</div>
