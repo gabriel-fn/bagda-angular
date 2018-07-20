@@ -18,8 +18,8 @@ export class ShopComponent implements OnInit {
   public items: any[] = [];
 
   @Input() ofRpg: number = null;
-  @Input() pageSize: number = 5;
-  @Input() page: number = 1;
+  //@Input() pageSize: number = 5;
+  //@Input() page: number = 1;
 
   private shopSubscription: Subscription;
 
@@ -50,7 +50,5 @@ export class ShopComponent implements OnInit {
   ngOnDestroy(): void {
     this.shopSubscription.unsubscribe();
   }
-
-
 
 }

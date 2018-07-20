@@ -13,4 +13,5 @@ export class ShopService {
         return this.http.get(`${this.baseUrl}/api/rpgs/${ofRpg}/shops`);
     }
   }
+  
 }

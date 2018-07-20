@@ -9,10 +9,10 @@
   <p>{{ item.detail }}</p>
   <ul class="list-group">
     <li class="list-group-item list-group-item-dark">Jogadores que o possuem</li>
-    <li class="list-group-item" *ngFor="let user of item.users">
-      {{ user.name }}
+    <li class="list-group-item" *ngFor="let player of item.players">
+      {{ player.user.name }}
     </li>
-    <li class="list-group-item" *ngIf="!item.users.length">Nenhum jogador possue este item</li>
+    <li class="list-group-item" *ngIf="!item.players.length">Nenhum jogador possue este item</li>
   </ul>       
 </div>
 <div class="modal-footer">

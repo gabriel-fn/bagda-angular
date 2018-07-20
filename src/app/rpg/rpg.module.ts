@@ -9,11 +9,13 @@ import { RpgService } from './rpg.service';
 import { RpgPainelComponent } from './rpg-painel/rpg-painel.component';
 import { RpgGuard } from './guards/rpg.guard';
 import { ShopModule } from '../shop/shop.module';
+import { UserModule } from '../user/user.module';
 
 @NgModule({
   imports: [
     CommonModule,
     ShopModule,
+    UserModule,
     NgbModule,
     RpgRoutingModule
   ],

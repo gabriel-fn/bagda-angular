@@ -1,0 +1,18 @@
+<div class="row" *ngIf="rpg">
+  <div class="col-12 col-md-6" *ngFor="let player of rpg.players">
+    <div class="card mb-4" (click)="open(player)">
+      <img class="card-img-top" src="http://via.placeholder.com/900x450">
+      <div class="card-body">
+        <h5 class="card-title">{{ player.user.name }}</h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Status: {{ player.credential }}</li>
+        <li class="list-group-item list-group-item-warning">{{ player.gold }} Gold</li>
+        <li class="list-group-item list-group-item-primary">{{ player.cash }} Cash</li>
+      </ul>
+      <div class="card-footer text-center">
+        <small class="text-muted card-link"> Criado em: {{ player.created_at }}</small> 
+      </div>
+    </div>
+  </div>
+</div>

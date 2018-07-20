@@ -1,9 +1,9 @@
-<div class="input-group">
+<div class="input-group" *ngIf="rpg">
   <div class="input-group-prepend">
     <label class="input-group-text"> Lojas de {{ rpg.name }}</label>
   </div>
   <select [(ngModel)]="items" class="custom-select">
-    <option [ngValue]="[]">Escolha uma categoria</option>
+    <option disabled [ngValue]="[]">Escolha uma categoria</option>
     <option *ngFor="let shop of rpg.shops" [ngValue]="shop.items">{{ shop.name }}</option>
   </select> 
 </div>
