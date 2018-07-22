@@ -11,7 +11,7 @@
     <div class="col">
       <ul class="list-group">
         <li class="list-group-item list-group-item-dark">Informações Gerais</li>
-        <li class="list-group-item">Status: {{ player.credential }}</li>
+        <li class="list-group-item">Status: {{ helperService.status(player.credential) }}</li>
         <li class="list-group-item list-group-item-warning">{{ player.gold }} Gold</li>
         <li class="list-group-item list-group-item-primary">{{ player.cash }} Cash</li>
       </ul>

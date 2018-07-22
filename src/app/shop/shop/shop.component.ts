@@ -15,27 +15,27 @@ import { ItemModalComponent } from '../item-modal/item-modal.component';
 })
 export class ShopComponent implements OnInit {
   
-  public rpg: Rpg; 
   public items: Item[];
 
-  @Input() ofRpg: number = null;
+  @Input() rpg: Rpg; 
+  //@Input() ofRpg: number = null;
   //@Input() pageSize: number = 5;
   //@Input() page: number = 1;
 
-  private shopSubscription: Subscription;
+  //private shopSubscription: Subscription;
 
-  constructor(private shopService: ShopService,
+  constructor(//private shopService: ShopService,
               private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.shopSubscription = this.shopService.shops(this.ofRpg).subscribe(
+    /*this.shopSubscription = this.shopService.shops(this.ofRpg).subscribe(
       (response: Rpg) => {
         this.rpg = response;
       },
       (error: HttpErrorResponse) => {
         console.log(error);
       }
-    );
+    );*/
   }
 
   open(item: Item) {
@@ -49,7 +49,7 @@ export class ShopComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.shopSubscription.unsubscribe();
+    //this.shopSubscription.unsubscribe();
   }
 
 }

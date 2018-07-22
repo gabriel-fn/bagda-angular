@@ -1,17 +1,21 @@
-<div class="input-group" *ngIf="rpg?.shops">
-  <div class="input-group-prepend">
-    <label class="input-group-text"> Lojas de {{ rpg.name }}</label>
+<div class="row">
+  <div class="col-12">
+    <div class="input-group" *ngIf="rpg?.shops">
+      <div class="input-group-prepend">
+        <label class="input-group-text"> Lojas de {{ rpg.name }}</label>
+      </div>
+      <select [(ngModel)]="items" class="custom-select">
+        <option disabled [ngValue]="[]">Escolha uma categoria</option>
+        <option *ngFor="let shop of rpg.shops" [ngValue]="shop.items">{{ shop.name }}</option>
+      </select> 
+    </div>
   </div>
-  <select [(ngModel)]="items" class="custom-select">
-    <option disabled [ngValue]="[]">Escolha uma categoria</option>
-    <option *ngFor="let shop of rpg.shops" [ngValue]="shop.items">{{ shop.name }}</option>
-  </select> 
 </div>
 
 <div class="row">
   <div class="col-12 col-md-6 col-lg-4" *ngFor="let item of items">
     <div class="card mt-4">
-      <img class="card-img-top" (click)="open(item)" src="http://via.placeholder.com/900x300">
+      <img class="card-img-top" (click)="open(item)" src="http://via.placeholder.com/900x450">
       <div class="card-body" (click)="open(item)">
         <h5 class="card-title">{{ item.name }} <span class="text-danger" *ngIf="item.require_test"> (Requer Teste) </span></h5>
       </div>

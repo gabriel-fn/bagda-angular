@@ -3,17 +3,20 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { Rpg } from '../shared/interfaces';
+import { Rpg, Token, Player } from '../shared/interfaces';
 import { AuthService } from './../auth/auth.service';
+import { HelperService } from '../shared/helper.service';
 
 @Injectable()
 export class RpgService {
 
-  private baseUrl = 'http://localhost:8000';
+  private baseUrl: string;
 
-  constructor(private authService: AuthService, 
+  constructor(private authService: AuthService,
+              private helperService: HelperService, 
               private http: HttpClient) { 
     console.log('rpg service active'); 
+    this.baseUrl = this.helperService.baseUrl;
   }
 
   rpgs(typeOfRpgList: string): Observable<Rpg[]> {
@@ -25,7 +28,18 @@ export class RpgService {
   }
 
   rpg(id: number): Observable<Rpg> {
-    //this.authService.authUser.getValue();
-    return this.http.get<Rpg>(`${this.baseUrl}/api/rpgs/${id}`);
+    let token: Token = this.authService.authUser.getValue();
+    if (token) {
+      return this.http.get<Rpg>(`${this.baseUrl}/api/rpgs/${id}/user`);
+    } else {
+      return this.http.get<Rpg>(`${this.baseUrl}/api/rpgs/${id}`);
+    }
+  }
+
+  register(rpgId: number): Observable<Rpg> {
+    let token: Token = this.authService.authUser.getValue();
+    if (token) {
+      return this.http.get<Rpg>(`${this.baseUrl}/api/rpgs/${rpgId}/register`);
+    }
   }
 }

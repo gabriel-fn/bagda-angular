@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { Rpg, Player } from '../../shared/interfaces';
 import { UserService } from '../user.service';
 import { PlayerModalComponent } from '../player-modal/player-modal.component';
+import { HelperService } from '../../shared/helper.service';
 
 @Component({
   selector: 'eth-player',
@@ -15,26 +16,27 @@ import { PlayerModalComponent } from '../player-modal/player-modal.component';
 })
 export class PlayerComponent implements OnInit {
 
-  public rpg: Rpg; 
+  @Input() rpg: Rpg; 
 
-  @Input() ofRpg: number = null;
+  //@Input() ofRpg: number = null;
   //@Input() pageSize: number = 5;
   //@Input() page: number = 1;
 
-  private playerSubscription: Subscription;
+  //private playerSubscription: Subscription;
 
-  constructor(private userService: UserService,
+  constructor(//private userService: UserService,
+              public helperService: HelperService,
               private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.playerSubscription = this.userService.players(this.ofRpg).subscribe(
+    /*this.playerSubscription = this.userService.players(this.ofRpg).subscribe(
       (response: Rpg) => {
         this.rpg = response;
       },
       (error: HttpErrorResponse) => {
         console.log(error);
       }
-    );
+    );*/
   }
 
   open(player: Player) {
@@ -48,7 +50,7 @@ export class PlayerComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.playerSubscription.unsubscribe();
+    //this.playerSubscription.unsubscribe();
   }
 
 }

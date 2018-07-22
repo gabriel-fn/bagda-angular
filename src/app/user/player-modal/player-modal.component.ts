@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Player } from '../../shared/interfaces';
+import { HelperService } from '../../shared/helper.service';
 
 @Component({
   selector: 'app-player-modal',
@@ -13,7 +14,8 @@ export class PlayerModalComponent implements OnInit {
 
   @Input() player: Player;
 
-  constructor(public activeModal: NgbActiveModal) { }
+  constructor(public helperService: HelperService,
+              public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
   }

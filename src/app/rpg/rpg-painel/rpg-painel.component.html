@@ -1,12 +1,43 @@
-<ngb-tabset justify="justified" *ngIf="rpg">
-  <ngb-tab title="Lojas">
-    <ng-template ngbTabContent>
-      <eth-shop [ofRpg]="rpg.id"></eth-shop>
-    </ng-template>
-  </ngb-tab>
-  <ngb-tab title="Jogadores">
-    <ng-template ngbTabContent>
-      <eth-player [ofRpg]="rpg.id"></eth-player>
-    </ng-template>
-  </ngb-tab>
-</ngb-tabset>
+
+<div class="row mb-2">
+  <div class="col-12">
+    <div class="card" *ngIf="rpg">
+      <img class="card-img-top" src="http://via.placeholder.com/900x300">
+      <div class="card-header">
+        <div class="row justify-content-between">
+          <div class="col-6">
+            <h5>{{ rpg.name }}</h5>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <button *ngIf="!rpg?.player" (click)="register(rpg.id)"
+                    type="button" class="btn btn-outline-primary btn-block float-right"
+                    placement="left" ngbTooltip="Lembre-se que deve estar logado para se inscrever!">
+              Inscrever-se
+            </button>
+            <button *ngIf="rpg?.player" (click)="register(rpg.id)" 
+                    type="button" class="btn btn-outline-danger btn-block float-right">
+              {{ (rpg.player.credential)?"Desinscrever-se":"Aguardando" }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <ngb-tabset justify="justified" *ngIf="rpg">
+      <ngb-tab title="Lojas">
+        <ng-template ngbTabContent>
+          <eth-shop [rpg]="rpg"></eth-shop> 
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Jogadores">
+        <ng-template ngbTabContent>
+          <eth-player [rpg]="rpg"></eth-player>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
+</div>

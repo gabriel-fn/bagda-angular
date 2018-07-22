@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 
 import { Rpg } from '../../shared/interfaces';
 import { RpgService } from '../rpg.service';
+import { HelperService } from '../../shared/helper.service';
 
 @Component({
   selector: 'eth-rpg',
@@ -18,7 +19,8 @@ export class RpgComponent implements OnInit {
 
   private rpgsSubscription: Subscription;
 
-  constructor(private rpgService: RpgService,
+  constructor(public helperService: HelperService,
+              private rpgService: RpgService,
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {

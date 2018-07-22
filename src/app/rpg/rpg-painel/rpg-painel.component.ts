@@ -4,8 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 
-import { Rpg } from '../../shared/interfaces';
+import { Rpg, Token, Player } from '../../shared/interfaces';
 import { RpgService } from '../rpg.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-rpg-painel',
@@ -14,14 +15,18 @@ import { RpgService } from '../rpg.service';
 })
 export class RpgPainelComponent implements OnInit {
 
-  public rpg: any = null;
+  public rpg: Rpg;
+  public token: Token;
 
   private rpgSubscription: Subscription;
 
   constructor(private rpgService: RpgService,
+              private authService: AuthService,
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.token = this.authService.authUser.getValue();
+
     this.route.params.subscribe(
       (params: any) => {
         let id = params['idRpg'];
@@ -36,6 +41,20 @@ export class RpgPainelComponent implements OnInit {
         );
       }
     );
+  }
+
+  register (rpgId: number) {
+    if (this.token) {
+      this.rpgService.register(rpgId).subscribe(
+        (response: Rpg) => {
+          //console.log(response);
+          this.rpg = response;
+        },
+        (error: HttpErrorResponse) => {
+          console.log(error);
+        }
+      );
+    }
   }
 
   ngOnDestroy(): void {

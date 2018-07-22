@@ -9,4 +9,9 @@ export class HelperService {
 
   constructor() { }
 
+  status(credential: number): string {
+    let credentialNames = ['Pedido Pendente', 'Jogador', 'Moderador', 'Mestre Auxiliar', 'Mestre'];
+    return credentialNames[credential];
+  }
+
 }
