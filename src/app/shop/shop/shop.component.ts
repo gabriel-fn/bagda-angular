@@ -1,11 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 
+import { Rpg, Item } from '../../shared/interfaces';
 import { ShopService } from './../shop.service';
 import { ItemModalComponent } from '../item-modal/item-modal.component';
-import { NgbModal } from '../../../../node_modules/@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'eth-shop',
@@ -14,8 +15,8 @@ import { NgbModal } from '../../../../node_modules/@ng-bootstrap/ng-bootstrap';
 })
 export class ShopComponent implements OnInit {
   
-  public rpg: any; 
-  public items: any[] = [];
+  public rpg: Rpg; 
+  public items: Item[];
 
   @Input() ofRpg: number = null;
   //@Input() pageSize: number = 5;
@@ -28,7 +29,7 @@ export class ShopComponent implements OnInit {
 
   ngOnInit(): void {
     this.shopSubscription = this.shopService.shops(this.ofRpg).subscribe(
-      (response: any) => {
+      (response: Rpg) => {
         this.rpg = response;
       },
       (error: HttpErrorResponse) => {
@@ -37,7 +38,7 @@ export class ShopComponent implements OnInit {
     );
   }
 
-  open(item) {
+  open(item: Item) {
     const modalRef = this.modalService.open(
       ItemModalComponent, {
         size: 'lg',

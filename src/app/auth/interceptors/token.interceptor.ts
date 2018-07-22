@@ -2,8 +2,9 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/c
 import { Injectable, Injector } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { AuthService } from '../auth.service';
 
+import { Token } from '../../shared/interfaces';
+import { AuthService } from '../auth.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -16,8 +17,9 @@ export class TokenInterceptor implements HttpInterceptor {
     ): Observable<HttpEvent<any>> {
         
         const authProvider: AuthService = this.injector.get(AuthService);
-        let token = authProvider.authUser.getValue();
+        let token: Token = authProvider.authUser.getValue();
         console.log(`token interceptado: ${token}`);
+
         if(token){
             req = req.clone({
                 setHeaders: {
@@ -26,6 +28,7 @@ export class TokenInterceptor implements HttpInterceptor {
                 }
             });
         }
+        
         return next.handle(req);
     }
 }

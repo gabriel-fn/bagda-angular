@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { Observable, BehaviorSubject } from 'rxjs';
 
+import { Token, User } from '../shared/interfaces';
 import { PasswordClient } from './classes/password-client';
 
 @Injectable({
@@ -16,19 +17,21 @@ export class AuthService {
   public seeAuthUser: Observable<any>; 
 
   constructor(private http: HttpClient,
-              private router: Router) { console.log('auth service active'); }
+              private router: Router) { 
+    console.log('auth service active'); 
+  }
 
-  authenticate(email, password): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/oauth/token`, new PasswordClient(email, password));
+  authenticate(email, password): Observable<Token> {
+    return this.http.post<Token>(`${this.baseUrl}/oauth/token`, new PasswordClient(email, password));
   }
 
   logout() {
     this.authUser.next(null);
-    this.router.navigate(['reports']);
+    this.router.navigate(['rpgs']);
   }
 
-  getUser(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/api/user`);
+  getUser(): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}/api/user`);
   }
 
 }

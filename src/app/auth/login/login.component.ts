@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
+import { Token } from '../../shared/interfaces';
 import { AuthService } from './../auth.service';
 
 @Component({
@@ -49,7 +50,7 @@ export class LoginComponent implements OnInit {
   authenticate(email, password) {
     this.authService.authenticate(email, password)
     .subscribe(
-      (token) => {
+      (token: Token) => {
         console.log(token);
         this.authService.authUser.next(token);
         this.router.navigate(['rpgs/user']);

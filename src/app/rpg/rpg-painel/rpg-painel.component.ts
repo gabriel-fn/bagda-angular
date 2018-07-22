@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 
+import { Rpg } from '../../shared/interfaces';
 import { RpgService } from '../rpg.service';
 
 @Component({
@@ -26,7 +27,7 @@ export class RpgPainelComponent implements OnInit {
         let id = params['idRpg'];
 
         this.rpgSubscription = this.rpgService.rpg(id).subscribe(
-          (response: any) => {
+          (response: Rpg) => {
             this.rpg = response;
           },
           (error: HttpErrorResponse) => {

@@ -21,7 +21,6 @@ import { LoginComponent } from './login/login.component';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
-    AuthService,
     AuthGuard
   ]
 })

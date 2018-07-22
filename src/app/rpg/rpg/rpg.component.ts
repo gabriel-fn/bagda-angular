@@ -4,6 +4,7 @@ import { ActivatedRoute, UrlSegment } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 
+import { Rpg } from '../../shared/interfaces';
 import { RpgService } from '../rpg.service';
 
 @Component({
@@ -13,7 +14,7 @@ import { RpgService } from '../rpg.service';
 })
 export class RpgComponent implements OnInit {
 
-  public rpgs: any[];
+  public rpgs: Rpg[];
 
   private rpgsSubscription: Subscription;
 
@@ -26,7 +27,7 @@ export class RpgComponent implements OnInit {
         let url = urlSegments.reduce((url, urlSegment) => `${url}/${urlSegment}`, '');
 
         this.rpgsSubscription = this.rpgService.rpgs(url).subscribe(
-          (response: any) => {
+          (response: Rpg[]) => {
             this.rpgs = response;
           },
           (error: HttpErrorResponse) => {

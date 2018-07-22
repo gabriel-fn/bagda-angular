@@ -1,8 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Subscription } from '../../../../node_modules/rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
+
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subscription } from 'rxjs';
+
+import { Rpg, Player } from '../../shared/interfaces';
 import { UserService } from '../user.service';
-import { HttpErrorResponse } from '../../../../node_modules/@angular/common/http';
-import { NgbModal } from '../../../../node_modules/@ng-bootstrap/ng-bootstrap';
 import { PlayerModalComponent } from '../player-modal/player-modal.component';
 
 @Component({
@@ -12,7 +15,7 @@ import { PlayerModalComponent } from '../player-modal/player-modal.component';
 })
 export class PlayerComponent implements OnInit {
 
-  public rpg: any; 
+  public rpg: Rpg; 
 
   @Input() ofRpg: number = null;
   //@Input() pageSize: number = 5;
@@ -25,7 +28,7 @@ export class PlayerComponent implements OnInit {
 
   ngOnInit(): void {
     this.playerSubscription = this.userService.players(this.ofRpg).subscribe(
-      (response: any) => {
+      (response: Rpg) => {
         this.rpg = response;
       },
       (error: HttpErrorResponse) => {
@@ -34,7 +37,7 @@ export class PlayerComponent implements OnInit {
     );
   }
 
-  open(player) {
+  open(player: Player) {
     const modalRef = this.modalService.open(
       PlayerModalComponent, {
         size: 'lg',
