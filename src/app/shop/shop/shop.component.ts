@@ -1,12 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 
 import { Rpg, Item } from '../../shared/interfaces';
-import { ShopService } from './../shop.service';
 import { ItemModalComponent } from '../item-modal/item-modal.component';
+import { RpgService } from '../../rpg/rpg.service';
 
 @Component({
   selector: 'eth-shop',
@@ -18,24 +17,18 @@ export class ShopComponent implements OnInit {
   public items: Item[];
 
   @Input() rpg: Rpg; 
-  //@Input() ofRpg: number = null;
-  //@Input() pageSize: number = 5;
-  //@Input() page: number = 1;
 
-  //private shopSubscription: Subscription;
+  private rpgInPainelSubscription: Subscription;
 
-  constructor(//private shopService: ShopService,
+  constructor(private rpgService: RpgService,
               private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    /*this.shopSubscription = this.shopService.shops(this.ofRpg).subscribe(
-      (response: Rpg) => {
-        this.rpg = response;
-      },
-      (error: HttpErrorResponse) => {
-        console.log(error);
+    this.rpgInPainelSubscription = this.rpgService.seeRpgInPainel.subscribe(
+      (rpg: Rpg) => {
+        this.rpg = rpg;
       }
-    );*/
+    );
   }
 
   open(item: Item) {
@@ -49,7 +42,7 @@ export class ShopComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    //this.shopSubscription.unsubscribe();
+    this.rpgInPainelSubscription.unsubscribe();
   }
 
 }

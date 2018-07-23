@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 
-import { Rpg, Token, Player } from '../../shared/interfaces';
+import { Rpg, Token } from '../../shared/interfaces';
 import { RpgService } from '../rpg.service';
 import { AuthService } from '../../auth/auth.service';
 
@@ -19,21 +19,29 @@ export class RpgPainelComponent implements OnInit {
   public token: Token;
 
   private rpgSubscription: Subscription;
+  private routeSubscription: Subscription;
+  private rpgInPainelSubscription: Subscription;
 
   constructor(private rpgService: RpgService,
               private authService: AuthService,
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.token = this.authService.authUser.getValue();
+    this.rpgInPainelSubscription = this.rpgService.seeRpgInPainel.subscribe(
+      (rpg: Rpg) => {
+        this.rpg = rpg;
+      }
+    );
 
-    this.route.params.subscribe(
+    this.token = this.authService.authUser.getValue();
+    
+    this.routeSubscription = this.route.params.subscribe(
       (params: any) => {
         let id = params['idRpg'];
 
         this.rpgSubscription = this.rpgService.rpg(id).subscribe(
           (response: Rpg) => {
-            this.rpg = response;
+            this.rpgService.rpgInPainel.next(response);
           },
           (error: HttpErrorResponse) => {
             console.log(error);
@@ -47,8 +55,7 @@ export class RpgPainelComponent implements OnInit {
     if (this.token) {
       this.rpgService.register(rpgId).subscribe(
         (response: Rpg) => {
-          //console.log(response);
-          this.rpg = response;
+          this.rpgService.rpgInPainel.next(response);
         },
         (error: HttpErrorResponse) => {
           console.log(error);
@@ -58,7 +65,10 @@ export class RpgPainelComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
+    this.rpgService.rpgInPainel.next(null);
+    this.routeSubscription.unsubscribe();
     this.rpgSubscription.unsubscribe();
+    this.rpgInPainelSubscription.unsubscribe();
   }
 
 }

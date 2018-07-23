@@ -14,14 +14,14 @@
                     <a class="nav-link" routerLink="rpgs">Rpgs</a>
                 </li>
                 <!-- Nav Items para usuários não logados -->
-                <li class="nav-item" *ngIf="!isLoggedIn">
+                <li class="nav-item" *ngIf="!token">
                     <a class="nav-link" routerLink="login">Login</a>
                 </li>
                 <!-- Nav Items para usuários logados -->
-                <li class="nav-item" *ngIf="isLoggedIn">
+                <li class="nav-item" *ngIf="token">
                     <a class="nav-link" routerLink="rpgs/user">Meus Rpgs</a>
                 </li>       
-                <li class="nav-item" *ngIf="isLoggedIn">
+                <li class="nav-item" *ngIf="token">
                     <a class="nav-link" (click)="logout()">Logout</a>
                 </li>
             </ul>

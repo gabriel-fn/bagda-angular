@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 import { Rpg, Token, Player } from '../shared/interfaces';
 import { AuthService } from './../auth/auth.service';
@@ -11,11 +11,15 @@ import { HelperService } from '../shared/helper.service';
 export class RpgService {
 
   private baseUrl: string;
+  public rpgInPainel: BehaviorSubject<Rpg>; 
+  public seeRpgInPainel: Observable<Rpg>; 
 
   constructor(private authService: AuthService,
               private helperService: HelperService, 
               private http: HttpClient) { 
     console.log('rpg service active'); 
+    this.rpgInPainel = new BehaviorSubject(null);
+    this.seeRpgInPainel = this.rpgInPainel.asObservable();
     this.baseUrl = this.helperService.baseUrl;
   }
 

@@ -13,8 +13,8 @@ import { PasswordClient } from './classes/password-client';
 export class AuthService {
 
   private baseUrl = 'http://localhost:8000';
-  public authUser: BehaviorSubject<any>; 
-  public seeAuthUser: Observable<any>; 
+  public authUser: BehaviorSubject<Token>; 
+  public seeAuthUser: Observable<Token>; 
 
   constructor(private http: HttpClient,
               private router: Router) { 

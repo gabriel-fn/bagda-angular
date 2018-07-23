@@ -18,13 +18,14 @@ export class RpgComponent implements OnInit {
   public rpgs: Rpg[];
 
   private rpgsSubscription: Subscription;
+  private routeSubscription: Subscription;
 
   constructor(public helperService: HelperService,
               private rpgService: RpgService,
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.route.url.subscribe(
+    this.routeSubscription = this.route.url.subscribe(
       (urlSegments: UrlSegment[]) => {
         let url = urlSegments.reduce((url, urlSegment) => `${url}/${urlSegment}`, '');
 
@@ -42,6 +43,7 @@ export class RpgComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
+    this.routeSubscription.unsubscribe();
     this.rpgsSubscription.unsubscribe();
   }
 
