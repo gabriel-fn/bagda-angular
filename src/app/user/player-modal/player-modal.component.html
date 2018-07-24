@@ -20,7 +20,7 @@
       <ul class="list-group">
         <li class="list-group-item list-group-item-dark"> Items </li>
         <li class="list-group-item" *ngFor="let item of player.items">
-          {{ item.name }} <span *ngIf="!item.process.status" class="text-danger">(Processando Pedido)</span>
+          {{ item.name }} - {{ item.process.units }} unidade(s) <span *ngIf="!item.process.status" class="text-danger">(Processando Pedido)</span>
         </li>
       </ul>
     </div>

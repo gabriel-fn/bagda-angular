@@ -5,12 +5,15 @@
 </div>
 <div class="modal-body">
   <img class="img-fluid" src="http://via.placeholder.com/900x450">
-  <h5 class="mt-4">{{ item.name }} <span *ngIf="item.require_test" class="text-danger">(Requer Teste)</span></h5>
+  <h5 class="mt-4">{{ item.name }} 
+    <span *ngIf="item.require_test" class="text-danger">(Requer Aprovação)</span>
+    <span *ngIf="item.max_units" class="text-danger">(limite {{ item.max_units }})</span>
+  </h5>
   <p>{{ item.detail }}</p>
   <ul class="list-group">
     <li class="list-group-item list-group-item-dark">Jogadores que o possuem</li>
     <li class="list-group-item" *ngFor="let player of item.players">
-      {{ player.user.name }}
+      {{ player.user.name }} - {{ player.process.units }} unidade(s)
     </li>
     <li class="list-group-item" *ngIf="!item.players.length">Nenhum jogador possue este item</li>
   </ul>       
