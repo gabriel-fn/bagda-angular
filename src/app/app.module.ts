@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
  
 import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import { RpgModule } from './rpg/rpg.module';
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    NgxSpinnerModule,
     ToastrModule.forRoot(),
     NgbModule.forRoot(),
     RpgModule,

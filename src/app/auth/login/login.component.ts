@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import { Token } from '../../shared/interfaces';
 import { AuthService } from './../auth.service';
+import { HelperService } from '../../shared/helper.service';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
   public form: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
+              private helperService: HelperService,
               private authService: AuthService,
               private router: Router) { }
 
@@ -48,6 +50,7 @@ export class LoginComponent implements OnInit {
   }
 
   authenticate(email, password) {
+    this.helperService.showLoading();
     this.authService.authenticate(email, password)
     .subscribe(
       (token: Token) => {
@@ -55,9 +58,8 @@ export class LoginComponent implements OnInit {
         this.authService.authUser.next(token);
         this.router.navigate(['rpgs/user']);
       },
-      (error: HttpErrorResponse) => {
-        console.log(error);
-      }
+      (error: HttpErrorResponse) => console.log(error),
+      () => this.helperService.hideLoading()
     );
   }
 

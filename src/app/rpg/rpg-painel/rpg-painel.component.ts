@@ -33,7 +33,7 @@ export class RpgPainelComponent implements OnInit {
     this.rpgInPainelSubscription = this.rpgService.seeRpgInPainel
     .subscribe((rpg: Rpg) => this.rpg = rpg);
 
-    this.authUserSubscription =this.authService.seeAuthUser
+    this.authUserSubscription = this.authService.seeAuthUser
     .subscribe((token: Token) => this.token = token);
       
     this.routeSubscription = this.route.params
@@ -45,13 +45,15 @@ export class RpgPainelComponent implements OnInit {
 
   register(rpgId: number) {
     if (this.helperService.tokenValidate(this.token) && this.helperService.idValidate(rpgId)) {
+      this.helperService.showLoading();
       this.rpgService.register(rpgId)
       .subscribe(
         (response: {error: boolean, message: string}) => {
           this.helperService.showResponse(response);
           this.rpgService.rpg(this.rpgId);
         },
-        (error: HttpErrorResponse) => console.log(error)
+        (error: HttpErrorResponse) => console.log(error),
+        () => this.helperService.hideLoading()
       );
     }
   }

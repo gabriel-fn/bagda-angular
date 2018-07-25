@@ -28,10 +28,11 @@ export class RpgComponent implements OnInit {
     this.routeSubscription = this.route.url.subscribe(
       (urlSegments: UrlSegment[]) => {
         let url = urlSegments.reduce((url, urlSegment) => `${url}/${urlSegment}`, '');
-
+        this.helperService.showLoading();
         this.rpgsSubscription = this.rpgService.rpgs(url).subscribe(
           (response: Rpg[]) => this.rpgs = response,
-          (error: HttpErrorResponse) => console.log(error)
+          (error: HttpErrorResponse) => console.log(error),
+          () => this.helperService.hideLoading()
         );
       }
     );

@@ -34,17 +34,20 @@ export class RpgService {
   }
 
   rpg(rpgId: number): void {
+    this.helperService.showLoading();
     if (this.token) {
       this.http.get<Rpg>(`${this.baseUrl}/api/rpgs/${rpgId}/user`)
       .subscribe(
         (rpg: Rpg) => this.rpgInPainel.next(rpg),
-        (error: HttpErrorResponse) => console.log(error)
+        (error: HttpErrorResponse) => console.log(error),
+        () => this.helperService.hideLoading()
       );
     } else {
       this.http.get<Rpg>(`${this.baseUrl}/api/rpgs/${rpgId}`)
       .subscribe(
         (rpg: Rpg) => this.rpgInPainel.next(rpg),
-        (error: HttpErrorResponse) => console.log(error)
+        (error: HttpErrorResponse) => console.log(error),
+        () => this.helperService.hideLoading()
       );
     }
   }
