@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 
-import { Rpg, Item, Token } from '../../shared/interfaces';
+import { Rpg, Item, Token, Shop } from '../../shared/interfaces';
 import { ItemModalComponent } from '../item-modal/item-modal.component';
 import { RpgService } from '../../rpg/rpg.service';
 import { AuthService } from '../../auth/auth.service';
@@ -19,10 +19,10 @@ import { HelperService } from '../../shared/helper.service';
 })
 export class ShopComponent implements OnInit {
   
-  public items: Item[];
+  public token: Token;
   public rpg: Rpg; 
   public rpgId: number; 
-  public token: Token;
+  public shopId: number;
 
   private rpgInPainelSubscription: Subscription;
   private authUserSubscription: Subscription;
@@ -44,6 +44,17 @@ export class ShopComponent implements OnInit {
 
     this.routeSubscription = this.route.params
     .subscribe((params: any) => this.rpgId = params['idRpg']);
+  }
+
+  get items() {
+    if (this.rpg.shops) {
+      if (!this.shopId) {
+        this.shopId = this.rpg.shops[0].id;
+      } 
+      return this.rpg.shops.find((shop: Shop) => this.shopId === shop.id).items;
+    } else {
+      return null;
+    }
   }
 
   buy(item: Item) {

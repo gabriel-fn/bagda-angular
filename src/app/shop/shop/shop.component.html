@@ -4,10 +4,10 @@
       <div class="input-group-prepend">
         <label class="input-group-text"> Lojas de {{ rpg.name }}</label>
       </div>
-      <select [(ngModel)]="items" class="custom-select">
-        <option disabled [ngValue]="[]">Escolha uma categoria</option>
-        <option *ngFor="let shop of rpg.shops" [ngValue]="shop.items">{{ shop.name }}</option>
-      </select> 
+      <select [(ngModel)]="shopId" class="custom-select">
+        <!--option [ngValue]="[]">Escolha uma categoria</option-->
+        <option *ngFor="let shop of rpg.shops" [ngValue]="shop.id">{{ shop.name }}</option>
+      </select>
     </div>
   </div>
 </div>
