@@ -25,6 +25,14 @@ export class HelperService {
   showSuccess(message: string): void {
     this.toastr.success(message, 'Resposta:');
   }
+
+  showResponse(response: {error: boolean, message: string}): void {
+    if (response.error) {
+      this.showError(response.message);
+    } else {
+      this.showSuccess(response.message);
+    }
+  }
   
 //Validates Helpers
   tokenValidate(token: Token): boolean {

@@ -47,7 +47,10 @@ export class RpgPainelComponent implements OnInit {
     if (this.helperService.tokenValidate(this.token) && this.helperService.idValidate(rpgId)) {
       this.rpgService.register(rpgId)
       .subscribe(
-        (response: Rpg) => this.rpgService.rpg(this.rpgId),
+        (response: {error: boolean, message: string}) => {
+          this.helperService.showResponse(response);
+          this.rpgService.rpg(this.rpgId);
+        },
         (error: HttpErrorResponse) => console.log(error)
       );
     }

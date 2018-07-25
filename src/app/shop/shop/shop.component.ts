@@ -51,12 +51,8 @@ export class ShopComponent implements OnInit {
       this.shopService.buy(item.id)
       .subscribe(
         (response: {error: boolean, message: string}) => {
-          if (!response.error) {
-            this.helperService.showSuccess(response.message); 
-            this.rpgService.rpg(this.rpgId);
-          } else {
-            this.helperService.showError(response.message);
-          }
+          this.helperService.showResponse(response);
+          this.rpgService.rpg(this.rpgId);
         },
         (error: HttpErrorResponse) => console.log(error)
       );

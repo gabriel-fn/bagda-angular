@@ -49,7 +49,7 @@ export class RpgService {
     }
   }
 
-  register(rpgId: number): Observable<Rpg> {
-    return this.http.get<Rpg>(`${this.baseUrl}/api/rpgs/${rpgId}/register`);
+  register(rpgId: number): Observable<{error: boolean, message: string}> {
+    return this.http.get<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/${rpgId}/register`);
   }
 }

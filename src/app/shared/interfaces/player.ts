@@ -12,7 +12,7 @@ export interface Player {
     rpg?: Rpg,
     user?: User,
     items?: Item[],
-    process?: {units: number, status: boolean},
+    process?: {units: number},
     created_at: string,
     updated_at: string,
 }

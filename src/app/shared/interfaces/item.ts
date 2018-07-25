@@ -13,7 +13,7 @@ export interface Item {
     make_new: boolean,
     shop?: Shop,
     players?: Player[],
-    process?: {units: number, status: boolean},
+    process?: {units: number},
     created_at: string,
     updated_at: string,
 }
