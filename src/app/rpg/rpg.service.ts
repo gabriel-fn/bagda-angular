@@ -33,7 +33,7 @@ export class RpgService {
     }
   }
 
-  rpg(rpgId: number) {
+  rpg(rpgId: number): void {
     if (this.token) {
       this.http.get<Rpg>(`${this.baseUrl}/api/rpgs/${rpgId}/user`)
       .subscribe(
@@ -50,8 +50,6 @@ export class RpgService {
   }
 
   register(rpgId: number): Observable<Rpg> {
-    if (this.token && rpgId > 0) {
-      return this.http.get<Rpg>(`${this.baseUrl}/api/rpgs/${rpgId}/register`);
-    }
+    return this.http.get<Rpg>(`${this.baseUrl}/api/rpgs/${rpgId}/register`);
   }
 }

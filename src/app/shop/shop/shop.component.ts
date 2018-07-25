@@ -10,6 +10,7 @@ import { ItemModalComponent } from '../item-modal/item-modal.component';
 import { RpgService } from '../../rpg/rpg.service';
 import { AuthService } from '../../auth/auth.service';
 import { ShopService } from '../shop.service';
+import { HelperService } from '../../shared/helper.service';
 
 @Component({
   selector: 'eth-shop',
@@ -29,6 +30,7 @@ export class ShopComponent implements OnInit {
 
   constructor(private shopService: ShopService,
               private rpgService: RpgService,
+              private helperService: HelperService,
               private route: ActivatedRoute,
               private authService: AuthService,
               private modalService: NgbModal) { }
@@ -44,20 +46,21 @@ export class ShopComponent implements OnInit {
     .subscribe((params: any) => this.rpgId = params['idRpg']);
   }
 
-  buy(itemId: number) {
-    this.shopService.buy(itemId)
-    .subscribe(
-      (response: {error: boolean, message: string, data: Rpg}) => {
-        if (!response.error) {
-          this.rpgService.rpg(this.rpgId);
-        } else {
-          console.log(response);
-        }
-      },
-      (error: HttpErrorResponse) => {
-        console.log(error);
-      }
-    );
+  buy(item: Item) {
+    if (this.shopService.buyValidate(item, this.rpg)) {
+      this.shopService.buy(item.id)
+      .subscribe(
+        (response: {error: boolean, message: string}) => {
+          if (!response.error) {
+            this.helperService.showSuccess(response.message); 
+            this.rpgService.rpg(this.rpgId);
+          } else {
+            this.helperService.showError(response.message);
+          }
+        },
+        (error: HttpErrorResponse) => console.log(error)
+      );
+    }
   }
 
   open(item: Item) {
@@ -67,6 +70,7 @@ export class ShopComponent implements OnInit {
         centered: true
       }
     );
+    modalRef.result.then((item: Item) => this.buy(item), (dismiss) => {});
     modalRef.componentInstance.item = item;
   }
 

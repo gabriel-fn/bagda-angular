@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+ 
+import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
@@ -16,9 +18,11 @@ import { RpgModule } from './rpg/rpg.module';
   imports: [
     BrowserModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    NgbModule.forRoot(),
     RpgModule,
     AuthModule,
-    NgbModule.forRoot(),
     AppRoutingModule
   ],
   providers: [],

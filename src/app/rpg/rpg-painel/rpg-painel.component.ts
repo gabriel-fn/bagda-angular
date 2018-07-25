@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { Rpg, Token } from '../../shared/interfaces';
 import { RpgService } from '../rpg.service';
 import { AuthService } from '../../auth/auth.service';
+import { HelperService } from '../../shared/helper.service';
 
 @Component({
   selector: 'app-rpg-painel',
@@ -24,6 +25,7 @@ export class RpgPainelComponent implements OnInit {
   private rpgInPainelSubscription: Subscription;
 
   constructor(private rpgService: RpgService,
+              private helperService: HelperService,
               private authService: AuthService,
               private route: ActivatedRoute) { }
 
@@ -42,7 +44,7 @@ export class RpgPainelComponent implements OnInit {
   }
 
   register(rpgId: number) {
-    if (this.token && rpgId > 0) {
+    if (this.helperService.tokenValidate(this.token) && this.helperService.idValidate(rpgId)) {
       this.rpgService.register(rpgId)
       .subscribe(
         (response: Rpg) => this.rpgService.rpg(this.rpgId),
