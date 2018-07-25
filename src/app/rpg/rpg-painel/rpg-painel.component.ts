@@ -15,10 +15,11 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class RpgPainelComponent implements OnInit {
 
+  public rpgId: number;
   public rpg: Rpg;
   public token: Token;
 
-  private rpgSubscription: Subscription;
+  private authUserSubscription: Subscription;
   private routeSubscription: Subscription;
   private rpgInPainelSubscription: Subscription;
 
@@ -27,39 +28,25 @@ export class RpgPainelComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.rpgInPainelSubscription = this.rpgService.seeRpgInPainel.subscribe(
-      (rpg: Rpg) => {
-        this.rpg = rpg;
-      }
-    );
+    this.rpgInPainelSubscription = this.rpgService.seeRpgInPainel
+    .subscribe((rpg: Rpg) => this.rpg = rpg);
 
-    this.token = this.authService.authUser.getValue();
-    
-    this.routeSubscription = this.route.params.subscribe(
-      (params: any) => {
-        let id = params['idRpg'];
-
-        this.rpgSubscription = this.rpgService.rpg(id).subscribe(
-          (response: Rpg) => {
-            this.rpgService.rpgInPainel.next(response);
-          },
-          (error: HttpErrorResponse) => {
-            console.log(error);
-          }
-        );
-      }
-    );
+    this.authUserSubscription =this.authService.seeAuthUser
+    .subscribe((token: Token) => this.token = token);
+      
+    this.routeSubscription = this.route.params
+    .subscribe((params: any) => {
+      this.rpgId = params['idRpg'];
+      this.rpgService.rpg(this.rpgId);
+    });
   }
 
-  register (rpgId: number) {
-    if (this.token) {
-      this.rpgService.register(rpgId).subscribe(
-        (response: Rpg) => {
-          this.rpgService.rpgInPainel.next(response);
-        },
-        (error: HttpErrorResponse) => {
-          console.log(error);
-        }
+  register(rpgId: number) {
+    if (this.token && rpgId > 0) {
+      this.rpgService.register(rpgId)
+      .subscribe(
+        (response: Rpg) => this.rpgService.rpg(this.rpgId),
+        (error: HttpErrorResponse) => console.log(error)
       );
     }
   }
@@ -67,7 +54,7 @@ export class RpgPainelComponent implements OnInit {
   ngOnDestroy(): void {
     this.rpgService.rpgInPainel.next(null);
     this.routeSubscription.unsubscribe();
-    this.rpgSubscription.unsubscribe();
+    this.authUserSubscription.unsubscribe();
     this.rpgInPainelSubscription.unsubscribe();
   }
 

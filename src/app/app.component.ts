@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { BehaviorSubject } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 import { Token } from './shared/interfaces';
 import { AuthService } from './auth/auth.service';
@@ -14,19 +14,21 @@ export class AppComponent {
   
   isCollapsed: boolean = true;
   token: Token = null;
+  authUserSubscription: Subscription;
 
-  constructor (public authService: AuthService) {
-    this.authService.authUser = new BehaviorSubject(null);
-    this.authService.seeAuthUser = this.authService.authUser.asObservable();
-    this.authService.seeAuthUser.subscribe(
-      (token: Token) => {
-        this.token = token;
-      }
-    );
+  constructor (public authService: AuthService) { }
+
+  ngOnInit(): void {
+    this.authUserSubscription = this.authService.seeAuthUser
+    .subscribe((token: Token) => this.token = token);
   }
 
-  logout() {
+  logout(): void {
     this.authService.logout();
+  }
+
+  ngOnDestroy(): void {
+    this.authUserSubscription.unsubscribe();
   }
 
 }

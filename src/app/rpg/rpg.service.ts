@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable, BehaviorSubject } from 'rxjs';
 
-import { Rpg, Token, Player } from '../shared/interfaces';
+import { Rpg, Token } from '../shared/interfaces';
 import { AuthService } from './../auth/auth.service';
 import { HelperService } from '../shared/helper.service';
 
@@ -11,6 +11,7 @@ import { HelperService } from '../shared/helper.service';
 export class RpgService {
 
   private baseUrl: string;
+  private token: Token;
   public rpgInPainel: BehaviorSubject<Rpg>; 
   public seeRpgInPainel: Observable<Rpg>; 
 
@@ -21,6 +22,7 @@ export class RpgService {
     this.rpgInPainel = new BehaviorSubject(null);
     this.seeRpgInPainel = this.rpgInPainel.asObservable();
     this.baseUrl = this.helperService.baseUrl;
+    this.authService.seeAuthUser.subscribe((token: Token) => this.token = token);
   }
 
   rpgs(typeOfRpgList: string): Observable<Rpg[]> {
@@ -31,18 +33,24 @@ export class RpgService {
     }
   }
 
-  rpg(id: number): Observable<Rpg> {
-    let token: Token = this.authService.authUser.getValue();
-    if (token) {
-      return this.http.get<Rpg>(`${this.baseUrl}/api/rpgs/${id}/user`);
+  rpg(rpgId: number) {
+    if (this.token) {
+      this.http.get<Rpg>(`${this.baseUrl}/api/rpgs/${rpgId}/user`)
+      .subscribe(
+        (rpg: Rpg) => this.rpgInPainel.next(rpg),
+        (error: HttpErrorResponse) => console.log(error)
+      );
     } else {
-      return this.http.get<Rpg>(`${this.baseUrl}/api/rpgs/${id}`);
+      this.http.get<Rpg>(`${this.baseUrl}/api/rpgs/${rpgId}`)
+      .subscribe(
+        (rpg: Rpg) => this.rpgInPainel.next(rpg),
+        (error: HttpErrorResponse) => console.log(error)
+      );
     }
   }
 
   register(rpgId: number): Observable<Rpg> {
-    let token: Token = this.authService.authUser.getValue();
-    if (token) {
+    if (this.token && rpgId > 0) {
       return this.http.get<Rpg>(`${this.baseUrl}/api/rpgs/${rpgId}/register`);
     }
   }

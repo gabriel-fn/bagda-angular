@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
@@ -15,7 +15,7 @@ import { RpgService } from '../../rpg/rpg.service';
 })
 export class PlayerComponent implements OnInit {
 
-  @Input() rpg: Rpg; 
+  public rpg: Rpg; 
 
   private rpgInPainelSubscription: Subscription;
 
@@ -24,11 +24,8 @@ export class PlayerComponent implements OnInit {
               private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.rpgInPainelSubscription = this.rpgService.seeRpgInPainel.subscribe(
-      (rpg: Rpg) => {
-        this.rpg = rpg;
-      }
-    );
+    this.rpgInPainelSubscription = this.rpgService.seeRpgInPainel
+    .subscribe((rpg: Rpg) => this.rpg = rpg);
   }
 
   open(player: Player) {

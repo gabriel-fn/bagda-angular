@@ -19,6 +19,7 @@ export class TokenInterceptor implements HttpInterceptor {
         const authProvider: AuthService = this.injector.get(AuthService);
         let token: Token = authProvider.authUser.getValue();
         console.log(`token interceptado: ${token}`);
+        console.log(req);
 
         if(token){
             req = req.clone({
