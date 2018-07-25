@@ -21,7 +21,11 @@ import { RpgModule } from './rpg/rpg.module';
     HttpClientModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-left',
+      preventDuplicates: true,
+      progressBar: true,
+    }),
     NgbModule.forRoot(),
     RpgModule,
     AuthModule,
