@@ -1,0 +1,52 @@
+<div class="row" *ngIf="rpg?.player?.credential">
+  <div class="col-12 col-md-6 mt-4">
+      <img class="img-thumbnail" src="{{ rpg.player.image }}">
+  </div>
+  <div class="col-12 col-md-6 mt-4"> 
+    <ngb-accordion [closeOthers]="true" activeIds="static-1">
+      <ngb-panel id="static-1" title="Info">
+        <ng-template ngbPanelContent>
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-dark">Nome: {{ rpg.player.user.name }}</li>
+            <li class="list-group-item">Status: {{ helperService.status(rpg.player.credential) }}</li>
+            <li class="list-group-item list-group-item-warning">{{ rpg.player.gold }} Gold</li>
+            <li class="list-group-item list-group-item-primary">{{ rpg.player.cash }} Cash</li>
+          </ul>
+        </ng-template>
+      </ngb-panel>
+      <ngb-panel title="Items">
+        <ng-template ngbPanelContent>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let item of rpg.player.items">
+              {{ item.name }} - {{ item.process.units }} unidade(s)
+            </li>
+          </ul>
+        </ng-template>
+      </ngb-panel>
+      <ngb-panel title="Solicitações de Items">
+        <ng-template ngbPanelContent>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let request of rpg.player.requests">
+              <span class="text-danger">Aguardando por [{{ request.name }}] ...</span>
+            </li>
+          </ul>
+        </ng-template>
+      </ngb-panel>
+      <ngb-panel title="Geral">
+        <ng-template ngbPanelContent>
+          <div class="form-group">
+            <label>Imagem do Jogador</label>
+            <input type="file" class="form-control-file">
+          </div>
+          <div class="form-group">
+            <label>Detalhes do Jogador:</label>
+            <textarea class="form-control" rows="5">{{ rpg.player.detail }}</textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            Salvar
+          </button>        
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+  </div>
+</div>

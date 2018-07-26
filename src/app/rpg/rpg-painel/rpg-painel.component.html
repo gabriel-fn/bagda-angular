@@ -28,6 +28,11 @@
 <div class="row">
   <div class="col-12">
     <ngb-tabset justify="justified" *ngIf="rpg">
+      <ngb-tab title="Principal" *ngIf="rpg?.player?.credential">
+        <ng-template ngbTabContent>
+          <eth-player-painel></eth-player-painel> 
+        </ng-template>
+      </ngb-tab>
       <ngb-tab title="Lojas">
         <ng-template ngbTabContent>
           <eth-shop></eth-shop> 
