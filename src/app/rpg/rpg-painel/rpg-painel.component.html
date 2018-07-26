@@ -1,7 +1,8 @@
 <div class="row mb-2">
   <div class="col-12">
     <div class="card" *ngIf="rpg">
-      <img class="card-img-top" src="http://via.placeholder.com/900x300">
+      <img  #rpgImage class="card-img-top" src="{{ rpg.image }}"
+            [ngStyle]="{'height.px': rpgImage.width/3, 'object-fit': 'cover'}">
       <div class="card-header">
         <div class="row justify-content-between">
           <div class="col-6">

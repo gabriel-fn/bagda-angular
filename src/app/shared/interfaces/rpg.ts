@@ -3,6 +3,7 @@ import { Shop, User, Player } from "./";
 export interface Rpg {
     id: number,
     user_id: number,
+    image: string,
     name: string,
     master: User,
     gold_starter: number,

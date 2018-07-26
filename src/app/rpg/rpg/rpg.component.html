@@ -1,8 +1,8 @@
-{{ rpgs | json }}
 <div class="row">
   <div class="col-12 col-md-6" *ngFor="let rpg of rpgs">
     <div class="card mb-4">
-      <img class="card-img-top" src="http://via.placeholder.com/900x300">
+      <img  #rpgImage class="card-img-top" src="{{ rpg.image }}"
+            [ngStyle]="{'height.px': rpgImage.width/2, 'object-fit': 'cover'}">
       <div class="card-body">
         <h5 class="card-title">{{ rpg.name }}</h5>
         <h6 class="card-subtitle mb-2 text-muted">Mestre: {{ rpg.master.name }} - Rpg {{ (rpg.is_public)?"público":"privado" }}</h6>
