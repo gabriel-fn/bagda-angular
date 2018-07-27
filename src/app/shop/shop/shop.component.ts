@@ -5,10 +5,9 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 
-import { Rpg, Item, Token, Shop } from '../../shared/interfaces';
+import { Rpg, Item, Shop } from '../../shared/interfaces';
 import { ItemModalComponent } from '../item-modal/item-modal.component';
 import { RpgService } from '../../rpg/rpg.service';
-import { AuthService } from '../../auth/auth.service';
 import { ShopService } from '../shop.service';
 import { HelperService } from '../../shared/helper.service';
 
@@ -19,7 +18,6 @@ import { HelperService } from '../../shared/helper.service';
 })
 export class ShopComponent implements OnInit {
   
-  public token: Token;
   public rpg: Rpg; 
   public rpgId: number; 
   public shopId: number;
@@ -32,15 +30,11 @@ export class ShopComponent implements OnInit {
               private rpgService: RpgService,
               private helperService: HelperService,
               private route: ActivatedRoute,
-              private authService: AuthService,
               private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.rpgInPainelSubscription = this.rpgService.seeRpgInPainel
     .subscribe((rpg: Rpg) => this.rpg = rpg);
-
-    this.authUserSubscription = this.authService.seeAuthUser
-    .subscribe((token: Token) => this.token = token);
 
     this.routeSubscription = this.route.params
     .subscribe((params: any) => this.rpgId = params['idRpg']);
@@ -87,7 +81,6 @@ export class ShopComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.authUserSubscription.unsubscribe();
     this.rpgInPainelSubscription.unsubscribe();
     this.routeSubscription.unsubscribe();
   }

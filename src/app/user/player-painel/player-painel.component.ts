@@ -36,35 +36,39 @@ export class PlayerPainelComponent implements OnInit {
   }
 
   discardItem(item: Item): void {
-    this.helperService.showLoading();
-    this.playerService.discardItem(item.process.player_id, item.process.item_id)
-    .subscribe(
-      (response: {error: boolean, message: string}) => {
-        this.rpgService.rpg(this.rpgId);
-        this.helperService.showResponse(response);
-        this.helperService.hideLoading();
-      },
-      (error: HttpErrorResponse) => {
-        console.log(error);
-        this.helperService.hideLoading();
-      },
-    );
+    if (this.playerService.ItemOrRequestValidate(item, this.rpg)) {
+      this.helperService.showLoading();
+      this.playerService.discardItem(item.process.player_id, item.process.item_id)
+      .subscribe(
+        (response: {error: boolean, message: string}) => {
+          this.rpgService.rpg(this.rpgId);
+          this.helperService.showResponse(response);
+          this.helperService.hideLoading();
+        },
+        (error: HttpErrorResponse) => {
+          console.log(error);
+          this.helperService.hideLoading();
+        }
+      );
+    }
   }
 
   dismissRequest(request: Item): void {
-    this.helperService.showLoading();
-    this.playerService.dismissRequest(request.process.player_id, request.process.item_id)
-    .subscribe(
-      (response: {error: boolean, message: string}) => {
-        this.rpgService.rpg(this.rpgId);
-        this.helperService.showResponse(response);
-        this.helperService.hideLoading();
-      },
-      (error: HttpErrorResponse) => {
-        console.log(error);
-        this.helperService.hideLoading();
-      },
-    );
+    if (this.playerService.ItemOrRequestValidate(request, this.rpg)) {
+      this.helperService.showLoading();
+      this.playerService.dismissRequest(request.process.player_id, request.process.item_id)
+      .subscribe(
+        (response: {error: boolean, message: string}) => {
+          this.rpgService.rpg(this.rpgId);
+          this.helperService.showResponse(response);
+          this.helperService.hideLoading();
+        },
+        (error: HttpErrorResponse) => {
+          console.log(error);
+          this.helperService.hideLoading();
+        },
+      );
+    }
   }
 
   ngOnDestroy(): void {
