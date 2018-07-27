@@ -4,10 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 
-import { Rpg, Token } from '../../shared/interfaces';
+import { Rpg } from '../../shared/interfaces';
 import { RpgService } from '../rpg.service';
-import { AuthService } from '../../auth/auth.service';
 import { HelperService } from '../../shared/helper.service';
+import { ValidateService } from '../../shared/validate.service';
 
 @Component({
   selector: 'app-rpg-painel',
@@ -18,23 +18,18 @@ export class RpgPainelComponent implements OnInit {
 
   public rpgId: number;
   public rpg: Rpg;
-  public token: Token;
 
-  private authUserSubscription: Subscription;
   private routeSubscription: Subscription;
   private rpgInPainelSubscription: Subscription;
 
   constructor(private rpgService: RpgService,
               private helperService: HelperService,
-              private authService: AuthService,
+              private validateService: ValidateService,
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.rpgInPainelSubscription = this.rpgService.seeRpgInPainel
     .subscribe((rpg: Rpg) => this.rpg = rpg);
-
-    this.authUserSubscription = this.authService.seeAuthUser
-    .subscribe((token: Token) => this.token = token);
       
     this.routeSubscription = this.route.params
     .subscribe((params: any) => {
@@ -44,7 +39,7 @@ export class RpgPainelComponent implements OnInit {
   }
 
   register(rpgId: number) {
-    if (this.helperService.tokenValidate(this.token) && this.helperService.idValidate(rpgId)) {
+    if (this.validateService.token() && this.validateService.id(rpgId)) {
       this.helperService.showLoading();
       this.rpgService.register(rpgId)
       .subscribe(
@@ -64,7 +59,6 @@ export class RpgPainelComponent implements OnInit {
   ngOnDestroy(): void {
     this.rpgService.rpgInPainel.next(null);
     this.routeSubscription.unsubscribe();
-    this.authUserSubscription.unsubscribe();
     this.rpgInPainelSubscription.unsubscribe();
   }
 
