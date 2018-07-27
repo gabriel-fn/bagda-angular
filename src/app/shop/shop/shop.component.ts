@@ -63,11 +63,14 @@ export class ShopComponent implements OnInit {
       this.shopService.buy(item.id)
       .subscribe(
         (response: {error: boolean, message: string}) => {
-          this.helperService.showResponse(response);
           this.rpgService.rpg(this.rpgId);
+          this.helperService.showResponse(response);
+          this.helperService.hideLoading()
         },
-        (error: HttpErrorResponse) => console.log(error),
-        () => this.helperService.hideLoading()
+        (error: HttpErrorResponse) => {
+          console.log(error);
+          this.helperService.hideLoading()
+        }
       );
     }
   }

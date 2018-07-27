@@ -25,14 +25,21 @@ export class RpgComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.routeSubscription = this.route.url.subscribe(
+    this.routeSubscription = this.route.url
+    .subscribe(
       (urlSegments: UrlSegment[]) => {
         let url = urlSegments.reduce((url, urlSegment) => `${url}/${urlSegment}`, '');
         this.helperService.showLoading();
-        this.rpgsSubscription = this.rpgService.rpgs(url).subscribe(
-          (response: Rpg[]) => this.rpgs = response,
-          (error: HttpErrorResponse) => console.log(error),
-          () => this.helperService.hideLoading()
+        this.rpgsSubscription = this.rpgService.rpgs(url)
+        .subscribe(
+          (response: Rpg[]) => { 
+            this.rpgs = response;
+            this.helperService.hideLoading();
+          },
+          (error: HttpErrorResponse) => {
+            console.log(error);
+            this.helperService.hideLoading();
+          }
         );
       }
     );

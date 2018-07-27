@@ -13,7 +13,7 @@ export interface Player {
     user?: User,
     items?: Item[],
     requests?: Item[],
-    process?: {units: number},
+    process?: {units?: number, player_id: number, item_id: number},
     created_at: string,
     updated_at: string,
 }

@@ -49,11 +49,14 @@ export class RpgPainelComponent implements OnInit {
       this.rpgService.register(rpgId)
       .subscribe(
         (response: {error: boolean, message: string}) => {
-          this.helperService.showResponse(response);
           this.rpgService.rpg(this.rpgId);
+          this.helperService.showResponse(response);
+          this.helperService.hideLoading();
         },
-        (error: HttpErrorResponse) => console.log(error),
-        () => this.helperService.hideLoading()
+        (error: HttpErrorResponse) => {
+          console.log(error);
+          this.helperService.hideLoading();
+        }
       );
     }
   }

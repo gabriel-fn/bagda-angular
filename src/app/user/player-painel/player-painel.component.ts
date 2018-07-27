@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { Subscription } from 'rxjs';
 
-import { Rpg } from '../../shared/interfaces';
+import { Rpg, Item } from '../../shared/interfaces';
 import { RpgService } from '../../rpg/rpg.service';
 import { HelperService } from '../../shared/helper.service';
+import { PlayerService } from '../player.service';
 
 @Component({
   selector: 'eth-player-painel',
@@ -21,6 +23,7 @@ export class PlayerPainelComponent implements OnInit {
   private routeSubscription: Subscription;
 
   constructor(private rpgService: RpgService,
+              private playerService: PlayerService,
               public helperService: HelperService,
               private route: ActivatedRoute) { }
 
@@ -30,6 +33,38 @@ export class PlayerPainelComponent implements OnInit {
 
     this.routeSubscription = this.route.params
     .subscribe((params: any) => this.rpgId = params['idRpg']);
+  }
+
+  discardItem(item: Item): void {
+    this.helperService.showLoading();
+    this.playerService.discardItem(item.process.player_id, item.process.item_id)
+    .subscribe(
+      (response: {error: boolean, message: string}) => {
+        this.rpgService.rpg(this.rpgId);
+        this.helperService.showResponse(response);
+        this.helperService.hideLoading();
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+        this.helperService.hideLoading();
+      },
+    );
+  }
+
+  dismissRequest(request: Item): void {
+    this.helperService.showLoading();
+    this.playerService.dismissRequest(request.process.player_id, request.process.item_id)
+    .subscribe(
+      (response: {error: boolean, message: string}) => {
+        this.rpgService.rpg(this.rpgId);
+        this.helperService.showResponse(response);
+        this.helperService.hideLoading();
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+        this.helperService.hideLoading();
+      },
+    );
   }
 
   ngOnDestroy(): void {

@@ -14,7 +14,7 @@ export interface Item {
     shop?: Shop,
     players?: Player[],
     requests?: Item[],
-    process?: {units: number},
+    process?: {units?: number, player_id: number, item_id: number},
     created_at: string,
     updated_at: string,
 }

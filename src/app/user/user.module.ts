@@ -4,10 +4,10 @@ import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { UserRoutingModule } from './user-routing.module';
-import { UserService } from './user.service';
 import { PlayerComponent } from './player/player.component';
 import { PlayerModalComponent } from './player-modal/player-modal.component';
 import { PlayerPainelComponent } from './player-painel/player-painel.component';
+import { PlayerService } from './player.service';
 
 @NgModule({
   imports: [
@@ -28,7 +28,7 @@ import { PlayerPainelComponent } from './player-painel/player-painel.component';
     PlayerPainelComponent
   ],
   providers: [
-    UserService,
+    PlayerService,
   ]
 })
 export class UserModule { }

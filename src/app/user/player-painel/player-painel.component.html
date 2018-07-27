@@ -19,6 +19,10 @@
           <ul class="list-group">
             <li class="list-group-item" *ngFor="let item of rpg.player.items">
               {{ item.name }} - {{ item.process.units }} unidade(s)
+              <button class="float-right btn btn-outline-danger" 
+                      (click)="discardItem(item)">
+                Descartar
+              </button>
             </li>
           </ul>
         </ng-template>
@@ -28,6 +32,10 @@
           <ul class="list-group">
             <li class="list-group-item" *ngFor="let request of rpg.player.requests">
               <span class="text-danger">Aguardando por [{{ request.name }}] ...</span>
+              <button class="float-right btn btn-outline-danger" 
+                      (click)="dismissRequest(request)">
+                Cancelar
+              </button>
             </li>
           </ul>
         </ng-template>
