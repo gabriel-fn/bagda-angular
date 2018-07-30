@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { ShopComponent } from './shop/shop.component';
 import { ShopService } from './shop.service';
 import { ItemModalComponent } from './item-modal/item-modal.component';
+import { ShopControlComponent } from './shop-control/shop-control.component';
 
 @NgModule({
   imports: [
@@ -16,10 +17,12 @@ import { ItemModalComponent } from './item-modal/item-modal.component';
   ],
   declarations: [
     ShopComponent,
-    ItemModalComponent
+    ItemModalComponent,
+    ShopControlComponent
   ],
   exports: [ 
-    ShopComponent 
+    ShopComponent,
+    ShopControlComponent 
   ],
   providers: [
     ShopService

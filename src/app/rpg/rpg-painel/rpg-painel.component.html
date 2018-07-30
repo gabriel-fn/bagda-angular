@@ -12,11 +12,11 @@
             <button *ngIf="!rpg?.player" (click)="register(rpg.id)"
                     type="button" class="btn btn-outline-primary btn-block float-right"
                     placement="left" ngbTooltip="Lembre-se que deve estar logado para se inscrever!">
-              Inscrever-se
+              Inscrever
             </button>
             <button *ngIf="rpg?.player" (click)="register(rpg.id)" 
                     type="button" class="btn btn-outline-danger btn-block float-right">
-              {{ (rpg.player.credential)?"Desinscrever-se":"Aguardando" }}
+              {{ (rpg.player.credential)?"Desinscrever":"Aguardando" }}
             </button>
           </div>
         </div>
@@ -43,9 +43,27 @@
           <eth-player></eth-player>
         </ng-template>
       </ngb-tab>
-      <ngb-tab title="Painel">
-        <ng-template ngbTabContent *ngIf="rpg?.player?.credential > 1">
-          <eth-rpg-control></eth-rpg-control>
+      <ngb-tab title="Painel" *ngIf="rpg?.player?.credential > 1">
+        <ng-template ngbTabContent>
+
+          <ngb-tabset justify="justified" type="pills">
+            <ngb-tab title="Gerenciar Rpg" *ngIf="rpg?.player?.credential > 2">
+              <ng-template ngbTabContent>
+                <eth-rpg-control></eth-rpg-control>
+              </ng-template>
+            </ngb-tab>
+            <ngb-tab title="Gerenciar Lojas">
+              <ng-template ngbTabContent>
+                <eth-shop-control></eth-shop-control>
+              </ng-template>
+            </ngb-tab>
+            <ngb-tab title="Gerenciar Jogadores">
+              <ng-template ngbTabContent>
+                <eth-player-control></eth-player-control>
+              </ng-template>
+            </ngb-tab>
+          </ngb-tabset>
+
         </ng-template>
       </ngb-tab>
     </ngb-tabset>

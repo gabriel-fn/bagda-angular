@@ -7,6 +7,7 @@ import { PlayerComponent } from './player/player.component';
 import { PlayerModalComponent } from './player-modal/player-modal.component';
 import { PlayerPainelComponent } from './player-painel/player-painel.component';
 import { PlayerService } from './player.service';
+import { PlayerControlComponent } from './player-control/player-control.component';
 
 @NgModule({
   imports: [
@@ -19,11 +20,13 @@ import { PlayerService } from './player.service';
   declarations: [
     PlayerComponent,
     PlayerModalComponent,
-    PlayerPainelComponent
+    PlayerPainelComponent,
+    PlayerControlComponent
   ],
   exports: [ 
     PlayerComponent,
-    PlayerPainelComponent
+    PlayerPainelComponent,
+    PlayerControlComponent
   ],
   providers: [
     PlayerService,
