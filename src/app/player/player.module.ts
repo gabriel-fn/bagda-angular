@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { UserRoutingModule } from './user-routing.module';
 import { PlayerComponent } from './player/player.component';
 import { PlayerModalComponent } from './player-modal/player-modal.component';
 import { PlayerPainelComponent } from './player-painel/player-painel.component';
@@ -13,7 +12,6 @@ import { PlayerService } from './player.service';
   imports: [
     CommonModule,
     NgbModule,
-    UserRoutingModule
   ],
   entryComponents: [
     PlayerModalComponent,
@@ -31,4 +29,4 @@ import { PlayerService } from './player.service';
     PlayerService,
   ]
 })
-export class UserModule { }
+export class PlayerModule { }

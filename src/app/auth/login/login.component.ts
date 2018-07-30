@@ -8,7 +8,7 @@ import { AuthService } from './../auth.service';
 import { HelperService } from '../../shared/helper.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'eth-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })

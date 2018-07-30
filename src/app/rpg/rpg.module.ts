@@ -9,19 +9,21 @@ import { RpgService } from './rpg.service';
 import { RpgPainelComponent } from './rpg-painel/rpg-painel.component';
 import { RpgGuard } from './guards/rpg.guard';
 import { ShopModule } from '../shop/shop.module';
-import { UserModule } from '../user/user.module';
+import { PlayerModule } from '../player/player.module';
+import { RpgControlComponent } from './rpg-control/rpg-control.component';
 
 @NgModule({
   imports: [
     CommonModule,
     ShopModule,
-    UserModule,
+    PlayerModule,
     NgbModule,
     RpgRoutingModule
   ],
   declarations: [
     RpgComponent, 
-    RpgPainelComponent
+    RpgPainelComponent, 
+    RpgControlComponent
   ],
   exports: [
     RpgComponent

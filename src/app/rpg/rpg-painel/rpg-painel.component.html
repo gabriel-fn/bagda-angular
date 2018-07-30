@@ -43,6 +43,11 @@
           <eth-player></eth-player>
         </ng-template>
       </ngb-tab>
+      <ngb-tab title="Painel">
+        <ng-template ngbTabContent *ngIf="rpg?.player?.credential > 1">
+          <eth-rpg-control></eth-rpg-control>
+        </ng-template>
+      </ngb-tab>
     </ngb-tabset>
   </div>
 </div>

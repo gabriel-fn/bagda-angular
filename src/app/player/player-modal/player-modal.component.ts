@@ -6,7 +6,7 @@ import { Player } from '../../shared/interfaces';
 import { HelperService } from '../../shared/helper.service';
 
 @Component({
-  selector: 'app-player-modal',
+  selector: 'eth-player-modal',
   templateUrl: './player-modal.component.html',
   styleUrls: ['./player-modal.component.css']
 })

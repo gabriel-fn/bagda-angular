@@ -10,7 +10,7 @@ import { HelperService } from '../../shared/helper.service';
 import { ValidateService } from '../../shared/validate.service';
 
 @Component({
-  selector: 'app-rpg-painel',
+  selector: 'eth-rpg-painel',
   templateUrl: './rpg-painel.component.html',
   styleUrls: ['./rpg-painel.component.css']
 })

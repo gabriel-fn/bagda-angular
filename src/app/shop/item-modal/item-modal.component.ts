@@ -5,7 +5,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Item } from '../../shared/interfaces';
 
 @Component({
-  selector: 'app-item-modal',
+  selector: 'eth-item-modal',
   templateUrl: './item-modal.component.html',
   styleUrls: ['./item-modal.component.css']
 })
