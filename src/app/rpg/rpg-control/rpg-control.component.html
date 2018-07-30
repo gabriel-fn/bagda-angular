@@ -1,3 +1,94 @@
-<p>
-  rpg-control works!
-</p>
+<div class="row" *ngIf="rpg">
+  <div class="col-12 col-md-6 mt-4">
+    <ngb-accordion [closeOthers]="true">
+      <ngb-panel title="Lojas">
+        <ng-template ngbPanelContent>
+
+        </ng-template>
+      </ngb-panel>
+      <ngb-panel title="Pedidos de Inscrição">
+        <ng-template ngbPanelContent>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let waitPlayer of waitPlayers">
+              {{ waitPlayer.user.name }}
+              <button class="float-right btn btn-outline-danger ml-2">
+                Cancelar
+              </button>
+              <button class="float-right btn btn-outline-success">
+                Aceitar
+              </button>
+            </li>
+          </ul>
+        </ng-template>
+      </ngb-panel>
+      <ngb-panel title="Pedidos de Items">
+        <ng-template ngbPanelContent>
+   
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+  </div>
+  <div class="col-12 col-md-6 mt-4">
+    <ngb-accordion [closeOthers]="true" activeIds="static-1">
+      <ngb-panel id="static-1" title="Info">
+        <ng-template ngbPanelContent>
+          <ul class="list-group">
+            <li class="list-group-item text-danger">Pedidos de Inscrição: {{ waitPlayers.length }}</li>
+            <li class="list-group-item text-danger">Pedidos de Item: </li>
+            <li class="list-group-item">Jogadores: {{ normalPlayers.length }}</li>
+            <li class="list-group-item">Moderadores: {{ moderatorPlayers.length }}</li>
+            <li class="list-group-item">Mestres Auxiliares: {{ subMasterPlayers.length }}</li>
+          </ul>
+        </ng-template>
+      </ngb-panel> 
+      <ngb-panel title="Geral">
+        <ng-template ngbPanelContent>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Nome do Rpg</span>            
+            </div>
+            <input type="text" class="form-control" [value]="rpg.name">
+          </div>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <button class="btn btn-outline-warning" placement="left" 
+                      ngbTooltip="Valor de gold dado aos iniciantes do rpg.">
+                Gold Inicial
+              </button>
+            </div>
+            <input type="number" class="form-control" [value]="rpg.gold_starter">
+          </div>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <button class="btn btn-outline-primary" placement="left" 
+                      ngbTooltip="Valor de cash dado aos iniciantes do rpg.">
+                Cash Inicial
+              </button>
+            </div>
+            <input type="number" class="form-control" [value]="rpg.cash_starter">
+          </div>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <button class="btn btn-outline-dark" placement="left" 
+                      ngbTooltip="Se sim, o rpg será aberto e ninguém precisará de aprovação para entrar.">
+                Rpg público?
+              </button>
+            </div>
+            <select [value]="rpg.is_public" class="custom-select">
+              <option selected>Escolha...</option>
+              <option value="0">Não</option>
+              <option value="1">Sim</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Capa do Rpg</label>
+            <input type="file" class="form-control-file">
+          </div>
+          <button type="submit" class="btn btn-primary">
+            Salvar
+          </button>       
+        </ng-template>
+      </ngb-panel>     
+    </ngb-accordion>
+  </div>
+</div>

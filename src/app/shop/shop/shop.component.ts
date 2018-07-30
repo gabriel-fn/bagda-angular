@@ -23,7 +23,6 @@ export class ShopComponent implements OnInit {
   public shopId: number;
 
   private rpgInPainelSubscription: Subscription;
-  private authUserSubscription: Subscription;
   private routeSubscription: Subscription;
 
   constructor(private shopService: ShopService,
