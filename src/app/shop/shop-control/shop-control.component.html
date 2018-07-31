@@ -1,3 +1,67 @@
-<p>
-  shop-control works!
-</p>
+<div class="row">
+  <div class="col-12 col-md-6 mt-4">
+    <div class="input-group" *ngIf="rpg?.shops">
+      <div class="input-group-prepend">
+        <label class="input-group-text"> Lojas de {{ rpg.name }}</label>
+      </div>
+      <select (change)="dataSourceSync()" [(ngModel)]="shopId" class="custom-select">
+          <!--option [ngValue]="[]">Escolha uma categoria</option-->
+        <option *ngFor="let shop of rpg.shops" [ngValue]="shop.id">{{ shop.name }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="col-12 col-md-6 mt-4">
+    <div class="input-group" *ngIf="rpg?.shops">
+      <div class="input-group-prepend">
+        <label class="input-group-text"> Filtro</label>
+      </div>
+      <input class="form-control" type="text" (keyup)="applyFilter($event.target.value)" placeholder="Palavras chave">
+    </div>
+  </div>
+</div>
+<div class="mt-4 mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+  
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
+        <td mat-cell *matCellDef="let item"> {{ item.name }} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="gold_price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Preço Gold </th>
+        <td mat-cell *matCellDef="let item"> {{ item.gold_price }} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="cash_price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Preço Cash </th>
+        <td mat-cell *matCellDef="let item"> {{ item.cash_price }} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="require_test">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Requer Aprovação </th>
+        <td mat-cell *matCellDef="let item"> {{ item.require_test }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="max_units">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Limite </th>
+        <td mat-cell *matCellDef="let item"> {{ item.max_units }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Ações</th>
+        <td mat-cell *matCellDef="let item">
+          <button class="float-right btn btn-outline-danger ml-2">
+            Apagar
+          </button>
+          <button (click)="open(item)" class="float-right btn btn-outline-primary">
+            Editar 
+          </button>
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>

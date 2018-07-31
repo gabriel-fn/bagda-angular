@@ -1,0 +1,31 @@
+<div class="modal-header">
+    <button type="button" class="close" (click)="activeModal.dismiss('Cross click')">
+      fechar  
+    </button>
+  </div>
+  <div class="modal-body">
+    <img class="img-fluid" src="{{ player.image }}">
+    <h5 class="mt-4">{{ player.user.name }}</h5>
+    <p>{{ player.detail }}</p>
+    <div class="row">
+      <div class="col">
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-dark">Informações Gerais</li>
+          <li class="list-group-item">Status: {{ helperService.status(player.credential) }}</li>
+          <li class="list-group-item list-group-item-warning">{{ player.gold }} Gold</li>
+          <li class="list-group-item list-group-item-primary">{{ player.cash }} Cash</li>
+        </ul>
+      </div>  
+      <div class="col">
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-dark"> Items </li>
+          <li class="list-group-item" *ngFor="let item of player.items">
+            {{ item.name }} - {{ item.process.units }} unidade(s)
+          </li>
+        </ul>
+      </div>
+    </div>       
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary btn-lg" (click)="activeModal.dismiss('Cross click')">Fechar</button>
+  </div>
