@@ -9,7 +9,7 @@
       <ngb-panel title="Pedidos de Inscrição">
         <ng-template ngbPanelContent>
           <ul class="list-group">
-            <li class="list-group-item" *ngFor="let waitPlayer of waitPlayers">
+            <li class="list-group-item" *ngFor="let waitPlayer of playersWithCredential(0)">
               {{ waitPlayer.user.name }}
               <button class="float-right btn btn-outline-danger ml-2">
                 Cancelar
@@ -21,11 +21,6 @@
           </ul>
         </ng-template>
       </ngb-panel>
-      <ngb-panel title="Pedidos de Items">
-        <ng-template ngbPanelContent>
-   
-        </ng-template>
-      </ngb-panel>
     </ngb-accordion>
   </div>
   <div class="col-12 col-md-6 mt-4">
@@ -33,11 +28,11 @@
       <ngb-panel id="static-1" title="Info">
         <ng-template ngbPanelContent>
           <ul class="list-group">
-            <li class="list-group-item text-danger">Pedidos de Inscrição: {{ waitPlayers.length }}</li>
-            <li class="list-group-item text-danger">Pedidos de Item: </li>
-            <li class="list-group-item">Jogadores: {{ normalPlayers.length }}</li>
-            <li class="list-group-item">Moderadores: {{ moderatorPlayers.length }}</li>
-            <li class="list-group-item">Mestres Auxiliares: {{ subMasterPlayers.length }}</li>
+            <li class="list-group-item text-danger">Pedidos de Inscrição: {{ playersWithCredential(0).length }}</li>
+            <li class="list-group-item text-danger">Pedidos de Item: {{ playersWithRequests }}</li>
+            <li class="list-group-item">Jogadores: {{ playersWithCredential(1).length }}</li>
+            <li class="list-group-item">Moderadores: {{ playersWithCredential(2).length }}</li>
+            <li class="list-group-item">Mestres Auxiliares: {{ playersWithCredential(3).length }}</li>
           </ul>
         </ng-template>
       </ngb-panel> 

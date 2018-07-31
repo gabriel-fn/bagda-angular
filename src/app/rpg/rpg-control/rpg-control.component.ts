@@ -16,26 +16,6 @@ export class RpgControlComponent implements OnInit {
   public rpgId: number; 
   public rpg: Rpg;
 
-  get playersWithRequests() {
-    return this.rpg.players.filter((player) => player.requests.length);
-  }
-
-  get waitPlayers() {
-    return this.rpg.players.filter((player) => player.credential == 0);
-  }
-
-  get normalPlayers()  {
-    return this.rpg.players.filter((player) => player.credential == 1);
-  }
-
-  get moderatorPlayers()  {
-    return this.rpg.players.filter((player) => player.credential == 2);
-  }
-
-  get subMasterPlayers()  {
-    return this.rpg.players.filter((player) => player.credential == 3);
-  }
-
   private rpgInPainelSubscription: Subscription;
   private routeSubscription: Subscription;
 
@@ -49,7 +29,15 @@ export class RpgControlComponent implements OnInit {
     this.routeSubscription = this.route.params
     .subscribe((params: any) => this.rpgId = params['idRpg']);
   }
-    
+
+  get playersWithRequests() {
+    return this.rpg.players.reduce((total, player) => total += player.requests.length, 0);
+  }
+
+  playersWithCredential(credential: number) {
+    return this.rpg.players.filter((player) => player.credential == credential);
+  }
+
   ngOnDestroy(): void {
     this.rpgInPainelSubscription.unsubscribe();
     this.routeSubscription.unsubscribe();
