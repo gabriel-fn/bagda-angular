@@ -35,8 +35,6 @@
       </ngb-tab>
       <ngb-tab title="Lojas">
         <ng-template ngbTabContent>
-          <!--eth-shop-control></eth-shop-control>
-          <eth-player-control></eth-player-control-->
           <eth-shop></eth-shop> 
         </ng-template>
       </ngb-tab>
@@ -49,7 +47,7 @@
         <ng-template ngbTabContent>
 
           <ngb-tabset justify="justified" type="pills">
-            <ngb-tab title="Gerenciar Rpg" *ngIf="rpg?.player?.credential > 2">
+            <ngb-tab title="Gerenciar Rpg" *ngIf="rpg?.player?.credential > 1">
               <ng-template ngbTabContent>
                 <eth-rpg-control></eth-rpg-control>
               </ng-template>

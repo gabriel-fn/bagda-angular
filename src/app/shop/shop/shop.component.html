@@ -18,10 +18,12 @@
       <img  #itemImage class="card-img-top" (click)="open(item)" src="{{ item.image }}"
             [ngStyle]="{'height.px': itemImage.width/2, 'object-fit': 'cover'}">
       <div class="card-body" (click)="open(item)">
-        <h5 class="card-title">{{ item.name }} 
-          <span *ngIf="item.require_test" class="text-danger"> (Requer Aprovação) </span>
-          <span *ngIf="item.max_units" class="text-danger">(limite {{ item.max_units }})</span>
-        </h5>
+        <h5 class="card-title">{{ item.name }}</h5>
+        <h5>
+            <span *ngIf="item.require_test" class="badge badge-danger mr-1"> (Requer Aprovação) </span>
+            <span *ngIf="item.max_units" class="badge badge-danger">(limite {{ item.max_units }})</span>
+            <span *ngIf="!item.max_units && !item.require_test" class="badge badge-dark">(Sem Requisitos)</span>
+        </h5>  
       </div>
       <div class="card-footer text-center">
         <a class="card-link text-warning">{{ item.gold_price }} Gold</a>

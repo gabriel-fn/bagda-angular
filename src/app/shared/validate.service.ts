@@ -32,6 +32,22 @@ export class ValidateService {
     return true;
   }
 
+  moderator(rpg: Rpg): boolean {
+    if (rpg.player && rpg.player.credential > 1) {
+      return true;
+    }
+    this.helperService.showError('Você deve ser moderador do rpg para realizar está ação!');
+    return false;
+  }
+
+  master(rpg: Rpg): boolean {
+    if (rpg.player && rpg.player.credential > 2) {
+      return true;
+    }
+    this.helperService.showError('Você deve ser mestre/mestre auxiliar do rpg para realizar está ação!');
+    return false;
+  }
+
   credential(rpg: Rpg): boolean {
     if (rpg.player && rpg.player.credential > 0) {
       return true;

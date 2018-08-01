@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -15,6 +16,7 @@ import { RpgControlComponent } from './rpg-control/rpg-control.component';
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     ShopModule,
     PlayerModule,
     NgbModule,
@@ -23,7 +25,7 @@ import { RpgControlComponent } from './rpg-control/rpg-control.component';
   declarations: [
     RpgComponent, 
     RpgPainelComponent, 
-    RpgControlComponent
+    RpgControlComponent,
   ],
   exports: [
     RpgComponent

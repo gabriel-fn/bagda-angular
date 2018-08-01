@@ -55,4 +55,22 @@ export class RpgService {
   register(rpgId: number): Observable<{error: boolean, message: string}> {
     return this.http.get<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/${rpgId}/register`);
   }
+
+  registerResponse(player_id: number, accept: boolean): Observable<{error: boolean, message: string}> {
+    return this.http.post<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/register/response`, {player_id: player_id, accept: accept});
+  }
+
+  update(value): Observable<{error: boolean, message: string}> {
+    let input: FormData = new FormData();
+    input.append('rpg_id', value.rpg_id);
+    input.append('name', value.name);
+    input.append('gold_starter', value.gold_starter);
+    input.append('cash_starter', value.cash_starter);
+    input.append('is_public', value.is_public);
+    if (value.image !== null) {
+      input.append('image', value.image);
+    }
+    console.log(input);
+    return this.http.post<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/update`, input);
+  }
 }

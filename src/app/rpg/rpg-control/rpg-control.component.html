@@ -11,10 +11,10 @@
           <ul class="list-group">
             <li class="list-group-item" *ngFor="let waitPlayer of playersWithCredential(0)">
               {{ waitPlayer.user.name }}
-              <button class="float-right btn btn-outline-danger ml-2">
+              <button (click)="registerResponse(waitPlayer.id, false)" class="float-right btn btn-outline-danger ml-2">
                 Cancelar
               </button>
-              <button class="float-right btn btn-outline-success">
+              <button (click)="registerResponse(waitPlayer.id, true)" class="float-right btn btn-outline-success">
                 Aceitar
               </button>
             </li>
@@ -24,7 +24,7 @@
     </ngb-accordion>
   </div>
   <div class="col-12 col-md-6 mt-4">
-    <ngb-accordion [closeOthers]="true" activeIds="static-1">
+    <ngb-accordion [destroyOnHide]="false" [closeOthers]="true" activeIds="static-1">
       <ngb-panel id="static-1" title="Info">
         <ng-template ngbPanelContent>
           <ul class="list-group">
@@ -38,50 +38,66 @@
       </ngb-panel> 
       <ngb-panel title="Geral">
         <ng-template ngbPanelContent>
-          <div class="input-group mb-2">
-            <div class="input-group-prepend">
-              <span class="input-group-text">Nome do Rpg</span>            
+          <form [formGroup]="form" (ngSubmit)="updateRpg()">
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Nome do Rpg</span>            
+              </div>
+              <input type="text" class="form-control {{ (isFieldInvalid('name'))?'is-invalid':'' }}" formControlName="name">
+              <span class="invalid-feedback" role="alert">
+                  <strong>O nome do rpg não pode ficar em branco e deve ter entre 5 e 25 caracteres!</strong>
+              </span>
             </div>
-            <input type="text" class="form-control" [value]="rpg.name">
-          </div>
-          <div class="input-group mb-2">
-            <div class="input-group-prepend">
-              <button class="btn btn-outline-warning" placement="left" 
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text" placement="left" 
                       ngbTooltip="Valor de gold dado aos iniciantes do rpg.">
-                Gold Inicial
-              </button>
+                  Gold Inicial
+                </span>            
+              </div>
+              <input type="number" class="form-control {{ (isFieldInvalid('gold_starter'))?'is-invalid':'' }}" formControlName="gold_starter">
+              <span class="invalid-feedback" role="alert">
+                <strong>O gold inicial deve ser preenchido com um valor maior ou igual a 0!</strong>
+              </span>
             </div>
-            <input type="number" class="form-control" [value]="rpg.gold_starter">
-          </div>
-          <div class="input-group mb-2">
-            <div class="input-group-prepend">
-              <button class="btn btn-outline-primary" placement="left" 
-                      ngbTooltip="Valor de cash dado aos iniciantes do rpg.">
-                Cash Inicial
-              </button>
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text" placement="left" 
+                        ngbTooltip="Valor de cash dado aos iniciantes do rpg.">
+                  Cash Inicial
+              </span>
+              </div>
+              <input type="number" class="form-control {{ (isFieldInvalid('cash_starter'))?'is-invalid':'' }}" formControlName="cash_starter">
+              <span class="invalid-feedback" role="alert">
+                  <strong>O cash inicial deve ser preenchido com um valor maior ou igual a 0!</strong>
+              </span>
             </div>
-            <input type="number" class="form-control" [value]="rpg.cash_starter">
-          </div>
-          <div class="input-group mb-2">
-            <div class="input-group-prepend">
-              <button class="btn btn-outline-dark" placement="left" 
-                      ngbTooltip="Se sim, o rpg será aberto e ninguém precisará de aprovação para entrar.">
-                Rpg público?
-              </button>
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text" placement="left" 
+                        ngbTooltip="Se sim, o rpg será aberto e ninguém precisará de aprovação para entrar.">
+                  Rpg público?
+              </span>
+              </div>
+              <select formControlName="is_public" class="custom-select {{ (isFieldInvalid('is_public'))?'is-invalid':'' }}">
+                <option value="0">Não</option>
+                <option value="1">Sim</option>
+              </select>
+              <span class="invalid-feedback" role="alert">
+                  <strong>Você deve escolher se o rpg é público ou não!</strong>
+              </span>
             </div>
-            <select [value]="rpg.is_public" class="custom-select">
-              <option selected>Escolha...</option>
-              <option value="0">Não</option>
-              <option value="1">Sim</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Capa do Rpg</label>
-            <input type="file" class="form-control-file">
-          </div>
-          <button type="submit" class="btn btn-primary">
-            Salvar
-          </button>       
+            <div class="card mb-2">
+              <div class="card-body">
+                  <label class="card-title">Capa do Rpg</label>
+                  <input type="file" #capaRpg (change)="handleFileInput($event.target.files)" class="form-control-file">
+                  <span class="text-muted">A nova imagem irá aparecer assim que você recarregar a página após ser salva!</span>
+              </div>
+            </div>
+            <button [disabled]="form.invalid" type="submit" class="btn btn-primary">
+              Salvar
+            </button>   
+          </form>    
         </ng-template>
       </ngb-panel>     
     </ngb-accordion>
