@@ -20,7 +20,7 @@ export class ShopService {
   }
 
   buy(itemId: number): Observable<{error: boolean, message: string}> {
-    return this.http.get<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/items/${itemId}/buy`);
+    return this.http.put<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/items/buy`, {item_id: itemId});
   }
 
   buyValidate(item: Item, rpg: Rpg): boolean {
