@@ -32,7 +32,12 @@ export class AuthService {
 
   logout(): void {
     this.authUser.next(null);
-    this.router.navigate(['rpgs']);
+    this.router.navigate(['login']);
+    this.helperService.showInfo('Você está deslogado...');
+  }
+
+  forbiddenError() {
+    this.helperService.showError('Você não está autorizado é realizar está ação!');
   }
 
   getUser(): Observable<User> {

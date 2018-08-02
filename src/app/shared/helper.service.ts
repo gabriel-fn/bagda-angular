@@ -30,6 +30,10 @@ export class HelperService {
     this.toastr.error(message, 'Aviso de erro!');
   }
 
+  showInfo(message: string): void {
+    this.toastr.info(message);
+  }
+
   showSuccess(message: string): void {
     this.toastr.success(message, 'Resposta:');
   }

@@ -16,10 +16,10 @@ import { PlayerEditModalComponent } from './player-edit-modal/player-edit-modal.
 @NgModule({
   imports: [
     CommonModule,
+    NgbModule,
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    NgbModule,
   ],
   entryComponents: [
     PlayerModalComponent,

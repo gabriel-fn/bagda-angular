@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
 import { RpgModule } from './rpg/rpg.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { RpgModule } from './rpg/rpg.module';
     }),
     NgbModule.forRoot(),
     RpgModule,
+    SharedModule,
     AuthModule,
     AppRoutingModule
   ],

@@ -16,6 +16,14 @@ export class ValidateService {
     this.authService.seeAuthUser.subscribe((token: Token) => this._token = token);
   }
 
+  showInvalidData(errors: any) {
+    for (let error in errors) {
+      for (let message of errors[error]){
+        this.helperService.showError(message);
+      }
+    }
+  }
+
   token(): boolean {
     if (!this._token) {
       this.helperService.showError('O usuário deve estar logado para realizar esta ação.');
