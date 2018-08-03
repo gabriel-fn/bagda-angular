@@ -1,45 +1,99 @@
-<div class="row" *ngIf="rpg">
-  <div class="col-12 col-md-6 mt-4">
-    <ngb-accordion [closeOthers]="true">
-      <ngb-panel title="Lojas">
-        <ng-template ngbPanelContent>
-
-        </ng-template>
-      </ngb-panel>
-      <ngb-panel title="Pedidos de Inscrição">
-        <ng-template ngbPanelContent>
-          <ul class="list-group">
-            <li class="list-group-item" *ngFor="let waitPlayer of playersWithCredential(0)">
-              {{ waitPlayer.user.name }}
-              <button (click)="registerResponse(waitPlayer.id, false)" class="float-right btn btn-outline-danger ml-2">
+<mat-card class="mt-4">
+  <div class="row" *ngIf="rpg">
+    <div class="col-12 col-md-6">
+      <mat-accordion> 
+        <mat-expansion-panel class="mat-elevation-z8">
+          <mat-expansion-panel-header>
+            <mat-panel-title>Gerenciamento de Lojas</mat-panel-title>
+          </mat-expansion-panel-header>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="mat-elevation-z8" [expanded]="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>Pedidos de Inscrição</mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-list>
+            <mat-list-item class="d-flex justify-content-end" *ngFor="let waitPlayer of playersWithCredential(0)">
+              <span class="mr-4">{{ waitPlayer.user.name }}</span>
+              <button mat-stroked-button color="warn" (click)="registerResponse(waitPlayer.id, false)" class="m-1">
                 Cancelar
               </button>
-              <button (click)="registerResponse(waitPlayer.id, true)" class="float-right btn btn-outline-success">
+              <button mat-stroked-button color="primary" (click)="registerResponse(waitPlayer.id, true)" class="m-1">
                 Aceitar
               </button>
-            </li>
-          </ul>
-        </ng-template>
-      </ngb-panel>
-    </ngb-accordion>
-  </div>
-  <div class="col-12 col-md-6 mt-4">
-    <ngb-accordion [destroyOnHide]="false" [closeOthers]="true" activeIds="static-1">
-      <ngb-panel id="static-1" title="Info">
-        <ng-template ngbPanelContent>
-          <ul class="list-group">
-            <li class="list-group-item text-danger">Pedidos de Inscrição: {{ playersWithCredential(0).length }}</li>
-            <li class="list-group-item text-danger">Pedidos de Item: {{ playersWithRequests }}</li>
-            <li class="list-group-item">Jogadores: {{ playersWithCredential(1).length }}</li>
-            <li class="list-group-item">Moderadores: {{ playersWithCredential(2).length }}</li>
-            <li class="list-group-item">Mestres Auxiliares: {{ playersWithCredential(3).length }}</li>
-          </ul>
-        </ng-template>
-      </ngb-panel> 
-      <ngb-panel title="Geral">
-        <ng-template ngbPanelContent>
+            </mat-list-item>
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <div class="col-12 col-md-6 mt-4 mt-md-0">
+      <mat-accordion>
+        <mat-expansion-panel class="mat-elevation-z8" [expanded]="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>Info</mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-list>
+            <mat-list-item><span class="text-danger">Pedidos de Inscrição: {{ playersWithCredential(0).length }}</span></mat-list-item>
+            <mat-list-item><span class="text-danger">Pedidos de Item: {{ playersWithRequests }}</span></mat-list-item>
+            <mat-list-item>Jogadores: {{ playersWithCredential(1).length }}</mat-list-item>
+            <mat-list-item>Moderadores: {{ playersWithCredential(2).length }}</mat-list-item>
+            <mat-list-item>Mestres Auxiliares: {{ playersWithCredential(3).length }}</mat-list-item>
+          </mat-list>
+        </mat-expansion-panel> 
+        <mat-expansion-panel class="mat-elevation-z8">
+          <mat-expansion-panel-header>
+            <mat-panel-title>Geral</mat-panel-title>
+          </mat-expansion-panel-header>
           <form [formGroup]="form" (ngSubmit)="updateRpg()">
-            <div class="input-group mb-2">
+            <mat-form-field appearance="outline">
+              <mat-label>Nome do Rpg</mat-label>
+              <input matInput type="text" placeholder="Digite o nome do rpg" formControlName="name">
+              <mat-error *ngIf="isFieldInvalid('name')">
+                <strong>O nome do rpg não pode ficar em branco e deve ter entre 5 e 25 caracteres!</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Gold Inicial</mat-label>
+              <input matInput type="number" placeholder="Digite o gold inicial" formControlName="gold_starter">
+              <mat-error *ngIf="isFieldInvalid('gold_starter')">
+                <strong>O gold inicial deve ser preenchido com um valor maior ou igual a 0!</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Cash Inicial</mat-label>
+              <input matInput type="number" placeholder="Digite o cash inicial" formControlName="cash_starter">
+              <mat-error *ngIf="isFieldInvalid('cash_starter')">
+                <strong>O cash inicial deve ser preenchido com um valor maior ou igual a 0!</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Rpg público?</mat-label>
+              <mat-select placeholder="Escolha sim ou não" formControlName="is_public">
+                <mat-option [value]="0">Não</mat-option>
+                <mat-option [value]="1">Sim</mat-option>
+              </mat-select>
+              <mat-error *ngIf="isFieldInvalid('is_public')">
+                <strong>Você deve escolher se o rpg é público ou não!</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-card class="mb-4">
+              <mat-card-header>
+                <mat-card-title> Capa do Rpg </mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <input type="file" #capaRpg (change)="handleFileInput($event.target.files)" class="form-control-file">
+                <span class="text-muted">A nova imagem, após ser salva, irá aparecer assim que você recarregar a página!</span>
+              </mat-card-content>
+            </mat-card>
+            <button mat-stroked-button color="primary" [disabled]="form.invalid" type="submit">
+              Salvar
+            </button>   
+          </form>    
+        </mat-expansion-panel>     
+      </mat-accordion>
+    </div>
+  </div>
+</mat-card>
+            <!--div class="input-group mb-2">
               <div class="input-group-prepend">
                 <span class="input-group-text">Nome do Rpg</span>            
               </div>
@@ -93,13 +147,4 @@
                   <input type="file" #capaRpg (change)="handleFileInput($event.target.files)" class="form-control-file">
                   <span class="text-muted">A nova imagem irá aparecer assim que você recarregar a página após ser salva!</span>
               </div>
-            </div>
-            <button [disabled]="form.invalid" type="submit" class="btn btn-primary">
-              Salvar
-            </button>   
-          </form>    
-        </ng-template>
-      </ngb-panel>     
-    </ngb-accordion>
-  </div>
-</div>
+            </div-->

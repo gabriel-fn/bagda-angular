@@ -45,7 +45,8 @@
       </ngb-tab>
       <ngb-tab title="Painel" *ngIf="rpg?.player?.credential > 1">
         <ng-template ngbTabContent>
-
+          
+          <mat-card>
           <ngb-tabset justify="justified" type="pills">
             <ngb-tab title="Gerenciar Rpg" *ngIf="rpg?.player?.credential > 1">
               <ng-template ngbTabContent>
@@ -63,6 +64,7 @@
               </ng-template>
             </ngb-tab>
           </ngb-tabset>
+          </mat-card>
 
         </ng-template>
       </ngb-tab>

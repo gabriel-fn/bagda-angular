@@ -12,6 +12,7 @@ import { RpgGuard } from './guards/rpg.guard';
 import { ShopModule } from '../shop/shop.module';
 import { PlayerModule } from '../player/player.module';
 import { RpgControlComponent } from './rpg-control/rpg-control.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { RpgControlComponent } from './rpg-control/rpg-control.component';
     ReactiveFormsModule,
     ShopModule,
     PlayerModule,
+    SharedModule,
     NgbModule,
     RpgRoutingModule
   ],
