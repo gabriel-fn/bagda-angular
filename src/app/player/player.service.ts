@@ -27,6 +27,20 @@ export class PlayerService {
     return this.http.put<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/requests/dismiss`, {player_id: playerId, item_id: itemId});
   }
 
+  update(value): Observable<{error: boolean, message: string}> {
+    let input: FormData = new FormData();
+    input.append('player_id', value.player_id);
+    input.append('gold', value.gold);
+    input.append('cash', value.cash);
+    input.append('detail', value.detail);
+    input.append('credential', value.credential);
+    console.log('value.image');
+    if (value.image !== null) {
+      input.append('image', value.image);
+    }
+    return this.http.post<{error: boolean, message: string}>(`${this.baseUrl}/api/players/update`, input);
+  }
+
   ItemOrRequestValidate(item: Item, rpg: Rpg): boolean {
     return (this.validateService.id(item.process.player_id)
       && this.validateService.id(item.process.item_id)

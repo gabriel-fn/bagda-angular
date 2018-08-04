@@ -4,7 +4,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import {  MatTableModule, MatSortModule, MatPaginatorModule, 
           MatButtonModule, MatInputModule, MatFormFieldModule, 
-          MatCardModule, MatSelectModule, MatExpansionModule, MatListModule } from '@angular/material';
+          MatCardModule, MatSelectModule, MatExpansionModule, MatListModule, MatDialogModule } from '@angular/material';
 
 import { ValidateInterceptor } from './interceptors/validate.interceptor';
 
@@ -21,6 +21,7 @@ import { ValidateInterceptor } from './interceptors/validate.interceptor';
     MatCardModule,
     MatExpansionModule,
     MatListModule,
+    MatDialogModule,
   ],
   declarations: [],
   exports: [
@@ -34,6 +35,7 @@ import { ValidateInterceptor } from './interceptors/validate.interceptor';
     MatCardModule,
     MatExpansionModule,
     MatListModule,
+    MatDialogModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ValidateInterceptor, multi: true},

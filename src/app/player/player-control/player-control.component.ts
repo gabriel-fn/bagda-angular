@@ -1,15 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 
 import { Rpg, Player } from '../../shared/interfaces';
 import { RpgService } from '../../rpg/rpg.service';
 import { PlayerEditModalComponent } from '../player-edit-modal/player-edit-modal.component';
 import { HelperService } from '../../shared/helper.service';
-
-
 
 @Component({
   selector: 'eth-player-control',
@@ -19,6 +17,8 @@ import { HelperService } from '../../shared/helper.service';
 export class PlayerControlComponent implements OnInit {
 
   public rpg: Rpg; 
+  public rpgId: number; 
+  public filter: string;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -26,10 +26,12 @@ export class PlayerControlComponent implements OnInit {
   dataSource;
 
   private rpgInPainelSubscription: Subscription;
+  private routeSubscription: Subscription;
 
   constructor(private rpgService: RpgService,
               public helperService: HelperService,
-              private modalService: NgbModal) { }
+              public dialog: MatDialog,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.rpgInPainelSubscription = this.rpgService.seeRpgInPainel
@@ -38,25 +40,33 @@ export class PlayerControlComponent implements OnInit {
       this.dataSource = new MatTableDataSource<Player>(this.rpg.players);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.dataSource.filter = this.filter;
     });
+
+    this.routeSubscription = this.route.params
+    .subscribe((params: any) => this.rpgId = params['idRpg']);
   }
 
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = this.filter;
   }
 
   open(player: Player) {
-    const modalRef = this.modalService.open(
-      PlayerEditModalComponent, {
-        size: 'lg',
-        centered: true
-      }
-    );
-    modalRef.componentInstance.player = player;
+    const dialogRef = this.dialog.open(PlayerEditModalComponent, {
+      width: '1000px',
+      data: {player: player}
+    });
+
+    dialogRef.beforeClose().subscribe(result => {
+      console.log('The dialog was closed');
+      this.rpgService.rpg(this.rpgId);
+    });
   }
 
   ngOnDestroy(): void {
     this.rpgInPainelSubscription.unsubscribe();
+    this.routeSubscription.unsubscribe();
   }
 
 }
