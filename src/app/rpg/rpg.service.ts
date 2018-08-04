@@ -70,7 +70,6 @@ export class RpgService {
     if (value.image !== null) {
       input.append('image', value.image);
     }
-    console.log(input);
     return this.http.post<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/update`, input);
   }
 }

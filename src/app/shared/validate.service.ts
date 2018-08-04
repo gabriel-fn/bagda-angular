@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Token, Rpg, Item, Player } from './interfaces';
 import { HelperService } from './helper.service';
 import { AuthService } from '../auth/auth.service';
+import { RpgService } from '../rpg/rpg.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +11,13 @@ import { AuthService } from '../auth/auth.service';
 export class ValidateService {
 
   private _token: Token;
+  private rpg: Rpg;
 
   constructor(private helperService: HelperService,
+              private rpgService: RpgService,
               private authService: AuthService) {
     this.authService.seeAuthUser.subscribe((token: Token) => this._token = token);
+    this.rpgService.seeRpgInPainel.subscribe((rpg: Rpg) => this.rpg = rpg);
   }
 
   showInvalidData(errors: any) {
@@ -40,7 +44,7 @@ export class ValidateService {
     return true;
   }
 
-  moderator(rpg: Rpg): boolean {
+  moderator(rpg: Rpg = this.rpg): boolean {
     if (rpg.player && rpg.player.credential > 1) {
       return true;
     }
@@ -48,7 +52,7 @@ export class ValidateService {
     return false;
   }
 
-  master(rpg: Rpg): boolean {
+  master(rpg: Rpg = this.rpg): boolean {
     if (rpg.player && rpg.player.credential > 2) {
       return true;
     }
@@ -56,11 +60,19 @@ export class ValidateService {
     return false;
   }
 
-  credential(rpg: Rpg): boolean {
+  credential(rpg: Rpg = this.rpg): boolean {
     if (rpg.player && rpg.player.credential > 0) {
       return true;
     }
     this.helperService.showError('Você deve estar participando do rpg para realizar está ação!');
+    return false;
+  }
+
+  canTouchPlayer(credential: number, rpg: Rpg = this.rpg) {
+    if (rpg.player && (rpg.player.credential == 4 || (rpg.player.credential > 1 && rpg.player.credential > credential))) {
+      return true;
+    }
+    this.helperService.showError('Você deve ser moderador do rpg e estar acima do jogador para poder mexer nas coisas dele!');
     return false;
   }
 
