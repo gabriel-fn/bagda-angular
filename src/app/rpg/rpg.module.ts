@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { RpgRoutingModule } from './rpg-routing.module';
 import { RpgComponent } from './rpg/rpg.component';
 import { RpgService } from './rpg.service';
@@ -21,7 +19,6 @@ import { SharedModule } from '../shared/shared.module';
     ShopModule,
     PlayerModule,
     SharedModule,
-    NgbModule,
     RpgRoutingModule
   ],
   declarations: [

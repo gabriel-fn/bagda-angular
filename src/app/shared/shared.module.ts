@@ -7,10 +7,12 @@ import {  MatTableModule, MatSortModule, MatPaginatorModule,
           MatCardModule, MatSelectModule, MatExpansionModule, MatListModule, MatDialogModule } from '@angular/material';
 
 import { ValidateInterceptor } from './interceptors/validate.interceptor';
+import { NgbModule } from '../../../node_modules/@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
     CommonModule,
+    NgbModule,
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
@@ -25,6 +27,7 @@ import { ValidateInterceptor } from './interceptors/validate.interceptor';
   ],
   declarations: [],
   exports: [
+    NgbModule,
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,

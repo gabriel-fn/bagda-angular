@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { PlayerComponent } from './player/player.component';
 import { PlayerModalComponent } from './player-modal/player-modal.component';
 import { PlayerPainelComponent } from './player-painel/player-painel.component';
@@ -16,7 +14,6 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    NgbModule,
     SharedModule,
   ],
   entryComponents: [
@@ -28,7 +25,7 @@ import { SharedModule } from '../shared/shared.module';
     PlayerModalComponent,
     PlayerPainelComponent,
     PlayerControlComponent,
-    PlayerEditModalComponent
+    PlayerEditModalComponent,
   ],
   exports: [ 
     PlayerComponent,
