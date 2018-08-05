@@ -62,11 +62,11 @@
             <mat-form-field appearance="outline">
               <mat-label>Detalhes do Item</mat-label>
               <textarea rows="15" #detail matInput maxlength="5000" formControlName="detail" placeholder="Escreva os detalhes aqui"></textarea>
+              <mat-error *ngIf="isFieldInvalid('detail')">
+                <strong>Os detalhes do item não podem passar os 5000 caracteres!</strong>
+              </mat-error>
               <mat-hint align="end">{{detail.value.length}} / 5000</mat-hint>
             </mat-form-field>
-            <mat-error *ngIf="isFieldInvalid('detail')">
-              <strong>Os detalhes do item não podem passar os 5000 caracteres!</strong>
-            </mat-error>
           </form>
         </mat-expansion-panel>
       </mat-accordion>

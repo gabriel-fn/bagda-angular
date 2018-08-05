@@ -8,6 +8,7 @@ import { RpgService } from '../../rpg/rpg.service';
 import { HelperService } from '../../shared/helper.service';
 import { ItemEditModalComponent } from '../item-edit-modal/item-edit-modal.component';
 import { ActivatedRoute } from '../../../../node_modules/@angular/router';
+import { ItemCreateModalComponent } from '../item-create-modal/item-create-modal.component';
 
 @Component({
   selector: 'eth-item-control',
@@ -68,10 +69,22 @@ export class ItemControlComponent implements OnInit {
     }
   }
 
-  open(item: Item) {
+  openEdit(item: Item) {
     const dialogRef = this.dialog.open(ItemEditModalComponent, {
       width: '1000px',
       data: {item: item}
+    });
+
+    dialogRef.beforeClose().subscribe(result => {
+      console.log('The dialog was closed');
+      this.rpgService.rpg(this.rpgId);
+    });
+  }
+
+  openCreate() {
+    const dialogRef = this.dialog.open(ItemCreateModalComponent, {
+      width: '1000px',
+      data: {rpg: this.rpg}
     });
 
     dialogRef.beforeClose().subscribe(result => {

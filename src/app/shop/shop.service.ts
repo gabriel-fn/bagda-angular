@@ -39,6 +39,10 @@ export class ShopService {
     return this.http.put<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/shops/create`, value);
   }
 
+  createItem(value): Observable<{error: boolean, message: string}> {
+    return this.http.put<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/shops/items/create`, value);
+  }
+
   buy(itemId: number): Observable<{error: boolean, message: string}> {
     return this.http.put<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/items/buy`, {item_id: itemId});
   }

@@ -1,0 +1,85 @@
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit, Inject } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
+import { Rpg } from '../../shared/interfaces';
+import { HelperService } from '../../shared/helper.service';
+import { ValidateService } from '../../shared/validate.service';
+import { ShopService } from '../shop.service';
+
+@Component({
+  selector: 'app-item-create-modal',
+  templateUrl: './item-create-modal.component.html',
+  styleUrls: ['./item-create-modal.component.css']
+})
+export class ItemCreateModalComponent implements OnInit {
+
+  public rpg: Rpg;
+  public form: FormGroup;
+
+  constructor(public helperService: HelperService,
+              private validateService: ValidateService,
+              private shopService: ShopService,
+              private formBuilder: FormBuilder,
+              public dialogRef: MatDialogRef<ItemCreateModalComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: {rpg: Rpg}) { }
+
+  ngOnInit() {
+    this.rpg = this.data.rpg;
+    this.form = this.formBuilder.group({
+      shop_id: [ null, [ Validators.required ] ],
+      name: [ null, [ 
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(25), 
+      ] ],
+      gold_price: [ null, [ 
+        Validators.required,
+        Validators.min(0) 
+      ] ],
+      cash_price: [ null, [ 
+        Validators.required,
+        Validators.min(0) 
+      ] ],
+      max_units: [ null, [ 
+        Validators.required,
+        Validators.min(0) 
+      ] ],
+      require_test: [ null, [ 
+        Validators.required 
+      ] ],
+      detail: [ null, [ 
+        Validators.max(5000) 
+      ] ],
+    });
+  }
+
+  isFieldInvalid(field: string) {
+    return (
+      (this.form.get(field).invalid)
+    );
+  }
+
+  createItem() {
+    if (this.form.valid
+        && this.validateService.token() 
+        && this.validateService.master()) {
+      this.helperService.showLoading();
+      this.shopService.createItem(this.form.value)
+      .subscribe(
+        (response: {error: boolean, message: string}) => {
+          this.helperService.showResponse(response);
+          this.helperService.hideLoading();
+          this.form.reset();
+        },
+        (error: HttpErrorResponse) => {
+          console.log(error);
+          this.helperService.hideLoading();
+        }
+      );
+    }
+  }
+
+}
