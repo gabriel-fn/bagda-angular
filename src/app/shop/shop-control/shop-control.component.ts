@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 
 import { Rpg, Item, Shop } from '../../shared/interfaces';
 import { RpgService } from '../../rpg/rpg.service';
 import { HelperService } from '../../shared/helper.service';
-import { ItemModalComponent } from '../item-modal/item-modal.component';
+import { ItemEditModalComponent } from '../item-edit-modal/item-edit-modal.component';
+import { ActivatedRoute } from '../../../../node_modules/@angular/router';
 
 @Component({
   selector: 'eth-shop-control',
@@ -18,6 +18,8 @@ export class ShopControlComponent implements OnInit {
 
   public rpg: Rpg; 
   public shopId: number;
+  public rpgId: number; 
+  public filter: string;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -25,10 +27,12 @@ export class ShopControlComponent implements OnInit {
   dataSource;
 
   private rpgInPainelSubscription: Subscription;
+  private routeSubscription: Subscription;
 
   constructor(private rpgService: RpgService,
               public helperService: HelperService,
-              private modalService: NgbModal) { }
+              public dialog: MatDialog,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.rpgInPainelSubscription = this.rpgService.seeRpgInPainel
@@ -36,16 +40,21 @@ export class ShopControlComponent implements OnInit {
       this.rpg = rpg;
       this.dataSourceSync();
     });
+
+    this.routeSubscription = this.route.params
+    .subscribe((params: any) => this.rpgId = params['idRpg']);
   }
 
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = this.filter;
   }
 
   dataSourceSync() {
     this.dataSource = new MatTableDataSource<Item>(this.items);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.dataSource.filter = this.filter;
   }
 
   get items() {
@@ -58,18 +67,22 @@ export class ShopControlComponent implements OnInit {
       return null;
     }
   }
+
   open(item: Item) {
-    const modalRef = this.modalService.open(
-      ItemModalComponent, {
-        size: 'lg',
-        centered: true
-      }
-    );
-    modalRef.componentInstance.item = item;
+    const dialogRef = this.dialog.open(ItemEditModalComponent, {
+      width: '1000px',
+      data: {item: item}
+    });
+
+    dialogRef.beforeClose().subscribe(result => {
+      console.log('The dialog was closed');
+      this.rpgService.rpg(this.rpgId);
+    });
   }
 
   ngOnDestroy(): void {
     this.rpgInPainelSubscription.unsubscribe();
+    this.routeSubscription.unsubscribe();
   }
 
 }

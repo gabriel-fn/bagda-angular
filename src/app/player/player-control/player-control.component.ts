@@ -37,10 +37,7 @@ export class PlayerControlComponent implements OnInit {
     this.rpgInPainelSubscription = this.rpgService.seeRpgInPainel
     .subscribe((rpg: Rpg) => {
       this.rpg = rpg;
-      this.dataSource = new MatTableDataSource<Player>(this.rpg.players);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      this.dataSource.filter = this.filter;
+      this.dataSourceSync();
     });
 
     this.routeSubscription = this.route.params
@@ -49,6 +46,13 @@ export class PlayerControlComponent implements OnInit {
 
   applyFilter(filterValue: string) {
     this.filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = this.filter;
+  }
+
+  dataSourceSync() {
+    this.dataSource = new MatTableDataSource<Player>(this.rpg.players);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
     this.dataSource.filter = this.filter;
   }
 
