@@ -7,26 +7,12 @@
         <mat-option *ngFor="let shop of rpg.shops" [value]="shop.id">{{ shop.name }}</mat-option>
       </mat-select>
     </mat-form-field>
-    <!--div class="input-group" *ngIf="rpg?.shops">
-      <div class="input-group-prepend">
-        <label class="input-group-text"> Lojas de {{ rpg.name }}</label>
-      </div>
-      <select (change)="dataSourceSync()" [(ngModel)]="shopId" class="custom-select">
-        <option *ngFor="let shop of rpg.shops" [ngValue]="shop.id">{{ shop.name }}</option>
-      </select>
-    </div-->
   </div>
   <div class="col-12 col-md-6">
     <mat-form-field appearance="outline">
       <mat-label>Filtro</mat-label>
       <input matInput type="search" (keyup)="applyFilter($event.target.value)" placeholder="Palavras chave">
     </mat-form-field>
-    <!--div class="input-group" *ngIf="rpg?.shops">
-      <div class="input-group-prepend">
-        <label class="input-group-text"> Filtro</label>
-      </div>
-      <input class="form-control" type="text" (keyup)="applyFilter($event.target.value)" placeholder="Palavras chave">
-    </div-->
   </div>
 </div>
 <div class="mat-elevation-z8">

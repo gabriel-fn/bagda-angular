@@ -1,0 +1,30 @@
+<form [formGroup]="form" (ngSubmit)="createShop()">
+  <mat-form-field appearance="outline">
+    <mat-label>Nome da Loja</mat-label>
+    <input matInput type="text" placeholder="Digite o nome da loja" formControlName="name">
+    <mat-error *ngIf="isFieldInvalid('name')">
+      <strong>O nome da loja não pode ficar em branco e deve ter entre 5 e 25 caracteres!</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Loja de multiplas vendas?</mat-label>
+    <mat-select placeholder="Escolha sim ou não" formControlName="is_multiple_sale">
+      <mat-option [value]="0">Não</mat-option>
+      <mat-option [value]="1">Sim</mat-option>
+    </mat-select>
+    <mat-error *ngIf="isFieldInvalid('is_multiple_sale')">
+      <strong>Você deve escolher se a loja é de vendas multiplas ou únicas!</strong>
+    </mat-error>
+  </mat-form-field>
+  <button mat-stroked-button color="primary" [disabled]="form.invalid" type="submit">
+    Criar
+  </button>  
+</form>
+<mat-list>
+  <mat-list-item class="d-flex justify-content-end" *ngFor="let shop of rpg.shops">
+    <span class="mr-4">{{ shop.name }}</span>
+    <button mat-stroked-button (click)="deleteShop(shop.id)" color="warn" class="m-1">
+      Deletar 
+    </button>
+  </mat-list-item>
+</mat-list>

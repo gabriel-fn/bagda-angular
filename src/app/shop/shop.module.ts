@@ -8,6 +8,7 @@ import { ItemModalComponent } from './item-modal/item-modal.component';
 import { SharedModule } from '../shared/shared.module';
 import { ItemEditModalComponent } from './item-edit-modal/item-edit-modal.component';
 import { ItemControlComponent } from './item-control/item-control.component';
+import { ShopControlComponent } from './shop-control/shop-control.component';
 
 @NgModule({
   imports: [
@@ -24,11 +25,13 @@ import { ItemControlComponent } from './item-control/item-control.component';
     ShopComponent,
     ItemModalComponent,
     ItemControlComponent,
-    ItemEditModalComponent
+    ItemEditModalComponent,
+    ShopControlComponent
   ],
   exports: [ 
     ShopComponent,
     ItemControlComponent,
+    ShopControlComponent
   ],
   providers: [
     ShopService
