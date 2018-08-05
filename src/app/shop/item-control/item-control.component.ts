@@ -10,11 +10,11 @@ import { ItemEditModalComponent } from '../item-edit-modal/item-edit-modal.compo
 import { ActivatedRoute } from '../../../../node_modules/@angular/router';
 
 @Component({
-  selector: 'eth-shop-control',
-  templateUrl: './shop-control.component.html',
-  styleUrls: ['./shop-control.component.css']
+  selector: 'eth-item-control',
+  templateUrl: './item-control.component.html',
+  styleUrls: ['./item-control.component.css']
 })
-export class ShopControlComponent implements OnInit {
+export class ItemControlComponent implements OnInit {
 
   public rpg: Rpg; 
   public shopId: number;
