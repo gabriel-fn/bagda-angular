@@ -23,6 +23,10 @@ export class ShopService {
     return this.http.put<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/shops/items/create`, value);
   }
 
+  deleteItem(itemId: number): Observable<{error: boolean, message: string}> {
+    return this.http.delete<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/shops/items/delete/${itemId}`);
+  }
+
   updateItem(value): Observable<{error: boolean, message: string}> {
     let input: FormData = new FormData();
     input.append('item_id', value.item_id);
