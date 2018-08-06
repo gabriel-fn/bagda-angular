@@ -8,7 +8,6 @@ import { Subscription } from 'rxjs';
 import { Rpg } from '../../shared/interfaces';
 import { RpgService } from '../../rpg/rpg.service';
 import { HelperService } from '../../shared/helper.service';
-import { ValidateService } from '../../shared/validate.service';
 import { ShopService } from '../shop.service';
 
 @Component({
@@ -28,7 +27,6 @@ export class ShopControlComponent implements OnInit {
   constructor(private rpgService: RpgService,
               private shopService: ShopService,
               private helperService: HelperService,
-              private validateService: ValidateService,
               private formBuilder: FormBuilder,
               private route: ActivatedRoute) { }
 
@@ -54,15 +52,11 @@ export class ShopControlComponent implements OnInit {
   }
 
   isFieldInvalid(field: string) {
-    return (
-      (this.form.get(field).invalid)
-    );
+    return this.form.get(field).invalid;
   }
 
   createShop() {
-    if (this.form.valid
-        && this.validateService.token() 
-        && this.validateService.master()) {
+    if (this.form.valid && this.shopService.editShopValidate()) {
       this.helperService.showLoading();
       this.shopService.createShop(this.form.value)
       .subscribe(
@@ -80,9 +74,7 @@ export class ShopControlComponent implements OnInit {
   }
 
   deleteShop(shopId: number) {
-    if (this.form.valid
-      && this.validateService.token() 
-      && this.validateService.master()) {
+    if (this.form.valid && this.shopService.editShopValidate()) {
       /*this.helperService.showLoading();
       this.shopService.deleteShop(shopId)
       .subscribe(

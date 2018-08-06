@@ -1,10 +1,11 @@
 import { Component, OnInit, Inject, ElementRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '../../../../node_modules/@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
 import { HelperService } from '../../shared/helper.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '../../../../node_modules/@angular/material';
 import { Item } from '../../shared/interfaces';
-import { ValidateService } from '../../shared/validate.service';
-import { HttpErrorResponse } from '../../../../node_modules/@angular/common/http';
 import { ShopService } from '../shop.service';
 
 @Component({
@@ -19,7 +20,6 @@ export class ItemEditModalComponent implements OnInit {
   @ViewChild('imageItem') imageItem: ElementRef; 
 
   constructor(public helperService: HelperService,
-              private validateService: ValidateService,
               private shopService: ShopService,
               private formBuilder: FormBuilder,
               public dialogRef: MatDialogRef<ItemEditModalComponent>,
@@ -57,9 +57,7 @@ export class ItemEditModalComponent implements OnInit {
   }
 
   isFieldInvalid(field: string) {
-    return (
-      (this.form.get(field).invalid)
-    );
+    return this.form.get(field).invalid;
   }
 
   handleFileInput(files: FileList) {
@@ -74,9 +72,7 @@ export class ItemEditModalComponent implements OnInit {
   }
 
   updateItem() {
-    if (this.form.valid
-        && this.validateService.token() 
-        && this.validateService.master()) {
+    if (this.form.valid && this.shopService.editShopValidate()) {
       this.helperService.showLoading();
       this.shopService.updateItem(this.form.value)
       .subscribe(

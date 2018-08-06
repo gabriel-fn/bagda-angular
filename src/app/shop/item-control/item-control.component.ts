@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/material';
@@ -7,7 +8,6 @@ import { Rpg, Item, Shop } from '../../shared/interfaces';
 import { RpgService } from '../../rpg/rpg.service';
 import { HelperService } from '../../shared/helper.service';
 import { ItemEditModalComponent } from '../item-edit-modal/item-edit-modal.component';
-import { ActivatedRoute } from '../../../../node_modules/@angular/router';
 import { ItemCreateModalComponent } from '../item-create-modal/item-create-modal.component';
 
 @Component({
@@ -74,9 +74,7 @@ export class ItemControlComponent implements OnInit {
       width: '1000px',
       data: {item: item}
     });
-
     dialogRef.beforeClose().subscribe(result => {
-      console.log('The dialog was closed');
       this.rpgService.rpg(this.rpgId);
     });
   }
@@ -86,9 +84,7 @@ export class ItemControlComponent implements OnInit {
       width: '1000px',
       data: {rpg: this.rpg}
     });
-
     dialogRef.beforeClose().subscribe(result => {
-      console.log('The dialog was closed');
       this.rpgService.rpg(this.rpgId);
     });
   }

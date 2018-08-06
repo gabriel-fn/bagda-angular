@@ -57,15 +57,11 @@ export class ItemCreateModalComponent implements OnInit {
   }
 
   isFieldInvalid(field: string) {
-    return (
-      (this.form.get(field).invalid)
-    );
+    return this.form.get(field).invalid;
   }
 
   createItem() {
-    if (this.form.valid
-        && this.validateService.token() 
-        && this.validateService.master()) {
+    if (this.form.valid && this.shopService.editShopValidate()) {
       this.helperService.showLoading();
       this.shopService.createItem(this.form.value)
       .subscribe(

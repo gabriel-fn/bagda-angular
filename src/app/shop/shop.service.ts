@@ -19,6 +19,10 @@ export class ShopService {
     this.baseUrl = this.helperService.baseUrl;
   }
 
+  createItem(value): Observable<{error: boolean, message: string}> {
+    return this.http.put<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/shops/items/create`, value);
+  }
+
   updateItem(value): Observable<{error: boolean, message: string}> {
     let input: FormData = new FormData();
     input.append('item_id', value.item_id);
@@ -32,15 +36,11 @@ export class ShopService {
     if (value.image !== null) {
       input.append('image', value.image);
     }
-    return this.http.post<{error: boolean, message: string}>(`${this.baseUrl}/api/items/update`, input);
+    return this.http.post<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/shops/items/update`, input);
   }
 
   createShop(value): Observable<{error: boolean, message: string}> {
     return this.http.put<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/shops/create`, value);
-  }
-
-  createItem(value): Observable<{error: boolean, message: string}> {
-    return this.http.put<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/shops/items/create`, value);
   }
 
   buy(itemId: number): Observable<{error: boolean, message: string}> {
@@ -50,9 +50,13 @@ export class ShopService {
   buyValidate(item: Item, rpg: Rpg): boolean {
     return (this.validateService.id(item.id)
       && this.validateService.token() 
-      && this.validateService.credential(rpg)
+      && this.validateService.credential()
       && this.validateService.itemLimite(item)
       && this.validateService.itemPay(item, rpg.player)
     );
+  }
+
+  editShopValidate(): boolean{
+    return (this.validateService.token() && this.validateService.master());
   }
 }
