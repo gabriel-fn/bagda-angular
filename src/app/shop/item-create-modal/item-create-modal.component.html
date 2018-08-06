@@ -1,54 +1,72 @@
 <h1 mat-dialog-title>Criar items de {{ rpg.name }}</h1>
 <div mat-dialog-content>
   <form [formGroup]="form">
-    <mat-form-field appearance="outline"> 
-      <mat-label>Loja</mat-label>
-      <mat-select placeholder="Escolha em qual loja adicionar" formControlName="shop_id">
-        <mat-option *ngFor="let shop of rpg.shops" [value]="shop.id">{{ shop.name }}</mat-option>
-      </mat-select>
-      <mat-error *ngIf="isFieldInvalid('shop_id')">
-        <strong>Você deve escolher em qual loja adicionar seu item!</strong>
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Nome do Item</mat-label>
-      <input matInput type="text" placeholder="Digite o nome do item" formControlName="name">
-      <mat-error *ngIf="isFieldInvalid('name')">
-        <strong>O nome do item não pode ficar em branco e deve ter entre 5 e 25 caracteres!</strong>
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Preço Gold</mat-label>
-      <input matInput type="number" formControlName="gold_price" placeholder="Digite o preço em gold">
-      <mat-error *ngIf="isFieldInvalid('gold_price')">
-        <strong>O gold deve ser preenchido com um valor maior ou igual a 0!</strong>
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Preço Cash</mat-label>
-      <input matInput type="number" formControlName="cash_price" placeholder="Digite o preço em cash">
-      <mat-error *ngIf="isFieldInvalid('cash_price')">
-        <strong>O cash deve ser preenchido com um valor maior ou igual a 0!</strong>
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Limite disponível</mat-label>
-      <input matInput type="number" formControlName="max_units" placeholder="Digite o limite disponível deste item">
-      <mat-hint *ngIf="!isFieldInvalid('max_units')">Se o item for ilimitado, deixe o valor do limite igual a 0.</mat-hint>
-      <mat-error *ngIf="isFieldInvalid('max_units')">
-        <strong>O limite deve ser preenchido com um valor maior ou igual a 0!</strong>
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Requer Aprovação?</mat-label>
-      <mat-select placeholder="Escolha sim ou não" formControlName="require_test">
-        <mat-option [value]="0">Não</mat-option>
-        <mat-option [value]="1">Sim</mat-option>
-      </mat-select>
-      <mat-error *ngIf="isFieldInvalid('require_test')">
-        <strong>Você deve escolher se o item requer aprovação de um moderador ou não!</strong>
-      </mat-error>
-    </mat-form-field>
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <mat-form-field appearance="outline"> 
+          <mat-label>Escolha uma Loja</mat-label>
+          <mat-select placeholder="Escolha em qual loja adicionar" formControlName="shop_id">
+            <mat-option *ngFor="let shop of rpg.shops" [value]="shop.id">{{ shop.name }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="isFieldInvalid('shop_id')">
+            <strong>Você deve escolher em qual loja adicionar seu item!</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Nome do Item</mat-label>
+          <input matInput type="text" placeholder="Digite o nome do item" formControlName="name">
+          <mat-error *ngIf="isFieldInvalid('name')">
+            <strong>O nome do item deve ter entre 5 e 25 caracteres!</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Preço Gold</mat-label>
+          <input matInput type="number" formControlName="gold_price" placeholder="Digite o preço em gold">
+          <mat-error *ngIf="isFieldInvalid('gold_price')">
+            <strong>O gold deve ser preenchido com um valor maior ou igual a 0!</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Preço Cash</mat-label>
+          <input matInput type="number" formControlName="cash_price" placeholder="Digite o preço em cash">
+          <mat-error *ngIf="isFieldInvalid('cash_price')">
+            <strong>O cash deve ser preenchido com um valor maior ou igual a 0!</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Limite disponível</mat-label>
+          <input matInput type="number" formControlName="max_units" placeholder="Digite o limite disponível deste item">
+          <mat-hint *ngIf="!isFieldInvalid('max_units')">Se o item for ilimitado, deixe o valor do limite igual a 0.</mat-hint>
+          <mat-error *ngIf="isFieldInvalid('max_units')">
+            <strong>O limite deve ser preenchido com um valor maior ou igual a 0!</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Requer Aprovação?</mat-label>
+          <mat-select placeholder="Escolha sim ou não" formControlName="require_test">
+            <mat-option [value]="0">Não</mat-option>
+            <mat-option [value]="1">Sim</mat-option>
+          </mat-select>
+          <mat-error *ngIf="isFieldInvalid('require_test')">
+            <strong>Você deve escolher se o item requer aprovação de um moderador ou não!</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
     <mat-form-field appearance="outline">
       <mat-label>Detalhes do Item</mat-label>
       <textarea rows="15" #detail matInput maxlength="5000" formControlName="detail" placeholder="Escreva os detalhes aqui"></textarea>
