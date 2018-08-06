@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-import { Item, Rpg } from '../shared/interfaces';
+import { Item, Player } from '../shared/interfaces';
 import { HelperService } from '../shared/helper.service';
 import { ValidateService } from '../shared/validate.service';
 
@@ -41,11 +41,21 @@ export class PlayerService {
     return this.http.post<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/players/update`, input);
   }
 
+  delete(playerId: number): Observable<{error: boolean, message: string}> {
+    return this.http.delete<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/players/delete/${playerId}`);
+  }
+
   ItemOrRequestValidate(item: Item): boolean {
     return (this.validateService.id(item.process.player_id)
       && this.validateService.id(item.process.item_id)
       && this.validateService.token() 
       && this.validateService.credential());
+  }
+
+  editPlayerValidate(player: Player): boolean {
+    return (this.validateService.token()
+            && this.validateService.moderator()
+            && this.validateService.canTouchPlayer(player.credential));
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { Subscription } from 'rxjs';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
@@ -8,6 +9,7 @@ import { Rpg, Player } from '../../shared/interfaces';
 import { RpgService } from '../../rpg/rpg.service';
 import { PlayerEditModalComponent } from '../player-edit-modal/player-edit-modal.component';
 import { HelperService } from '../../shared/helper.service';
+import { PlayerService } from '../player.service';
 
 @Component({
   selector: 'eth-player-control',
@@ -29,6 +31,7 @@ export class PlayerControlComponent implements OnInit {
   private routeSubscription: Subscription;
 
   constructor(private rpgService: RpgService,
+              private playerService: PlayerService,
               public helperService: HelperService,
               public dialog: MatDialog,
               private route: ActivatedRoute) { }
@@ -64,6 +67,24 @@ export class PlayerControlComponent implements OnInit {
     dialogRef.beforeClose().subscribe(result => {
       this.rpgService.rpg(this.rpgId);
     });
+  }
+
+  deletePlayer(player: Player) {
+    if (this.playerService.editPlayerValidate(player)) {
+      this.helperService.showLoading();
+      this.playerService.delete(player.id)
+      .subscribe(
+        (response: {error: boolean, message: string}) => {
+          this.helperService.showResponse(response);
+          this.rpgService.rpg(this.rpgId);
+          this.helperService.hideLoading();
+        },
+        (error: HttpErrorResponse) => {
+          console.log(error);
+          this.helperService.hideLoading();
+        }
+      );
+    }
   }
 
   ngOnDestroy(): void {
