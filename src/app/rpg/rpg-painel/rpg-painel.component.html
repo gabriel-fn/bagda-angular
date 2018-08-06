@@ -53,7 +53,7 @@
                 <eth-rpg-control></eth-rpg-control>
               </ng-template>
             </ngb-tab>
-            <ngb-tab title="Gerenciar Lojas">
+            <ngb-tab title="Gerenciar Lojas" *ngIf="rpg?.player?.credential > 2">
               <ng-template ngbTabContent>
                 <eth-item-control></eth-item-control>
               </ng-template>
