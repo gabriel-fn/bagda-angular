@@ -74,8 +74,8 @@ export class ShopControlComponent implements OnInit {
   }
 
   deleteShop(shopId: number) {
-    if (this.form.valid && this.shopService.editShopValidate()) {
-      /*this.helperService.showLoading();
+    if (this.shopService.editShopValidate()) {
+      this.helperService.showLoading();
       this.shopService.deleteShop(shopId)
       .subscribe(
         (response: {error: boolean, message: string}) => {
@@ -87,7 +87,7 @@ export class ShopControlComponent implements OnInit {
           console.log(error);
           this.helperService.hideLoading();
         }
-      );*/
+      );
     }
   }
   
