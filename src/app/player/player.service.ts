@@ -38,7 +38,7 @@ export class PlayerService {
     if (value.image !== null) {
       input.append('image', value.image);
     }
-    return this.http.post<{error: boolean, message: string}>(`${this.baseUrl}/api/players/update`, input);
+    return this.http.post<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/players/update`, input);
   }
 
   ItemOrRequestValidate(item: Item, rpg: Rpg): boolean {
