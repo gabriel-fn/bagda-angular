@@ -72,9 +72,7 @@ export class RpgControlComponent implements OnInit {
   }
 
   isFieldInvalid(field: string) {
-    return (
-      (this.form.get(field).invalid)
-    );
+    return this.form.get(field).invalid;
   }
 
   playersWithCredential(credential: number) {
@@ -93,7 +91,7 @@ export class RpgControlComponent implements OnInit {
   }
 
   updateRpg() {
-    if (this.form.valid && this.validateService.token() && this.validateService.master(this.rpg)) {
+    if (this.form.valid && this.validateService.token() && this.validateService.master()) {
       this.helperService.showLoading();
       this.rpgService.update(this.form.value)
       .subscribe(
@@ -112,7 +110,7 @@ export class RpgControlComponent implements OnInit {
   }
 
   registerResponse(player_id: number, accept: boolean) {
-    if (this.validateService.id(player_id) && this.validateService.token() && this.validateService.moderator(this.rpg)) {
+    if (this.validateService.id(player_id) && this.validateService.token() && this.validateService.moderator()) {
       this.helperService.showLoading();
       this.rpgService.registerResponse(player_id, accept)
       .subscribe(
