@@ -62,11 +62,27 @@
           <mat-expansion-panel-header>
             <mat-panel-title>Items</mat-panel-title>
           </mat-expansion-panel-header>
+          <mat-list>
+            <mat-list-item class="d-flex justify-content-end" *ngFor="let item of player.items">
+              <span class="mr-4">{{ item.name }} - {{ item.process.units }} unidade(s)</span>
+              <button mat-stroked-button color="warn" class="m-1">
+                Descartar 
+              </button>
+            </mat-list-item>
+          </mat-list>        
         </mat-expansion-panel>
         <mat-expansion-panel class="mat-elevation-z8">
           <mat-expansion-panel-header>
             <mat-panel-title>Pedidos de Item</mat-panel-title>
           </mat-expansion-panel-header>
+          <mat-list>
+            <mat-list-item class="d-flex justify-content-end" *ngFor="let request of player.requests">
+              <span class="mr-4">Aguardando por [{{ request.name }}] ...</span>
+              <button mat-stroked-button color="warn" class="m-1">
+                Rejeitar 
+              </button>
+            </mat-list-item>
+          </mat-list>          
         </mat-expansion-panel>
       </mat-accordion>
     </div>
