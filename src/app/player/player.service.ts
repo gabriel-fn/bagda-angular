@@ -41,11 +41,11 @@ export class PlayerService {
     return this.http.post<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/players/update`, input);
   }
 
-  ItemOrRequestValidate(item: Item, rpg: Rpg): boolean {
+  ItemOrRequestValidate(item: Item): boolean {
     return (this.validateService.id(item.process.player_id)
       && this.validateService.id(item.process.item_id)
       && this.validateService.token() 
-      && this.validateService.credential(rpg));
+      && this.validateService.credential());
   }
 
 }

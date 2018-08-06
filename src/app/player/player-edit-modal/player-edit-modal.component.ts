@@ -48,9 +48,7 @@ export class PlayerEditModalComponent implements OnInit {
   }
 
   isFieldInvalid(field: string) {
-    return (
-      (this.form.get(field).invalid)
-    );
+    return this.form.get(field).invalid;
   }
 
   handleFileInput(files: FileList) {

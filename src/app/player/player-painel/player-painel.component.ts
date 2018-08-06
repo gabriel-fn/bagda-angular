@@ -36,7 +36,7 @@ export class PlayerPainelComponent implements OnInit {
   }
 
   discardItem(item: Item): void {
-    if (this.playerService.ItemOrRequestValidate(item, this.rpg)) {
+    if (this.playerService.ItemOrRequestValidate(item)) {
       this.helperService.showLoading();
       this.playerService.discardItem(item.process.player_id, item.process.item_id)
       .subscribe(
@@ -54,7 +54,7 @@ export class PlayerPainelComponent implements OnInit {
   }
 
   dismissRequest(request: Item): void {
-    if (this.playerService.ItemOrRequestValidate(request, this.rpg)) {
+    if (this.playerService.ItemOrRequestValidate(request)) {
       this.helperService.showLoading();
       this.playerService.dismissRequest(request.process.player_id, request.process.item_id)
       .subscribe(

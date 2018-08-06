@@ -61,9 +61,7 @@ export class PlayerControlComponent implements OnInit {
       width: '1000px',
       data: {player: player}
     });
-
     dialogRef.beforeClose().subscribe(result => {
-      console.log('The dialog was closed');
       this.rpgService.rpg(this.rpgId);
     });
   }
