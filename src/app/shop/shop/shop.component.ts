@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 
-import { Rpg, Item, Shop } from '../../shared/interfaces';
+import { Rpg, Item, Shop, HttpSuccessResponse } from '../../shared/interfaces';
 import { ItemModalComponent } from '../item-modal/item-modal.component';
 import { RpgService } from '../../rpg/rpg.service';
 import { ShopService } from '../shop.service';
@@ -55,7 +55,7 @@ export class ShopComponent implements OnInit {
       this.helperService.showLoading();
       this.shopService.buy(item.id)
       .subscribe(
-        (response: {error: boolean, message: string}) => {
+        (response: HttpSuccessResponse) => {
           this.rpgService.rpg(this.rpgId);
           this.helperService.showResponse(response);
           this.helperService.hideLoading()

@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { HelperService } from '../../shared/helper.service';
-import { Item } from '../../shared/interfaces';
+import { Item, HttpSuccessResponse } from '../../shared/interfaces';
 import { ShopService } from '../shop.service';
 
 @Component({
@@ -76,7 +76,7 @@ export class ItemEditModalComponent implements OnInit {
       this.helperService.showLoading();
       this.shopService.updateItem(this.form.value)
       .subscribe(
-        (response: {error: boolean, message: string}) => {
+        (response: HttpSuccessResponse) => {
           this.helperService.showResponse(response);
           this.helperService.hideLoading();
         },

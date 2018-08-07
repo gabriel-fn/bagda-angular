@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable, BehaviorSubject } from 'rxjs';
 
-import { Rpg, Token } from '../shared/interfaces';
+import { Rpg, Token, HttpSuccessResponse } from '../shared/interfaces';
 import { AuthService } from './../auth/auth.service';
 import { HelperService } from '../shared/helper.service';
 
@@ -52,15 +52,15 @@ export class RpgService {
     }
   }
 
-  register(rpgId: number): Observable<{error: boolean, message: string}> {
-    return this.http.get<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/${rpgId}/register`);
+  register(rpgId: number): Observable<HttpSuccessResponse> {
+    return this.http.get<HttpSuccessResponse>(`${this.baseUrl}/api/rpgs/${rpgId}/register`);
   }
 
-  registerResponse(player_id: number, accept: boolean): Observable<{error: boolean, message: string}> {
-    return this.http.post<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/register/response`, {player_id: player_id, accept: accept});
+  registerResponse(player_id: number, accept: boolean): Observable<HttpSuccessResponse> {
+    return this.http.post<HttpSuccessResponse>(`${this.baseUrl}/api/rpgs/register/response`, {player_id: player_id, accept: accept});
   }
 
-  update(value): Observable<{error: boolean, message: string}> {
+  update(value): Observable<HttpSuccessResponse> {
     let input: FormData = new FormData();
     input.append('rpg_id', value.rpg_id);
     input.append('name', value.name);
@@ -70,6 +70,6 @@ export class RpgService {
     if (value.image !== null) {
       input.append('image', value.image);
     }
-    return this.http.post<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/update`, input);
+    return this.http.post<HttpSuccessResponse>(`${this.baseUrl}/api/rpgs/update`, input);
   }
 }

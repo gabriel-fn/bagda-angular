@@ -5,7 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
 
-import { Rpg } from '../../shared/interfaces';
+import { Rpg, HttpSuccessResponse } from '../../shared/interfaces';
 import { RpgService } from '../../rpg/rpg.service';
 import { HelperService } from '../../shared/helper.service';
 import { ShopService } from '../shop.service';
@@ -60,7 +60,7 @@ export class ShopControlComponent implements OnInit {
       this.helperService.showLoading();
       this.shopService.createShop(this.form.value)
       .subscribe(
-        (response: {error: boolean, message: string}) => {
+        (response: HttpSuccessResponse) => {
           this.helperService.showResponse(response);
           this.rpgService.rpg(this.rpgId);
           this.helperService.hideLoading();
@@ -78,7 +78,7 @@ export class ShopControlComponent implements OnInit {
       this.helperService.showLoading();
       this.shopService.deleteShop(shopId)
       .subscribe(
-        (response: {error: boolean, message: string}) => {
+        (response: HttpSuccessResponse) => {
           this.helperService.showResponse(response);
           this.rpgService.rpg(this.rpgId);
           this.helperService.hideLoading();

@@ -5,7 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import { Subscription } from 'rxjs';
 
-import { Rpg } from '../../shared/interfaces';
+import { Rpg, HttpSuccessResponse } from '../../shared/interfaces';
 import { RpgService } from '../rpg.service';
 import { HelperService } from '../../shared/helper.service';
 import { ValidateService } from '../../shared/validate.service';
@@ -95,7 +95,7 @@ export class RpgControlComponent implements OnInit {
       this.helperService.showLoading();
       this.rpgService.update(this.form.value)
       .subscribe(
-        (response: {error: boolean, message: string}) => {
+        (response: HttpSuccessResponse) => {
           this.helperService.showResponse(response);
           this.rpgService.rpg(this.rpgId);
           this.helperService.hideLoading();
@@ -114,7 +114,7 @@ export class RpgControlComponent implements OnInit {
       this.helperService.showLoading();
       this.rpgService.registerResponse(player_id, accept)
       .subscribe(
-        (response: {error: boolean, message: string}) => {
+        (response: HttpSuccessResponse) => {
           this.helperService.showResponse(response);
           this.rpgService.rpg(this.rpgId);
           this.helperService.hideLoading();

@@ -4,3 +4,4 @@ export * from './rpg';
 export * from './shop';
 export * from './token';
 export * from './user';
+export * from './http-success-response';

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { HttpSuccessResponse } from './interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +39,7 @@ export class HelperService {
     this.toastr.success(message, 'Resposta:');
   }
 
-  showResponse(response: {error: boolean, message: string}): void {
+  showResponse(response: HttpSuccessResponse): void {
     if (response.error) {
       this.showError(response.message);
     } else {

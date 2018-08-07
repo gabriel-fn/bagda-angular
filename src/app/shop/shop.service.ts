@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-import { Rpg, Item } from '../shared/interfaces';
+import { Rpg, Item, HttpSuccessResponse } from '../shared/interfaces';
 import { HelperService } from '../shared/helper.service';
 import { ValidateService } from '../shared/validate.service';
 
@@ -19,15 +19,15 @@ export class ShopService {
     this.baseUrl = this.helperService.baseUrl;
   }
 
-  createItem(value): Observable<{error: boolean, message: string}> {
-    return this.http.put<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/shops/items/create`, value);
+  createItem(value): Observable<HttpSuccessResponse> {
+    return this.http.put<HttpSuccessResponse>(`${this.baseUrl}/api/rpgs/shops/items/create`, value);
   }
 
-  deleteItem(itemId: number): Observable<{error: boolean, message: string}> {
-    return this.http.delete<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/shops/items/delete/${itemId}`);
+  deleteItem(itemId: number): Observable<HttpSuccessResponse> {
+    return this.http.delete<HttpSuccessResponse>(`${this.baseUrl}/api/rpgs/shops/items/delete/${itemId}`);
   }
 
-  updateItem(value): Observable<{error: boolean, message: string}> {
+  updateItem(value): Observable<HttpSuccessResponse> {
     let input: FormData = new FormData();
     input.append('item_id', value.item_id);
     input.append('name', value.name);
@@ -40,19 +40,19 @@ export class ShopService {
     if (value.image !== null) {
       input.append('image', value.image);
     }
-    return this.http.post<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/shops/items/update`, input);
+    return this.http.post<HttpSuccessResponse>(`${this.baseUrl}/api/rpgs/shops/items/update`, input);
   }
 
-  createShop(value): Observable<{error: boolean, message: string}> {
-    return this.http.put<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/shops/create`, value);
+  createShop(value): Observable<HttpSuccessResponse> {
+    return this.http.put<HttpSuccessResponse>(`${this.baseUrl}/api/rpgs/shops/create`, value);
   }
 
-  deleteShop(shopId: number): Observable<{error: boolean, message: string}> {
-    return this.http.delete<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/shops/delete/${shopId}`);
+  deleteShop(shopId: number): Observable<HttpSuccessResponse> {
+    return this.http.delete<HttpSuccessResponse>(`${this.baseUrl}/api/rpgs/shops/delete/${shopId}`);
   }
 
-  buy(itemId: number): Observable<{error: boolean, message: string}> {
-    return this.http.put<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/items/buy`, {item_id: itemId});
+  buy(itemId: number): Observable<HttpSuccessResponse> {
+    return this.http.put<HttpSuccessResponse>(`${this.baseUrl}/api/rpgs/items/buy`, {item_id: itemId});
   }
 
   buyValidate(item: Item, rpg: Rpg): boolean {

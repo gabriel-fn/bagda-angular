@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
-import { Rpg } from '../../shared/interfaces';
+import { Rpg, HttpSuccessResponse } from '../../shared/interfaces';
 import { HelperService } from '../../shared/helper.service';
 import { ValidateService } from '../../shared/validate.service';
 import { ShopService } from '../shop.service';
@@ -65,7 +65,7 @@ export class ItemCreateModalComponent implements OnInit {
       this.helperService.showLoading();
       this.shopService.createItem(this.form.value)
       .subscribe(
-        (response: {error: boolean, message: string}) => {
+        (response: HttpSuccessResponse) => {
           this.helperService.showResponse(response);
           this.helperService.hideLoading();
           this.form.reset();

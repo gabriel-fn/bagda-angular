@@ -5,7 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 
-import { Rpg, Player } from '../../shared/interfaces';
+import { Rpg, Player, HttpSuccessResponse } from '../../shared/interfaces';
 import { RpgService } from '../../rpg/rpg.service';
 import { PlayerEditModalComponent } from '../player-edit-modal/player-edit-modal.component';
 import { HelperService } from '../../shared/helper.service';
@@ -74,7 +74,7 @@ export class PlayerControlComponent implements OnInit {
       this.helperService.showLoading();
       this.playerService.delete(player.id)
       .subscribe(
-        (response: {error: boolean, message: string}) => {
+        (response: HttpSuccessResponse) => {
           this.helperService.showResponse(response);
           this.rpgService.rpg(this.rpgId);
           this.helperService.hideLoading();

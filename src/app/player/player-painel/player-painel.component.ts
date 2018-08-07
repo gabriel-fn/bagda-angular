@@ -4,7 +4,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import { Subscription } from 'rxjs';
 
-import { Rpg, Item } from '../../shared/interfaces';
+import { Rpg, Item, HttpSuccessResponse } from '../../shared/interfaces';
 import { RpgService } from '../../rpg/rpg.service';
 import { HelperService } from '../../shared/helper.service';
 import { PlayerService } from '../player.service';
@@ -40,7 +40,7 @@ export class PlayerPainelComponent implements OnInit {
       this.helperService.showLoading();
       this.playerService.discardItem(item.process.player_id, item.process.item_id)
       .subscribe(
-        (response: {error: boolean, message: string}) => {
+        (response: HttpSuccessResponse) => {
           this.rpgService.rpg(this.rpgId);
           this.helperService.showResponse(response);
           this.helperService.hideLoading();
@@ -58,7 +58,7 @@ export class PlayerPainelComponent implements OnInit {
       this.helperService.showLoading();
       this.playerService.dismissRequest(request.process.player_id, request.process.item_id)
       .subscribe(
-        (response: {error: boolean, message: string}) => {
+        (response: HttpSuccessResponse) => {
           this.rpgService.rpg(this.rpgId);
           this.helperService.showResponse(response);
           this.helperService.hideLoading();

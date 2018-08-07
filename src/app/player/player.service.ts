@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-import { Item, Player } from '../shared/interfaces';
+import { Item, Player, HttpSuccessResponse } from '../shared/interfaces';
 import { HelperService } from '../shared/helper.service';
 import { ValidateService } from '../shared/validate.service';
 
@@ -19,19 +19,19 @@ export class PlayerService {
     this.baseUrl = this.helperService.baseUrl;
   }
 
-  discardItem(playerId: number, itemId: number): Observable<{error: boolean, message: string, data?: any}> {
-    return this.http.put<{error: boolean, message: string, data?: any}>(`${this.baseUrl}/api/rpgs/items/discard`, {player_id: playerId, item_id: itemId});
+  discardItem(playerId: number, itemId: number): Observable<HttpSuccessResponse> {
+    return this.http.put<HttpSuccessResponse>(`${this.baseUrl}/api/rpgs/items/discard`, {player_id: playerId, item_id: itemId});
   }
 
-  dismissRequest(playerId: number, itemId: number): Observable<{error: boolean, message: string, data?: any}> {
-    return this.http.put<{error: boolean, message: string, data?: any}>(`${this.baseUrl}/api/rpgs/requests/dismiss`, {player_id: playerId, item_id: itemId});
+  dismissRequest(playerId: number, itemId: number): Observable<HttpSuccessResponse> {
+    return this.http.put<HttpSuccessResponse>(`${this.baseUrl}/api/rpgs/requests/dismiss`, {player_id: playerId, item_id: itemId});
   }
 
-  approveRequest(playerId: number, itemId: number): Observable<{error: boolean, message: string, data?: any}> {
-    return this.http.put<{error: boolean, message: string, data?: any}>(`${this.baseUrl}/api/rpgs/requests/approve`, {player_id: playerId, item_id: itemId});
+  approveRequest(playerId: number, itemId: number): Observable<HttpSuccessResponse> {
+    return this.http.put<HttpSuccessResponse>(`${this.baseUrl}/api/rpgs/requests/approve`, {player_id: playerId, item_id: itemId});
   }
 
-  update(value): Observable<{error: boolean, message: string}> {
+  update(value): Observable<HttpSuccessResponse> {
     let input: FormData = new FormData();
     input.append('player_id', value.player_id);
     input.append('gold', value.gold);
@@ -42,11 +42,11 @@ export class PlayerService {
     if (value.image !== null) {
       input.append('image', value.image);
     }
-    return this.http.post<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/players/update`, input);
+    return this.http.post<HttpSuccessResponse>(`${this.baseUrl}/api/rpgs/players/update`, input);
   }
 
-  delete(playerId: number): Observable<{error: boolean, message: string}> {
-    return this.http.delete<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/players/delete/${playerId}`);
+  delete(playerId: number): Observable<HttpSuccessResponse> {
+    return this.http.delete<HttpSuccessResponse>(`${this.baseUrl}/api/rpgs/players/delete/${playerId}`);
   }
 
   ItemOrRequestValidate(item: Item): boolean {

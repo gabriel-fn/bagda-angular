@@ -4,7 +4,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
-import { Player, Item } from '../../shared/interfaces';
+import { Player, Item, HttpSuccessResponse } from '../../shared/interfaces';
 import { HelperService } from '../../shared/helper.service';
 import { ValidateService } from '../../shared/validate.service';
 import { PlayerService } from '../player.service';
@@ -77,7 +77,7 @@ export class PlayerEditModalComponent implements OnInit {
       this.helperService.showLoading();
       this.playerService.update(this.form.value)
       .subscribe(
-        (response: {error: boolean, message: string}) => {
+        (response: HttpSuccessResponse) => {
           this.helperService.showResponse(response);
           this.helperService.hideLoading();
         },
@@ -95,7 +95,7 @@ export class PlayerEditModalComponent implements OnInit {
       this.helperService.showLoading();
       this.playerService.discardItem(item.process.player_id, item.process.item_id)
       .subscribe(
-        (response: {error: boolean, message: string, data: any}) => {
+        (response: HttpSuccessResponse) => {
           this.updateForm(response['data']);
           this.helperService.showResponse(response);
           this.helperService.hideLoading();
@@ -113,7 +113,7 @@ export class PlayerEditModalComponent implements OnInit {
       this.helperService.showLoading();
       this.playerService.dismissRequest(request.process.player_id, request.process.item_id)
       .subscribe(
-        (response: {error: boolean, message: string, data: any}) => {
+        (response: HttpSuccessResponse) => {
           this.updateForm(response['data']);
           this.helperService.showResponse(response);
           this.helperService.hideLoading();
@@ -131,7 +131,7 @@ export class PlayerEditModalComponent implements OnInit {
       this.helperService.showLoading();
       this.playerService.approveRequest(request.process.player_id, request.process.item_id)
       .subscribe(
-        (response: {error: boolean, message: string, data: any}) => {
+        (response: HttpSuccessResponse) => {
           this.updateForm(response['data']);
           this.helperService.showResponse(response);
           this.helperService.hideLoading();

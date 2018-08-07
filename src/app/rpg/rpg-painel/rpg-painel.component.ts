@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 
-import { Rpg } from '../../shared/interfaces';
+import { Rpg, HttpSuccessResponse } from '../../shared/interfaces';
 import { RpgService } from '../rpg.service';
 import { HelperService } from '../../shared/helper.service';
 import { ValidateService } from '../../shared/validate.service';
@@ -43,7 +43,7 @@ export class RpgPainelComponent implements OnInit {
       this.helperService.showLoading();
       this.rpgService.register(rpgId)
       .subscribe(
-        (response: {error: boolean, message: string}) => {
+        (response: HttpSuccessResponse) => {
           this.rpgService.rpg(this.rpgId);
           this.helperService.showResponse(response);
           this.helperService.hideLoading();
