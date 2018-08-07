@@ -22,8 +22,20 @@ export class AuthService {
               private router: Router) { 
     console.log('auth service active');
     this.baseUrl = this.helperService.baseUrl;
-    this.authUser = new BehaviorSubject(null);
+    this.authUser = new BehaviorSubject(this.getToken());
     this.seeAuthUser = this.authUser.asObservable(); 
+  }
+
+  setToken(token: Token): void {
+    localStorage.setItem('bagda_token', JSON.stringify(token));
+  }
+
+  getToken() {
+    let token = localStorage.getItem('bagda_token');
+    if (!token) {
+      return null;
+    }
+    return JSON.parse(localStorage.getItem('bagda_token'));
   }
 
   authenticate(email, password): Observable<Token> {
@@ -31,6 +43,7 @@ export class AuthService {
   }
 
   logout(): void {
+    localStorage.removeItem('bagda_token');
     this.authUser.next(null);
     this.router.navigate(['login']);
     this.helperService.showInfo('Você está deslogado...');

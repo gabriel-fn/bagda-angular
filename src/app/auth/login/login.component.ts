@@ -55,6 +55,7 @@ export class LoginComponent implements OnInit {
     .subscribe(
       (token: Token) => {
         console.log(token);
+        this.authService.setToken(token);
         this.authService.authUser.next(token);
         this.router.navigate(['rpgs/user']);
       },
