@@ -74,7 +74,6 @@ export class ItemControlComponent implements OnInit {
 
   openEdit(item: Item) {
     const dialogRef = this.dialog.open(ItemEditModalComponent, {
-      width: '1000px',
       data: {item: item}
     });
     dialogRef.beforeClose().subscribe(result => {
@@ -84,7 +83,6 @@ export class ItemControlComponent implements OnInit {
 
   openCreate() {
     const dialogRef = this.dialog.open(ItemCreateModalComponent, {
-      width: '1000px',
       data: {rpg: this.rpg}
     });
     dialogRef.beforeClose().subscribe(result => {

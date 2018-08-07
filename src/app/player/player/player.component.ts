@@ -17,7 +17,6 @@ export class PlayerComponent implements OnInit {
 
   public rpg: Rpg; 
   public filter: string;
-  //public players: Player[];
 
   private rpgInPainelSubscription: Subscription;
 

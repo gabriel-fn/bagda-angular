@@ -61,7 +61,6 @@ export class PlayerControlComponent implements OnInit {
 
   open(player: Player) {
     const dialogRef = this.dialog.open(PlayerEditModalComponent, {
-      width: '1000px',
       data: {player: player}
     });
     dialogRef.beforeClose().subscribe(result => {
