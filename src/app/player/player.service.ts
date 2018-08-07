@@ -27,6 +27,10 @@ export class PlayerService {
     return this.http.put<{error: boolean, message: string, data?: any}>(`${this.baseUrl}/api/rpgs/requests/dismiss`, {player_id: playerId, item_id: itemId});
   }
 
+  approveRequest(playerId: number, itemId: number): Observable<{error: boolean, message: string, data?: any}> {
+    return this.http.put<{error: boolean, message: string, data?: any}>(`${this.baseUrl}/api/rpgs/requests/approve`, {player_id: playerId, item_id: itemId});
+  }
+
   update(value): Observable<{error: boolean, message: string}> {
     let input: FormData = new FormData();
     input.append('player_id', value.player_id);

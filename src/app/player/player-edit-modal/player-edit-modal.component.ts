@@ -62,11 +62,18 @@ export class PlayerEditModalComponent implements OnInit {
     this.imagePlayer.nativeElement.value = null;
   }
 
+  updateForm(player: Player) {
+    this.form.patchValue({
+      'credential': player.credential,
+      'gold': player.gold,
+      'cash': player.cash,
+      'detail': player.detail,
+    });
+    this.player = player;
+  }
+
   updatePlayer(): void {
-    if (this.form.valid 
-        && this.validateService.token() 
-        && this.validateService.moderator()
-        && this.validateService.canTouchPlayer(this.player.credential)) {
+    if (this.form.valid && this.playerService.editPlayerValidate(this.player)) {
       this.helperService.showLoading();
       this.playerService.update(this.form.value)
       .subscribe(
@@ -89,7 +96,7 @@ export class PlayerEditModalComponent implements OnInit {
       this.playerService.discardItem(item.process.player_id, item.process.item_id)
       .subscribe(
         (response: {error: boolean, message: string, data: any}) => {
-          this.player = response['data'];
+          this.updateForm(response['data']);
           this.helperService.showResponse(response);
           this.helperService.hideLoading();
         },
@@ -107,7 +114,25 @@ export class PlayerEditModalComponent implements OnInit {
       this.playerService.dismissRequest(request.process.player_id, request.process.item_id)
       .subscribe(
         (response: {error: boolean, message: string, data: any}) => {
-          this.player = response['data'];
+          this.updateForm(response['data']);
+          this.helperService.showResponse(response);
+          this.helperService.hideLoading();
+        },
+        (error: HttpErrorResponse) => {
+          console.log(error);
+          this.helperService.hideLoading();
+        },
+      );
+    }
+  }
+
+  approveRequest(request: Item) {
+    if (this.playerService.editPlayerValidate(this.player)) {
+      this.helperService.showLoading();
+      this.playerService.approveRequest(request.process.player_id, request.process.item_id)
+      .subscribe(
+        (response: {error: boolean, message: string, data: any}) => {
+          this.updateForm(response['data']);
           this.helperService.showResponse(response);
           this.helperService.hideLoading();
         },
