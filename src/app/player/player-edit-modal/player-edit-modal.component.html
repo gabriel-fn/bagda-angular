@@ -65,7 +65,7 @@
           <mat-list>
             <mat-list-item class="d-flex justify-content-end" *ngFor="let item of player.items">
               <span class="mr-4">{{ item.name }} - {{ item.process.units }} unidade(s)</span>
-              <button mat-stroked-button color="warn" class="m-1">
+              <button mat-stroked-button color="warn" class="m-1" (click)="discardItem(item)">
                 Descartar 
               </button>
             </mat-list-item>

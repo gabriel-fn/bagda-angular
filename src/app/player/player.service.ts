@@ -19,8 +19,8 @@ export class PlayerService {
     this.baseUrl = this.helperService.baseUrl;
   }
 
-  discardItem(playerId: number, itemId: number): Observable<{error: boolean, message: string}> {
-    return this.http.put<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/items/discard`, {player_id: playerId, item_id: itemId});
+  discardItem(playerId: number, itemId: number): Observable<{error: boolean, message: string, data?: any}> {
+    return this.http.put<{error: boolean, message: string, data?: any}>(`${this.baseUrl}/api/rpgs/items/discard`, {player_id: playerId, item_id: itemId});
   }
 
   dismissRequest(playerId: number, itemId: number): Observable<{error: boolean, message: string}> {

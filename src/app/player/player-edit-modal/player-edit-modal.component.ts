@@ -4,7 +4,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
-import { Player } from '../../shared/interfaces';
+import { Player, Item } from '../../shared/interfaces';
 import { HelperService } from '../../shared/helper.service';
 import { ValidateService } from '../../shared/validate.service';
 import { PlayerService } from '../player.service';
@@ -80,6 +80,24 @@ export class PlayerEditModalComponent implements OnInit {
         }
       );
       this.clearFileInput();
+    }
+  }
+
+  discardItem(item: Item): void {
+    if (this.playerService.editPlayerValidate(this.player)) {
+      this.helperService.showLoading();
+      this.playerService.discardItem(item.process.player_id, item.process.item_id)
+      .subscribe(
+        (response: {error: boolean, message: string, data: any}) => {
+          this.player = response['data'];
+          this.helperService.showResponse(response);
+          this.helperService.hideLoading();
+        },
+        (error: HttpErrorResponse) => {
+          console.log(error);
+          this.helperService.hideLoading();
+        }
+      );
     }
   }
 }
