@@ -23,8 +23,8 @@ export class PlayerService {
     return this.http.put<{error: boolean, message: string, data?: any}>(`${this.baseUrl}/api/rpgs/items/discard`, {player_id: playerId, item_id: itemId});
   }
 
-  dismissRequest(playerId: number, itemId: number): Observable<{error: boolean, message: string}> {
-    return this.http.put<{error: boolean, message: string}>(`${this.baseUrl}/api/rpgs/requests/dismiss`, {player_id: playerId, item_id: itemId});
+  dismissRequest(playerId: number, itemId: number): Observable<{error: boolean, message: string, data?: any}> {
+    return this.http.put<{error: boolean, message: string, data?: any}>(`${this.baseUrl}/api/rpgs/requests/dismiss`, {player_id: playerId, item_id: itemId});
   }
 
   update(value): Observable<{error: boolean, message: string}> {

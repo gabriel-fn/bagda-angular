@@ -78,7 +78,7 @@
           <mat-list>
             <mat-list-item class="d-flex justify-content-end" *ngFor="let request of player.requests">
               <span class="mr-4">Aguardando por [{{ request.name }}] ...</span>
-              <button mat-stroked-button color="warn" class="m-1">
+              <button mat-stroked-button color="warn" class="m-1" (click)="dismissRequest(request)">
                 Rejeitar 
               </button>
             </mat-list-item>

@@ -100,4 +100,22 @@ export class PlayerEditModalComponent implements OnInit {
       );
     }
   }
+
+  dismissRequest(request: Item): void {
+    if (this.playerService.editPlayerValidate(this.player)) {
+      this.helperService.showLoading();
+      this.playerService.dismissRequest(request.process.player_id, request.process.item_id)
+      .subscribe(
+        (response: {error: boolean, message: string, data: any}) => {
+          this.player = response['data'];
+          this.helperService.showResponse(response);
+          this.helperService.hideLoading();
+        },
+        (error: HttpErrorResponse) => {
+          console.log(error);
+          this.helperService.hideLoading();
+        },
+      );
+    }
+  }
 }
