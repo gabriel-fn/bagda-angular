@@ -16,6 +16,8 @@ import { RpgService } from '../../rpg/rpg.service';
 export class PlayerComponent implements OnInit {
 
   public rpg: Rpg; 
+  public filter: string;
+  //public players: Player[];
 
   private rpgInPainelSubscription: Subscription;
 
@@ -26,6 +28,19 @@ export class PlayerComponent implements OnInit {
   ngOnInit(): void {
     this.rpgInPainelSubscription = this.rpgService.seeRpgInPainel
     .subscribe((rpg: Rpg) => this.rpg = rpg);
+  }
+
+  get players(): Player[] {
+    if (this.filter && this.filter.trim() != '') {
+      return this.rpg.players.filter((player) => {
+        return (player.user.name.toLowerCase().indexOf(this.filter.toLowerCase()) > -1);
+      })
+    }
+    return this.rpg.players;
+  }
+
+  applyFilter(value) {
+    this.filter = value;
   }
 
   open(player: Player) {
