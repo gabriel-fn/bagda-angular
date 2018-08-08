@@ -15,11 +15,11 @@
           <mat-list>
             <mat-list-item class="d-flex justify-content-end" *ngFor="let waitPlayer of playersWithCredential(0)">
               <span class="mr-4">{{ waitPlayer.user.name }}</span>
-              <button mat-stroked-button color="warn" (click)="registerResponse(waitPlayer.id, false)" class="m-1">
-                Cancelar
-              </button>
               <button mat-stroked-button color="primary" (click)="registerResponse(waitPlayer.id, true)" class="m-1">
                 Aceitar
+              </button>       
+              <button mat-stroked-button color="warn" (click)="registerResponse(waitPlayer.id, false)" class="m-1">
+                Cancelar
               </button>
             </mat-list-item>
           </mat-list>
