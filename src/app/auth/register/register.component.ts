@@ -1,28 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
 
-import { Token } from '../../shared/interfaces';
-import { AuthService } from './../auth.service';
+import { AuthService } from '../auth.service';
 import { HelperService } from '../../shared/helper.service';
+import { HttpErrorResponse } from '../../../../node_modules/@angular/common/http';
 
 @Component({
-  selector: 'eth-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'eth-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class LoginComponent implements OnInit {
-
+export class RegisterComponent implements OnInit {
+  
   public form: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
               private helperService: HelperService,
-              private authService: AuthService,
-              private router: Router) { }
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
+      name: [ null, [ 
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(25), 
+      ] ],
       email: [ null, [
         Validators.required,
         Validators.email,
@@ -32,6 +34,11 @@ export class LoginComponent implements OnInit {
         Validators.minLength(4),
         Validators.maxLength(12),
       ] ],
+      password_confirmation: [ null, [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(12),        
+      ] ]
     });
   }
 
@@ -45,19 +52,16 @@ export class LoginComponent implements OnInit {
     if (this.form.invalid) {
       alert('Formulário Invalido! Verifique se os campos estão preenchidos corretamente.');
     } else {
-      this.authenticate(this.form.value['email'], this.form.value['password']);
+      this.register(this.form.value);
     }
   }
 
-  authenticate(email, password) {
+  register(values) {
     this.helperService.showLoading();
-    this.authService.authenticate(email, password)
+    this.authService.register(values)
     .subscribe(
-      (token: Token) => {
-        console.log(token);
-        this.authService.setToken(token);
-        this.authService.authUser.next(token);
-        this.router.navigate(['rpgs/user']);
+      (res) => {
+        console.log(res);
         this.helperService.hideLoading();
       },
       (error: HttpErrorResponse) => {
@@ -66,5 +70,4 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-
 }

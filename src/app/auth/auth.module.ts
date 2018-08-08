@@ -7,6 +7,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { LoginComponent } from './login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   imports: [
@@ -14,10 +15,12 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     ReactiveFormsModule
   ],
   declarations: [
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   exports: [
     LoginComponent,
+    RegisterComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},

@@ -38,6 +38,10 @@ export class AuthService {
     return JSON.parse(localStorage.getItem('bagda_token'));
   }
 
+  register(values): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/api/register`, values);
+  }
+
   authenticate(email, password): Observable<Token> {
     return this.http.post<Token>(`${this.baseUrl}/oauth/token`, new PasswordClient(email, password));
   }
