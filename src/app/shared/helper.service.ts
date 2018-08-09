@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpSuccessResponse } from './interfaces';
+import { LoaderService } from './loader/loader.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class HelperService {
   baseUrl: string = 'http://localhost:8000';
 
   constructor(private toastr: ToastrService,
-              private spinner: NgxSpinnerService) { }
+              //private spinner: NgxSpinnerService,
+              private loaderService: LoaderService) { }
 
   status(credential: number): string {
     let credentialNames = ['Pedido Pendente', 'Jogador', 'Moderador', 'Mestre Auxiliar', 'Mestre'];
@@ -20,11 +22,13 @@ export class HelperService {
   }
 
   showLoading(): void {
-    this.spinner.show();
+    //this.spinner.show();
+    this.loaderService.show();
   }
 
   hideLoading(): void {
-    this.spinner.hide();
+    //this.spinner.hide();
+    this.loaderService.hide();
   }
 
   showError(message: string): void {
