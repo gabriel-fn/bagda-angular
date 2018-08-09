@@ -94,19 +94,24 @@ export class ItemControlComponent implements OnInit {
 
   deleteItem(itemId: number) {
     if (this.shopService.editShopValidate()) {
-      this.helperService.showLoading();
-      this.shopService.deleteItem(itemId)
-      .subscribe(
-        (response: HttpSuccessResponse) => {
-          this.helperService.showResponse(response);
-          this.rpgService.rpg(this.rpgId);
-          this.helperService.hideLoading();
-        },
-        (error: HttpErrorResponse) => {
-          console.log(error);
-          this.helperService.hideLoading();
+      this.helperService.openConfirm('Tem certeza que quer apagar este item?')
+      .subscribe((result) => {
+        if (result) { 
+          this.helperService.showLoading();
+          this.shopService.deleteItem(itemId)
+          .subscribe(
+            (response: HttpSuccessResponse) => {
+              this.helperService.showResponse(response);
+              this.rpgService.rpg(this.rpgId);
+              this.helperService.hideLoading();
+            },
+            (error: HttpErrorResponse) => {
+              console.log(error);
+              this.helperService.hideLoading();
+            }
+          );
         }
-      );
+      });
     }
   }
 

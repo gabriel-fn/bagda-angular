@@ -5,11 +5,13 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {  MatTableModule, MatSortModule, MatPaginatorModule, 
           MatButtonModule, MatInputModule, MatFormFieldModule, 
-          MatCardModule, MatSelectModule, MatExpansionModule, MatListModule, MatDialogModule, MatProgressBarModule } from '@angular/material';
+          MatCardModule, MatSelectModule, MatExpansionModule, 
+          MatListModule, MatDialogModule, MatProgressBarModule } from '@angular/material';
 
 import { ValidateInterceptor } from './interceptors/validate.interceptor';
 import { LoaderComponent } from './loader/loader.component';
 import { LoaderService } from './loader/loader.service';
+import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 
 @NgModule({
   imports: [
@@ -28,7 +30,11 @@ import { LoaderService } from './loader/loader.service';
     MatDialogModule,
     MatProgressBarModule,
   ],
-  declarations: [LoaderComponent],
+  declarations: [
+    LoaderComponent, 
+    ConfirmModalComponent
+  ],
+  entryComponents: [ConfirmModalComponent],
   exports: [
     LoaderComponent,
     NgbModule,
