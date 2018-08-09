@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { HelperService } from '../../shared/helper.service';
 import { HttpErrorResponse } from '../../../../node_modules/@angular/common/http';
+import { HttpSuccessResponse } from '../../shared/interfaces';
 
 @Component({
   selector: 'eth-register',
@@ -60,8 +61,8 @@ export class RegisterComponent implements OnInit {
     this.helperService.showLoading();
     this.authService.register(values)
     .subscribe(
-      (res) => {
-        console.log(res);
+      (response: HttpSuccessResponse) => {
+        this.helperService.showResponse(response);
         this.helperService.hideLoading();
       },
       (error: HttpErrorResponse) => {

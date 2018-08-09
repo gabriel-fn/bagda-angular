@@ -62,6 +62,9 @@ export class LoginComponent implements OnInit {
       },
       (error: HttpErrorResponse) => {
         console.log(error);
+        if (error.status == 401) {
+          this.helperService.showError('As credenciais do usuário estão incorretas!');
+        }
         this.helperService.hideLoading();
       }
     );

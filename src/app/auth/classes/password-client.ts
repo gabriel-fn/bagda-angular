@@ -1,7 +1,7 @@
 export class PasswordClient {
     grant_type: string = "password";
     client_id: number = 2;
-    client_secret: string = "OMUzVWRPOz1YFo02gDmMEdUU7RW1AdWTv7pNcDE4";
+    client_secret: string = "wNHhabIGpuq02njwmrSMD1oRJNxqgI4yMmkpYBGU";
 
     username: string;
     password: string;
