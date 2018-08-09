@@ -8,6 +8,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { LoginComponent } from './login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { RegisterComponent } from './register/register.component';
+import { AuthLayoutBootstrapComponent } from './auth-layout-bootstrap/auth-layout-bootstrap.component';
 
 @NgModule({
   imports: [
@@ -16,11 +17,13 @@ import { RegisterComponent } from './register/register.component';
   ],
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AuthLayoutBootstrapComponent
   ],
   exports: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AuthLayoutBootstrapComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
