@@ -75,19 +75,24 @@ export class ShopControlComponent implements OnInit {
 
   deleteShop(shopId: number) {
     if (this.shopService.editShopValidate()) {
-      this.helperService.showLoading();
-      this.shopService.deleteShop(shopId)
-      .subscribe(
-        (response: HttpSuccessResponse) => {
-          this.helperService.showResponse(response);
-          this.rpgService.rpg(this.rpgId);
-          this.helperService.hideLoading();
-        },
-        (error: HttpErrorResponse) => {
-          console.log(error);
-          this.helperService.hideLoading();
+      this.helperService.openConfirm('Tem certeza que quer apagar esta Loja?')
+      .subscribe((result) => {
+        if (result) {
+          this.helperService.showLoading();
+          this.shopService.deleteShop(shopId)
+          .subscribe(
+            (response: HttpSuccessResponse) => {
+              this.helperService.showResponse(response);
+              this.rpgService.rpg(this.rpgId);
+              this.helperService.hideLoading();
+            },
+            (error: HttpErrorResponse) => {
+              console.log(error);
+              this.helperService.hideLoading();
+            }
+          );
         }
-      );
+      });
     }
   }
   

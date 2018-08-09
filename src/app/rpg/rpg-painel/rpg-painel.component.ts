@@ -40,19 +40,24 @@ export class RpgPainelComponent implements OnInit {
 
   register(rpgId: number) {
     if (this.validateService.token() && this.validateService.id(rpgId)) {
-      this.helperService.showLoading();
-      this.rpgService.register(rpgId)
-      .subscribe(
-        (response: HttpSuccessResponse) => {
-          this.rpgService.rpg(this.rpgId);
-          this.helperService.showResponse(response);
-          this.helperService.hideLoading();
-        },
-        (error: HttpErrorResponse) => {
-          console.log(error);
-          this.helperService.hideLoading();
+      this.helperService.openConfirm('Tem certeza que quer realizar a inscrição/desinscrição deste rpg? (Cuidado ao realizar está ação)')
+      .subscribe((result) => {
+        if (result) {
+          this.helperService.showLoading();
+          this.rpgService.register(rpgId)
+          .subscribe(
+            (response: HttpSuccessResponse) => {
+              this.rpgService.rpg(this.rpgId);
+              this.helperService.showResponse(response);
+              this.helperService.hideLoading();
+            },
+            (error: HttpErrorResponse) => {
+              console.log(error);
+              this.helperService.hideLoading();
+            }
+          );
         }
-      );
+      });
     }
   }
 

@@ -71,19 +71,24 @@ export class PlayerControlComponent implements OnInit {
 
   deletePlayer(player: Player) {
     if (this.playerService.editPlayerValidate(player)) {
-      this.helperService.showLoading();
-      this.playerService.delete(player.id)
-      .subscribe(
-        (response: HttpSuccessResponse) => {
-          this.helperService.showResponse(response);
-          this.rpgService.rpg(this.rpgId);
-          this.helperService.hideLoading();
-        },
-        (error: HttpErrorResponse) => {
-          console.log(error);
-          this.helperService.hideLoading();
+      this.helperService.openConfirm('Tem certeza que quer apagar este jogador?')
+      .subscribe((result) => {
+        if (result) {
+          this.helperService.showLoading();
+          this.playerService.delete(player.id)
+          .subscribe(
+            (response: HttpSuccessResponse) => {
+              this.helperService.showResponse(response);
+              this.rpgService.rpg(this.rpgId);
+              this.helperService.hideLoading();
+            },
+            (error: HttpErrorResponse) => {
+              console.log(error);
+              this.helperService.hideLoading();
+            }
+          );
         }
-      );
+      });
     }
   }
 

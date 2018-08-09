@@ -37,19 +37,24 @@ export class PlayerPainelComponent implements OnInit {
 
   discardItem(item: Item): void {
     if (this.playerService.ItemOrRequestValidate(item)) {
-      this.helperService.showLoading();
-      this.playerService.discardItem(item.process.player_id, item.process.item_id)
-      .subscribe(
-        (response: HttpSuccessResponse) => {
-          this.rpgService.rpg(this.rpgId);
-          this.helperService.showResponse(response);
-          this.helperService.hideLoading();
-        },
-        (error: HttpErrorResponse) => {
-          console.log(error);
-          this.helperService.hideLoading();
+      this.helperService.openConfirm('Tem certeza que quer descartar este item?')
+      .subscribe((result) => {
+        if (result) {
+          this.helperService.showLoading();
+          this.playerService.discardItem(item.process.player_id, item.process.item_id)
+          .subscribe(
+            (response: HttpSuccessResponse) => {
+              this.rpgService.rpg(this.rpgId);
+              this.helperService.showResponse(response);
+              this.helperService.hideLoading();
+            },
+            (error: HttpErrorResponse) => {
+              console.log(error);
+              this.helperService.hideLoading();
+            }
+          );
         }
-      );
+      });
     }
   }
 
