@@ -8,8 +8,8 @@ import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/m
 import { Rpg, Item, Shop, HttpSuccessResponse } from '../../shared/interfaces';
 import { RpgService } from '../../rpg/rpg.service';
 import { HelperService } from '../../shared/helper.service';
-import { ItemEditModalComponent } from '../item-edit-modal/item-edit-modal.component';
-import { ItemCreateModalComponent } from '../item-create-modal/item-create-modal.component';
+import { ItemEditModalComponent } from './item-edit-modal/item-edit-modal.component';
+import { ItemCreateModalComponent } from './item-create-modal/item-create-modal.component';
 import { ShopService } from '../shop.service';
 
 @Component({

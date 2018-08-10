@@ -6,10 +6,10 @@ import { ShopComponent } from './shop/shop.component';
 import { ShopService } from './shop.service';
 import { ItemModalComponent } from './item-modal/item-modal.component';
 import { SharedModule } from '../shared/shared.module';
-import { ItemEditModalComponent } from './item-edit-modal/item-edit-modal.component';
+import { ItemEditModalComponent } from './item-control/item-edit-modal/item-edit-modal.component';
 import { ItemControlComponent } from './item-control/item-control.component';
 import { ShopControlComponent } from './shop-control/shop-control.component';
-import { ItemCreateModalComponent } from './item-create-modal/item-create-modal.component';
+import { ItemCreateModalComponent } from './item-control/item-create-modal/item-create-modal.component';
 
 @NgModule({
   imports: [
