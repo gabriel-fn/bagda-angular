@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { MAT_DIALOG_DATA } from '@angular/material';
 
 import { Player } from '../../shared/interfaces';
 import { HelperService } from '../../shared/helper.service';
@@ -12,12 +12,13 @@ import { HelperService } from '../../shared/helper.service';
 })
 export class PlayerModalComponent implements OnInit {
 
-  @Input() player: Player;
+  public player: Player;
 
   constructor(public helperService: HelperService,
-              public activeModal: NgbActiveModal) { }
+              @Inject(MAT_DIALOG_DATA) public data: {player: Player}) { }
 
   ngOnInit() {
+    this.player = this.data.player;
   }
 
 }

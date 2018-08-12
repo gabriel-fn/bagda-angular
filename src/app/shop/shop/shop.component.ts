@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material';
 
 import { Rpg, Item, Shop, HttpSuccessResponse } from '../../shared/interfaces';
 import { ItemModalComponent } from '../item-modal/item-modal.component';
@@ -29,7 +29,7 @@ export class ShopComponent implements OnInit {
               private rpgService: RpgService,
               private helperService: HelperService,
               private route: ActivatedRoute,
-              private modalService: NgbModal) { }
+              public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.rpgInPainelSubscription = this.rpgService.seeRpgInPainel
@@ -69,14 +69,16 @@ export class ShopComponent implements OnInit {
   }
 
   open(item: Item) {
-    const modalRef = this.modalService.open(
-      ItemModalComponent, {
-        size: 'lg',
-        centered: true
+    this.dialog.open(ItemModalComponent, {
+      width: '800px',
+      data: {item: item}
+    })
+    .beforeClose()
+    .subscribe((item: Item) => {
+      if (item) {
+        this.buy(item);
       }
-    );
-    modalRef.result.then((item: Item) => this.buy(item), (dismiss) => {});
-    modalRef.componentInstance.item = item;
+    });
   }
 
   ngOnDestroy(): void {

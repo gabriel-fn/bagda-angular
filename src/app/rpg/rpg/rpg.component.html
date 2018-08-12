@@ -1,21 +1,25 @@
 <div class="row">
   <div class="col-12 col-md-6" *ngFor="let rpg of rpgs">
-    <div class="card mb-4">
-      <img  #rpgImage class="card-img-top" src="{{ rpg.image }}"
+    <mat-card class="mb-4">
+      <img  #rpgImage mat-card-image class="card-img-top" src="{{ rpg.image }}"
             [ngStyle]="{'height.px': rpgImage.width/2, 'object-fit': 'cover'}">
-      <div class="card-body">
-        <h5 class="card-title">{{ rpg.name }}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Mestre: {{ rpg.master.name }} - Rpg {{ (rpg.is_public)?"público":"privado" }}</h6>
-      </div>
-      <ul class="list-group list-group-flush" *ngIf="rpg.player">
-        <li class="list-group-item">Status: {{ helperService.status(rpg.player.credential) }}</li>
-        <li class="list-group-item list-group-item-warning">{{ rpg.player.gold }} Gold</li>
-        <li class="list-group-item list-group-item-primary">{{ rpg.player.cash }} Cash</li>
-      </ul>
-      <div class="card-footer text-center">
-        <small class="text-muted card-link"> Criado em: {{ rpg.created_at }}</small>
-        <button type="button" class="btn btn-outline-primary card-link" [routerLink]="['/rpgs', rpg.id]" >Entrar</button>
-      </div>
-    </div>
+      <mat-card-header>
+        <mat-card-title><h5>{{ rpg.name }}</h5></mat-card-title>
+        <mat-card-subtitle><h6>Mestre: {{ rpg.master.name }} - Rpg {{ (rpg.is_public)?"público":"privado" }}</h6></mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list *ngIf="rpg.player">
+          <mat-list-item>Status: {{ helperService.status(rpg.player.credential) }}</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item class="text-warning">{{ rpg.player.gold }} Gold</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item class="text-primary">{{ rpg.player.cash }} Cash</mat-list-item>
+        </mat-list>
+      </mat-card-content>
+      <mat-card-footer class="card-footer text-center">
+        <small class="card-link"> Criado em: {{ rpg.created_at }}</small>
+        <button type="button" mat-stroked-button class="card-link" [routerLink]="['/rpgs', rpg.id]" >Entrar</button>
+      </mat-card-footer>
+    </mat-card>
   </div>
 </div>

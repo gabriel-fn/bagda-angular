@@ -1,73 +1,52 @@
 <div class="row mb-2">
   <div class="col-12">
-    <div class="card" *ngIf="rpg">
-      <img  #rpgImage class="card-img-top" src="{{ rpg.image }}"
-            [ngStyle]="{'height.px': rpgImage.width/3, 'object-fit': 'cover'}">
-      <div class="card-header">
-        <div class="row justify-content-between">
-          <div class="col-6">
-            <h5>{{ rpg.name }}</h5>
-          </div>
-          <div class="col-6 col-md-4 col-lg-2">
-            <button *ngIf="!rpg?.player" (click)="register(rpg.id)"
-                    type="button" class="btn btn-outline-primary btn-block float-right"
-                    placement="left" ngbTooltip="Lembre-se que deve estar logado para se inscrever!">
-              Inscrever
-            </button>
-            <button *ngIf="rpg?.player" (click)="register(rpg.id)" 
-                    type="button" class="btn btn-outline-danger btn-block float-right">
-              {{ (rpg.player.credential)?"Desinscrever":"Aguardando" }}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <mat-card *ngIf="rpg">
+      <!--img  #rpgImage mat-card-image src="{{ rpg.image }}"
+            [ngStyle]="{'height.px': rpgImage.width/3, 'object-fit': 'cover'}"-->
+      <mat-card-header>
+        <h5>{{ rpg.name }}</h5>
+        <span class="eth-between"></span>
+        <button *ngIf="!rpg?.player" (click)="register(rpg.id)"
+                type="button" mat-raised-button color="primary"
+                matTooltipPosition="left" matTooltip="Lembre-se que deve estar logado para se inscrever!">
+          Inscrever
+        </button>
+        <button *ngIf="rpg?.player" (click)="register(rpg.id)" 
+                type="button" mat-button color="warn">
+          {{ (rpg.player.credential)?"Desinscrever":"Aguardando" }}
+        </button>
+      </mat-card-header>
+    </mat-card>
   </div>
 </div>
 
 <div class="row">
   <div class="col-12">
-    <ngb-tabset justify="justified" *ngIf="rpg">
-      <ngb-tab title="Principal" *ngIf="rpg?.player?.credential">
-        <ng-template ngbTabContent>
-          <eth-player-painel></eth-player-painel> 
-        </ng-template>
-      </ngb-tab>
-      <ngb-tab title="Lojas">
-        <ng-template ngbTabContent>
-          <eth-shop></eth-shop> 
-        </ng-template>
-      </ngb-tab>
-      <ngb-tab title="Jogadores">
-        <ng-template ngbTabContent>
-          <eth-player></eth-player>
-        </ng-template>
-      </ngb-tab>
-      <ngb-tab title="Painel" *ngIf="rpg?.player?.credential > 1">
-        <ng-template ngbTabContent>
-          
-          <mat-card>
-          <ngb-tabset justify="justified" type="pills">
-            <ngb-tab title="Gerenciar Rpg" *ngIf="rpg?.player?.credential > 1">
-              <ng-template ngbTabContent>
-                <eth-rpg-control></eth-rpg-control>
-              </ng-template>
-            </ngb-tab>
-            <ngb-tab title="Gerenciar Lojas" *ngIf="rpg?.player?.credential > 2">
-              <ng-template ngbTabContent>
-                <eth-item-control></eth-item-control>
-              </ng-template>
-            </ngb-tab>
-            <ngb-tab title="Gerenciar Jogadores">
-              <ng-template ngbTabContent>
-                <eth-player-control></eth-player-control>
-              </ng-template>
-            </ngb-tab>
-          </ngb-tabset>
-          </mat-card>
-
-        </ng-template>
-      </ngb-tab>
-    </ngb-tabset>
+    <mat-tab-group mat-stretch-tabs *ngIf="rpg">
+      <mat-tab label="Principal" *ngIf="rpg?.player?.credential">
+        <eth-player-painel></eth-player-painel> 
+      </mat-tab>
+      <mat-tab label="Lojas">
+        <eth-shop></eth-shop> 
+      </mat-tab>
+      <mat-tab label="Jogadores">
+        <eth-player></eth-player>
+      </mat-tab>
+      <mat-tab label="Painel" *ngIf="rpg?.player?.credential > 1">
+        <mat-card>
+          <mat-tab-group mat-strech-tabs>
+            <mat-tab label="Gerenciar Rpg" *ngIf="rpg?.player?.credential > 1">
+              <eth-rpg-control></eth-rpg-control>
+            </mat-tab>
+            <mat-tab label="Gerenciar Lojas" *ngIf="rpg?.player?.credential > 2">
+              <eth-item-control></eth-item-control>
+            </mat-tab>
+            <mat-tab label="Gerenciar Jogadores">
+              <eth-player-control></eth-player-control>
+            </mat-tab>
+          </mat-tab-group>
+        </mat-card>
+      </mat-tab>
+    </mat-tab-group>
   </div>
 </div>

@@ -1,0 +1,43 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title><h5>Registre-se no sistema</h5></mat-card-title> 
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label>Nome</mat-label>
+        <input matInput type="text" formControlName="name">
+        <mat-error *ngIf="isFieldInvalid('name')">
+          <strong>O campo nome é obrigatório e deve ter no máximo 25 caracteres!</strong>
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label>E-Mail</mat-label>
+        <input matInput type="email" formControlName="email">
+        <mat-error *ngIf="isFieldInvalid('email')">
+          <strong>O campo email é obrigatório e deve estar em um formato valido!</strong>
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label>Senha</mat-label>
+        <input matInput type="password" formControlName="password">
+        <mat-error *ngIf="isFieldInvalid('password')">
+          <strong>O campo senha é obrigatório e deve ter de 4 a 12 caracteres!</strong>
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label>Confirmar Senha</mat-label>
+        <input matInput type="password" formControlName="password_confirmation">
+      </mat-form-field>
+
+      <button mat-stroked-button type="submit" [disabled]="form.invalid">
+        Registrar
+      </button>
+
+    </form>
+  </mat-card-content>
+</mat-card>  

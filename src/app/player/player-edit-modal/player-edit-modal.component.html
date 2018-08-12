@@ -63,8 +63,9 @@
             <mat-panel-title>Items</mat-panel-title>
           </mat-expansion-panel-header>
           <mat-list>
-            <mat-list-item class="d-flex justify-content-end" *ngFor="let item of player.items">
-              <span class="mr-4">{{ item.name }} - {{ item.process.units }} unidade(s)</span>
+            <mat-list-item *ngFor="let item of player.items">
+              <span>{{ item.name }} - {{ item.process.units }} unidade(s)</span>
+              <span class="eth-between"></span>
               <button mat-stroked-button color="warn" class="m-1" (click)="discardItem(item)">
                 Descartar 
               </button>
@@ -76,9 +77,10 @@
             <mat-panel-title>Pedidos de Item</mat-panel-title>
           </mat-expansion-panel-header>
           <mat-list>
-            <mat-list-item class="d-flex justify-content-end" *ngFor="let request of player.requests">
-              <span class="mr-4">Aguardando por [{{ request.name }}] ...</span>
-              <button mat-stroked-button color="primary" class="m-1" (click)="approveRequest(request)">
+            <mat-list-item *ngFor="let request of player.requests">
+              <span>Aguardando por [{{ request.name }}] ...</span>
+              <span class="eth-between"></span>
+              <button mat-stroked-button color="accent" class="m-1" (click)="approveRequest(request)">
                 Aprovar 
               </button>
               <button mat-stroked-button color="warn" class="m-1" (click)="dismissRequest(request)">
@@ -92,6 +94,6 @@
   </div>
 </div>
 <div mat-dialog-actions align="end">
-  <button mat-stroked-button color="primary" mat-dialog-close class="m-1">Fechar</button>
-  <button mat-stroked-button color="warn" [disabled]="form.invalid" (click)="updatePlayer()" class="m-1">Salvar</button>
+  <button mat-stroked-button mat-dialog-close class="m-1">Fechar</button>
+  <button mat-stroked-button color="accent" [disabled]="form.invalid" (click)="updatePlayer()" class="m-1">Salvar</button>
 </div>

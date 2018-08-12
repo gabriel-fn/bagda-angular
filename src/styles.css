@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~ngx-toastr/toastr.css';
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 .mat-form-field {
     width: 100%;
@@ -8,4 +7,14 @@
 
 .img-fluid {
     width: 100%;
+}
+
+.eth-between {
+    flex: 1 1 auto;
+}
+
+.page-wrap {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthLayoutBootstrapComponent } from './auth/auth-layout-bootstrap/auth-layout-bootstrap.component';
+import { AuthLayoutMaterialComponent } from './auth/auth-layout-material/auth-layout-material.component';
 
 const routes: Routes = [
     { 
@@ -11,7 +11,7 @@ const routes: Routes = [
     },
     { 
       path: 'login', 
-      component: AuthLayoutBootstrapComponent 
+      component: AuthLayoutMaterialComponent
     },
 ];
 

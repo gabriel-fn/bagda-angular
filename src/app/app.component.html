@@ -1,43 +1,26 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top mb-2">
-    <!-- Collapsed Hamburger -->
-    <div class="container">
-        <!-- Branding Image -->
-        <a class="navbar-brand">Mesa online</a>
-        <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <!-- Right Side Of Navbar -->
-        <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed">
-            <ul class="navbar-nav ml-auto">
-                <!-- Nav Items para todos os usuários -->
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="rpgs">Rpgs</a>
-                </li>
-                <!-- Nav Items para usuários não logados -->
-                <li class="nav-item" *ngIf="!token">
-                    <a class="nav-link" routerLink="login">Login</a>
-                </li>
-                <!-- Nav Items para usuários logados -->
-                <li class="nav-item" *ngIf="token">
-                    <a class="nav-link" routerLink="rpgs/user">Meus Rpgs</a>
-                </li>       
-                <li class="nav-item" *ngIf="token">
-                    <a class="nav-link" (click)="logout()">Logout</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<mat-drawer-container>
+<div class="page-wrap">
+<mat-toolbar color="primary" class="mb-2">
+    <span>Mesa online</span>
+    <span class="eth-between"></span>
+    <button mat-button routerLink="rpgs">Rpgs</button>
+    <button mat-button *ngIf="!token" routerLink="login">Login</button>
+    <button mat-button *ngIf="token" routerLink="rpgs/user">Meus Rpgs</button>
+    <button mat-button *ngIf="token" (click)="logout()">Logout</button>
+    <mat-slide-toggle [checked]="isChecked" color="primary" #turnOn (change)="changeTheme(turnOn.checked)">{{ turnText }}</mat-slide-toggle>
+</mat-toolbar> 
 <eth-loader></eth-loader>
 <!--ngx-spinner    bdColor = "rgba(51, 51, 51, 0.8)" size = "large" 
                 color = "#fff" type = "ball-atom">
 </ngx-spinner-->
-<div class="container">
+<div class="container" style="flex: 1;">
     <router-outlet></router-outlet>
 </div>
 
-<footer class="py-3 mt-4 bg-light position-sticky">
+<mat-toolbar color="primary" class="mt-4">
     <div class="container">
         <p class="m-0 text-center">Copyright &copy; Methir 2018</p>
     </div>
-</footer>
+</mat-toolbar>
+</div>
+</mat-drawer-container>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material';
 
 import { Rpg, Player } from '../../shared/interfaces';
 import { PlayerModalComponent } from '../player-modal/player-modal.component';
@@ -22,7 +22,7 @@ export class PlayerComponent implements OnInit {
 
   constructor(private rpgService: RpgService,
               public helperService: HelperService,
-              private modalService: NgbModal) { }
+              public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.rpgInPainelSubscription = this.rpgService.seeRpgInPainel
@@ -43,13 +43,10 @@ export class PlayerComponent implements OnInit {
   }
 
   open(player: Player) {
-    const modalRef = this.modalService.open(
-      PlayerModalComponent, {
-        size: 'lg',
-        centered: true
-      }
-    );
-    modalRef.componentInstance.player = player;
+    this.dialog.open(PlayerModalComponent, {
+      width: '800px',
+      data: {player: player}
+    });
   }
 
   ngOnDestroy(): void {

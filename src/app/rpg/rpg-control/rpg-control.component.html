@@ -13,9 +13,10 @@
             <mat-panel-title>Pedidos de Inscrição</mat-panel-title>
           </mat-expansion-panel-header>
           <mat-list>
-            <mat-list-item class="d-flex justify-content-end" *ngFor="let waitPlayer of playersWithCredential(0)">
-              <span class="mr-4">{{ waitPlayer.user.name }}</span>
-              <button mat-stroked-button color="primary" (click)="registerResponse(waitPlayer.id, true)" class="m-1">
+            <mat-list-item *ngFor="let waitPlayer of playersWithCredential(0)">
+              <span>{{ waitPlayer.user.name }}</span>
+              <span class="eth-between"></span>
+              <button mat-stroked-button color="accent" (click)="registerResponse(waitPlayer.id, true)" class="m-1">
                 Aceitar
               </button>       
               <button mat-stroked-button color="warn" (click)="registerResponse(waitPlayer.id, false)" class="m-1">
@@ -85,7 +86,7 @@
                 <span class="text-muted">A nova imagem, após ser salva, irá aparecer assim que você recarregar a página!</span>
               </mat-card-content>
             </mat-card>
-            <button mat-stroked-button color="primary" [disabled]="form.invalid" type="submit">
+            <button mat-stroked-button color="accent" [disabled]="form.invalid" type="submit">
               Salvar
             </button>   
           </form>    

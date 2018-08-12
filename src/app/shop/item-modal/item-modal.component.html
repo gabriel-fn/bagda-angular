@@ -1,24 +1,26 @@
-<div class="modal-header">
-  <button type="button" class="close" (click)="activeModal.dismiss()">
-    fechar  
-  </button>
-</div>
-<div class="modal-body">
-  <img class="img-fluid" src="{{ item.image }}">
-  <h5 class="mt-4">{{ item.name }} 
+<h1 mat-dialog-title>
+    {{ item.name }} 
     <span *ngIf="item.require_test" class="text-danger">(Requer Aprovação)</span>
     <span *ngIf="item.max_units" class="text-danger">(limite {{ item.max_units }})</span>
-  </h5>
-  <p>{{ item.detail }}</p>
-  <ul class="list-group">
-    <li class="list-group-item list-group-item-dark">Jogadores que o possuem</li>
-    <li class="list-group-item" *ngFor="let player of item.players">
-      {{ player.user.name }} - {{ player.process.units }} unidade(s)
-    </li>
-    <li class="list-group-item" *ngIf="!item.players.length">Nenhum jogador possue este item</li>
-  </ul>       
+    <span class="float-right text-primary">{{ item.cash_price }} Cash</span>
+    <span class="float-right text-warning mr-2">{{ item.gold_price }} Gold</span>
+</h1>
+<div mat-dialog-content>  
+  <img class="img-fluid" src="{{ item.image }}">
+  <h5 class="mt-4">Descrição:</h5>
+  <div [innerHTML]="item.detail | nl2br"></div>
+  <span *ngIf="!item.detail">Item sem descrição...</span>
+  <mat-card class="mt-4 mb-4">
+    <mat-card-header><h5>Jogadores que o possuem:</h5></mat-card-header>
+    <mat-list>
+      <mat-list-item *ngFor="let player of item.players">
+        {{ player.user.name }} - {{ player.process.units }} unidade(s)
+      </mat-list-item>
+      <mat-list-item *ngIf="!item.players.length">Nenhum jogador possue este item</mat-list-item>
+    </mat-list>  
+  </mat-card>
 </div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-outline-secondary btn-lg" (click)="activeModal.dismiss()">Fechar</button>
-  <button type="button" class="btn btn-outline-success btn-lg" (click)="activeModal.close(item)">Comprar</button>
+<div mat-dialog-actions align="end">
+  <button mat-stroked-button mat-dialog-close class="mr-2">Fechar</button>
+  <button type="button" mat-stroked-button color="accent" [mat-dialog-close]="item">Comprar</button>
 </div>

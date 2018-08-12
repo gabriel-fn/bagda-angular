@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { MAT_DIALOG_DATA } from '@angular/material';
 
 import { Item } from '../../shared/interfaces';
 
@@ -11,11 +11,12 @@ import { Item } from '../../shared/interfaces';
 })
 export class ItemModalComponent implements OnInit {
 
-  @Input() item: Item;
+  public item: Item;
 
-  constructor(public activeModal: NgbActiveModal) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {item: Item}) { }
 
   ngOnInit() {
+    this.item = this.data.item;
   }
 
 }

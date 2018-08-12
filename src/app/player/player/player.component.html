@@ -1,30 +1,30 @@
 <div class="row" *ngIf="rpg?.players">
   <div class="col-12 mt-4">
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <label class="input-group-text"> Filtro </label>
-      </div>
-      <input type="text" class="form-control" (keyup)="applyFilter($event.target.value)" placeholder="Buscar jogadores pelo nome...">
-    </div>
+    <mat-form-field appearance="outline">
+      <mat-label> Filtro </mat-label>
+      <input matInput type="text" (keyup)="applyFilter($event.target.value)" placeholder="Buscar jogadores pelo nome...">
+    </mat-form-field>
   </div>
 </div>
 
 <div class="row" *ngIf="rpg?.players">
   <div class="col-12 col-md-6" *ngFor="let player of players">
-    <div class="card mt-4" (click)="open(player)">
-      <img  #playerImage class="card-img-top" src="{{ player.image }}"
+    <mat-card class="mb-4" (click)="open(player)">
+      <img  #playerImage mat-card-image src="{{ player.image }}"
             [ngStyle]="{'height.px': playerImage.width/2, 'object-fit': 'cover'}">
-      <div class="card-body">
-        <h5 class="card-title">{{ player.user.name }}</h5>
-      </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Status: {{ helperService.status(player.credential) }}</li>
-        <li class="list-group-item list-group-item-warning">{{ player.gold }} Gold</li>
-        <li class="list-group-item list-group-item-primary">{{ player.cash }} Cash</li>
-      </ul>
-      <div class="card-footer text-center">
-        <small class="text-muted card-link"> Criado em: {{ player.created_at }}</small> 
-      </div>
-    </div>
+      <mat-card-header>
+        <mat-card-title><h5>{{ player.user.name }}</h5></mat-card-title>
+      </mat-card-header>
+      <mat-list>
+        <mat-list-item>Status: {{ helperService.status(player.credential) }}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item class="text-warning">{{ player.gold }} Gold</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item class="text-primary">{{ player.cash }} Cash</mat-list-item>
+      </mat-list>
+      <mat-card-footer class="card-footer text-center">
+        <small class="card-link"> Criado em: {{ player.created_at }}</small> 
+      </mat-card-footer>
+    </mat-card>
   </div>
 </div>

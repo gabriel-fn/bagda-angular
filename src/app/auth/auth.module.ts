@@ -3,27 +3,42 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule } from '@angular/material';
+
 import { AuthGuard } from './guards/auth.guard';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { LoginComponent } from './login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { RegisterComponent } from './register/register.component';
 import { AuthLayoutBootstrapComponent } from './auth-layout-bootstrap/auth-layout-bootstrap.component';
+import { LoginMaterialComponent } from './login-material/login-material.component';
+import { RegisterMaterialComponent } from './register-material/register-material.component';
+import { AuthLayoutMaterialComponent } from './auth-layout-material/auth-layout-material.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
   ],
   declarations: [
     LoginComponent,
     RegisterComponent,
-    AuthLayoutBootstrapComponent
+    LoginMaterialComponent,
+    RegisterMaterialComponent,
+    AuthLayoutBootstrapComponent,
+    AuthLayoutMaterialComponent
   ],
   exports: [
     LoginComponent,
     RegisterComponent,
-    AuthLayoutBootstrapComponent
+    LoginMaterialComponent,
+    RegisterMaterialComponent,
+    AuthLayoutBootstrapComponent,
+    AuthLayoutMaterialComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},

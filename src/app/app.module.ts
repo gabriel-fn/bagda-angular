@@ -4,8 +4,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
  
 import { ToastrModule } from 'ngx-toastr';
-import { NgxSpinnerModule } from 'ngx-spinner';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+//import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,19 +14,18 @@ import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NgxSpinnerModule,
+    //NgxSpinnerModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-left',
       preventDuplicates: true,
       progressBar: true,
     }),
-    NgbModule.forRoot(),
     RpgModule,
     SharedModule,
     AuthModule,

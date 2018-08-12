@@ -1,36 +1,36 @@
-<div class="row">
+<div class="row" *ngIf="rpg?.shops">
   <div class="col-12 mt-4">
-    <div class="input-group" *ngIf="rpg?.shops">
-      <div class="input-group-prepend">
-        <label class="input-group-text"> Lojas de {{ rpg.name }}</label>
-      </div>
-      <select [(ngModel)]="shopId" class="custom-select">
+    <mat-form-field appearance="outline">
+      <mat-label> Lojas de {{ rpg.name }}</mat-label>
+      <mat-select [(ngModel)]="shopId" >
         <!--option [ngValue]="[]">Escolha uma categoria</option-->
-        <option *ngFor="let shop of rpg.shops" [ngValue]="shop.id">{{ shop.name }}</option>
-      </select>
-    </div>
+        <mat-option *ngFor="let shop of rpg.shops" [value]="shop.id">{{ shop.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 </div>
 
 <div class="row">
   <div class="col-12 col-md-6 col-lg-4" *ngFor="let item of items">
-    <div class="card mt-4">
-      <img  #itemImage class="card-img-top" (click)="open(item)" src="{{ item.image }}"
+    <mat-card class="mb-4">
+      <img  #itemImage mat-card-image (click)="open(item)" src="{{ item.image }}"
             [ngStyle]="{'height.px': itemImage.width/2, 'object-fit': 'cover'}">
-      <div class="card-body" (click)="open(item)">
-        <h5 class="card-title">{{ item.name }}</h5>
-        <h5>
-            <span *ngIf="item.require_test" class="badge badge-danger mr-1"> (Requer Aprovação) </span>
-            <span *ngIf="item.max_units" class="badge badge-danger">(limite {{ item.max_units }})</span>
-            <span *ngIf="!item.max_units && !item.require_test" class="badge badge-dark">(Sem Requisitos)</span>
-        </h5>  
-      </div>
-      <div class="card-footer text-center">
+      <mat-card-header (click)="open(item)">
+        <mat-card-title><h5>{{ item.name }}</h5></mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-chip-list>
+            <mat-chip *ngIf="item.require_test" color="warn" selected> Requer Aprovação </mat-chip>
+            <mat-chip *ngIf="item.max_units" color="warn" selected>limite {{ item.max_units }}</mat-chip>
+            <mat-chip *ngIf="!item.max_units && !item.require_test">Sem Requisitos</mat-chip>
+        </mat-chip-list>  
+      </mat-card-content>
+      <mat-card-footer class="card-footer text-center">
         <a class="card-link text-warning">{{ item.gold_price }} Gold</a>
         <a class="card-link text-primary">{{ item.cash_price }} Cash</a>
-        <button type="button" class="btn btn-outline-success card-link" (click)="buy(item)">Comprar</button>
-      </div>
-    </div>
+        <button type="button" mat-stroked-button color="accent" class="card-link" (click)="buy(item)">Comprar</button>
+      </mat-card-footer>
+    </mat-card>
   </div>
 </div>
 

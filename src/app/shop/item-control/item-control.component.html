@@ -45,10 +45,10 @@
   
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef> 
-          <button class="ml-2" (click)="openCreate()" mat-stroked-button>Adicionar</button>
+          <button (click)="openCreate()" mat-stroked-button color="accent">Adicionar</button>
         </th>
         <td mat-cell *matCellDef="let item">
-          <button mat-stroked-button color="primary" class="m-1" (click)="openEdit(item)">
+          <button mat-stroked-button class="m-1" (click)="openEdit(item)">
             Editar
           </button>
           <button mat-stroked-button color="warn" class="m-1" (click)="deleteItem(item.id)">

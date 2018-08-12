@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Nl2BrPipeModule } from 'nl2br-pipe';
 import {  MatTableModule, MatSortModule, MatPaginatorModule, 
           MatButtonModule, MatInputModule, MatFormFieldModule, 
           MatCardModule, MatSelectModule, MatExpansionModule, 
-          MatListModule, MatDialogModule, MatProgressBarModule } from '@angular/material';
+          MatListModule, MatDialogModule, MatProgressBarModule, 
+          MatSidenavModule, MatToolbarModule, MatTabsModule, 
+          MatChipsModule, MatTooltipModule, MatSlideToggleModule } from '@angular/material';
 
 import { ValidateInterceptor } from './interceptors/validate.interceptor';
 import { LoaderComponent } from './loader/loader.component';
@@ -16,7 +18,7 @@ import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 @NgModule({
   imports: [
     CommonModule,
-    NgbModule,
+    Nl2BrPipeModule,
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
@@ -29,6 +31,12 @@ import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
     MatListModule,
     MatDialogModule,
     MatProgressBarModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatTabsModule,
+    MatChipsModule,
+    MatTooltipModule,
+    MatSlideToggleModule,
   ],
   declarations: [
     LoaderComponent, 
@@ -37,7 +45,7 @@ import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
   entryComponents: [ConfirmModalComponent],
   exports: [
     LoaderComponent,
-    NgbModule,
+    Nl2BrPipeModule,
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
@@ -50,6 +58,12 @@ import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
     MatListModule,
     MatDialogModule,
     MatProgressBarModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatTabsModule,
+    MatChipsModule,
+    MatTooltipModule,
+    MatSlideToggleModule,
   ],
   providers: [
     LoaderService,

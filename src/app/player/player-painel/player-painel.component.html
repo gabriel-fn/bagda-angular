@@ -1,60 +1,54 @@
-<div class="row" *ngIf="rpg?.player?.credential">
-  <div class="col-12 col-md-6 mt-4">
-      <img class="img-thumbnail" src="{{ rpg.player.image }}">
+<div class="row mt-4 mb-4" *ngIf="rpg?.player?.credential">
+  <div class="col-12 col-md-6">
+      <img class="img-fluid" src="{{ rpg.player.image }}">
   </div>
-  <div class="col-12 col-md-6 mt-4"> 
-    <ngb-accordion [closeOthers]="true" activeIds="static-1">
-      <ngb-panel id="static-1" title="Info">
-        <ng-template ngbPanelContent>
-          <ul class="list-group">
-            <li class="list-group-item list-group-item-dark">Nome: {{ rpg.player.user.name }}</li>
-            <li class="list-group-item">Status: {{ helperService.status(rpg.player.credential) }}</li>
-            <li class="list-group-item list-group-item-warning">{{ rpg.player.gold }} Gold</li>
-            <li class="list-group-item list-group-item-primary">{{ rpg.player.cash }} Cash</li>
-          </ul>
-        </ng-template>
-      </ngb-panel>
-      <ngb-panel title="Items">
-        <ng-template ngbPanelContent>
-          <ul class="list-group">
-            <li class="list-group-item" *ngFor="let item of rpg.player.items">
-              {{ item.name }} - {{ item.process.units }} unidade(s)
-              <button class="float-right btn btn-outline-danger" 
-                      (click)="discardItem(item)">
-                Descartar
-              </button>
-            </li>
-          </ul>
-        </ng-template>
-      </ngb-panel>
-      <ngb-panel title="Solicitações de Items">
-        <ng-template ngbPanelContent>
-          <ul class="list-group">
-            <li class="list-group-item" *ngFor="let request of rpg.player.requests">
-              <span class="text-danger">Aguardando por [{{ request.name }}] ...</span>
-              <button class="float-right btn btn-outline-danger" 
-                      (click)="dismissRequest(request)">
-                Cancelar
-              </button>
-            </li>
-          </ul>
-        </ng-template>
-      </ngb-panel>
-      <ngb-panel title="Geral" [disabled]="true">
-        <ng-template ngbPanelContent>
-          <div class="form-group">
-            <label>Imagem do Jogador</label>
-            <input type="file" class="form-control-file">
-          </div>
-          <div class="form-group">
-            <label>Detalhes do Jogador:</label>
-            <textarea class="form-control" rows="5">{{ rpg.player.detail }}</textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">
-            Salvar
-          </button>        
-        </ng-template>
-      </ngb-panel>
-    </ngb-accordion>
+  <div class="col-12 col-md-6"> 
+    <mat-accordion>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Info</mat-panel-title>
+        </mat-expansion-panel-header>          
+        <mat-list>
+          <mat-list-item>Nome: {{ rpg.player.user.name }}</mat-list-item>
+          <mat-list-item>Status: {{ helperService.status(rpg.player.credential) }}</mat-list-item>
+          <mat-list-item class="text-warning">{{ rpg.player.gold }} Gold</mat-list-item>
+          <mat-list-item class="text-primary">{{ rpg.player.cash }} Cash</mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Items</mat-panel-title>
+        </mat-expansion-panel-header>  
+        <mat-list>
+          <mat-list-item *ngFor="let item of rpg.player.items">
+            {{ item.name }} - {{ item.process.units }} unidade(s)
+            <span class="eth-between"></span>
+            <button mat-stroked-button color="warn" (click)="discardItem(item)">
+              Descartar
+            </button>
+          </mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Solicitações de Items</mat-panel-title>
+        </mat-expansion-panel-header> 
+          <mat-list>
+            <mat-list-item *ngFor="let request of rpg.player.requests">
+            <span class="text-danger">Aguardando por [{{ request.name }}] ...</span>
+            <span class="eth-between"></span>
+            <button mat-stroked-button color="warn" (click)="dismissRequest(request)">
+              Cancelar
+            </button>
+          </mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+      <mat-expansion-panel [disabled]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Geral</mat-panel-title>
+        </mat-expansion-panel-header>
+        Ainda está por vir! Esta aba permitirá que o jogador tenha o controle de sua ficha com a aprovação do mestre.
+      </mat-expansion-panel>
+    </mat-accordion>
   </div>
 </div>
