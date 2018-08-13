@@ -1,4 +1,4 @@
-<div class="row" *ngIf="rpg?.players">
+<div class="row" *ngIf="rpg && rpg.players && rpg.players[0]">
   <div class="col-12 mt-4">
     <mat-form-field appearance="outline">
       <mat-label> Filtro </mat-label>
@@ -7,7 +7,7 @@
   </div>
 </div>
 
-<div class="row" *ngIf="rpg?.players">
+<div class="row" *ngIf="rpg && rpg.players && rpg.players[0]">
   <div class="col-12 col-md-6" *ngFor="let player of players">
     <mat-card class="mb-4" (click)="open(player)">
       <img  #playerImage mat-card-image src="{{ player.image }}"

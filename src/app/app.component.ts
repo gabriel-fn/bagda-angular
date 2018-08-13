@@ -1,4 +1,4 @@
-import { Component, HostBinding } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 import { OverlayContainer } from '@angular/cdk/overlay';
@@ -13,17 +13,17 @@ import { AuthService } from './auth/auth.service';
 })
 export class AppComponent {
   
-  @HostBinding('class') componentCssClass;
   isChecked = false;
   turnText = 'Turn On';
   token: Token = null;
   authUserSubscription: Subscription;
 
   constructor ( public authService: AuthService, 
+                private renderer: Renderer2,
                 private overlayContainer: OverlayContainer ) {
     if (localStorage.getItem('bagda_light') !== 'on') {
       this.overlayContainer.getContainerElement().classList.add('bagda-dark-theme');
-      this.componentCssClass = 'bagda-dark-theme';
+      this.renderer.addClass(document.body, 'bagda-dark-theme');
     } else {
       this.isChecked = true;
       this.turnText = 'Turn Off'
@@ -40,12 +40,12 @@ export class AppComponent {
       localStorage.setItem('bagda_light', 'on');
       this.turnText = 'Turn Off'
       this.overlayContainer.getContainerElement().classList.remove('bagda-dark-theme');
-      this.componentCssClass = '';
+      this.renderer.removeClass(document.body, 'bagda-dark-theme');
     } else {
       localStorage.setItem('bagda_light', 'off');
       this.turnText = 'Turn On'
       this.overlayContainer.getContainerElement().classList.add('bagda-dark-theme');
-      this.componentCssClass = 'bagda-dark-theme';
+      this.renderer.addClass(document.body, 'bagda-dark-theme');
     }
   }
 

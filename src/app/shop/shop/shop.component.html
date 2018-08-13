@@ -1,4 +1,4 @@
-<div class="row" *ngIf="rpg?.shops">
+<div class="row" *ngIf="rpg && rpg.shops && rpg.shops[0]">
   <div class="col-12 mt-4">
     <mat-form-field appearance="outline">
       <mat-label> Lojas de {{ rpg.name }}</mat-label>

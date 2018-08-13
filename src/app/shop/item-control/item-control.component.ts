@@ -62,13 +62,13 @@ export class ItemControlComponent implements OnInit {
   }
 
   get items() {
-    if (this.rpg.shops) {
+    if (this.rpg && this.rpg.shops && this.rpg.shops[0]) {
       if (!this.shopId) {
         this.shopId = this.rpg.shops[0].id;
       } 
       return this.rpg.shops.find((shop: Shop) => this.shopId === shop.id).items;
     } else {
-      return null;
+      return [];
     }
   }
 

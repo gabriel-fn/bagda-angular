@@ -24,13 +24,19 @@
   <div class="col-12">
     <mat-tab-group mat-stretch-tabs *ngIf="rpg">
       <mat-tab label="Principal" *ngIf="rpg?.player?.credential">
-        <eth-player-painel></eth-player-painel> 
+        <ng-template matTabContent>
+          <eth-player-painel></eth-player-painel> 
+        </ng-template>
       </mat-tab>
       <mat-tab label="Lojas">
-        <eth-shop></eth-shop> 
+        <ng-template matTabContent>
+          <eth-shop></eth-shop> 
+        </ng-template>
       </mat-tab>
       <mat-tab label="Jogadores">
-        <eth-player></eth-player>
+        <ng-template matTabContent>
+          <eth-player></eth-player>
+        </ng-template>
       </mat-tab>
       <mat-tab label="Painel" *ngIf="rpg?.player?.credential > 1">
         <mat-card>
