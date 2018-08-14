@@ -21,6 +21,7 @@ export class ShopComponent implements OnInit {
   public rpg: Rpg; 
   public rpgId: number; 
   public shopId: number;
+  public filter: string;
 
   private rpgInPainelSubscription: Subscription;
   private routeSubscription: Subscription;
@@ -39,11 +40,21 @@ export class ShopComponent implements OnInit {
     .subscribe((params: any) => this.rpgId = params['idRpg']);
   }
 
+  applyFilter(value) {
+    this.filter = value;
+  }
+
   get items() {
     if (this.rpg && this.rpg.shops && this.rpg.shops[0]) {
       if (!this.shopId) {
         this.shopId = this.rpg.shops[0].id;
       } 
+      if (this.filter && this.filter.trim() != '') {
+        return this.rpg.shops.find((shop: Shop) => this.shopId === shop.id).items
+        .filter((item) => {
+          return (item.name.toLowerCase().indexOf(this.filter.toLowerCase()) > -1);
+        })
+      }
       return this.rpg.shops.find((shop: Shop) => this.shopId === shop.id).items;
     } else {
       return null;
