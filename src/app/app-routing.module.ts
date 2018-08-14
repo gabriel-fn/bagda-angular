@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AuthLayoutMaterialComponent } from './auth/auth-layout-material/auth-layout-material.component';
-import { UserPainelComponent } from './auth/user-painel/user-painel.component';
+import { UserPainelComponent } from './user/user-painel/user-painel.component';
 
 const routes: Routes = [
     { 

@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-12 col-md-6">
+        <mat-card class="mb-2" *ngFor="let player of user?.players">
+          <mat-card-header>
+            <mat-card-title><h5>{{ player.rpg.name }}</h5></mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <h6>
+              <div class="container d-flex justify-content-around">
+                <span>{{ helperService.status(player.credential) }}</span>
+                <span class="text-warning">{{ player.gold }} Gold</span> 
+                <span class="text-primary"> {{ player.cash }} Cash</span>
+              </div>
+            </h6>
+          </mat-card-content>
+        </mat-card>
+  </div>
+  <div class="col-12 col-md-6">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>Trocar senha</mat-expansion-panel-header>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()"> 
+          <mat-form-field color="accent" appearance="outline">
+            <mat-label>Nova Senha</mat-label> 
+            <input matInput type="password" formControlName="password">
+            <mat-error *ngIf="isFieldInvalid('password')">
+              <strong>O campo senha é obrigatório e deve ter de 4 a 12 caracteres!</strong>
+            </mat-error>
+          </mat-form-field>
+          
+          <mat-form-field color="accent" appearance="outline">
+            <mat-label>Confirmar Nova Senha</mat-label>
+            <input matInput type="password" formControlName="password_confirmation">
+          </mat-form-field>
+        
+          <button mat-stroked-button type="submit" [disabled]="form.invalid">
+            Trocar
+          </button>
+        </form>
+      </mat-expansion-panel>
+      <mat-expansion-panel *ngIf="user?.authority > 0">
+        <mat-expansion-panel-header>
+          Criar rpg 
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

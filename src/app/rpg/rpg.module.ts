@@ -11,6 +11,7 @@ import { ShopModule } from '../shop/shop.module';
 import { PlayerModule } from '../player/player.module';
 import { RpgControlComponent } from './rpg-control/rpg-control.component';
 import { SharedModule } from '../shared/shared.module';
+import { UserModule } from '../user/user.module';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { SharedModule } from '../shared/shared.module';
     ReactiveFormsModule,
     ShopModule,
     PlayerModule,
+    UserModule,
     SharedModule,
     RpgRoutingModule
   ],
