@@ -54,14 +54,12 @@ export class LoginComponent implements OnInit {
     this.authService.authenticate(email, password)
     .subscribe(
       (token: Token) => {
-        console.log(token);
         this.authService.setToken(token);
         this.authService.authUser.next(token);
         this.router.navigate(['rpgs/user']);
         this.helperService.hideLoading();
       },
       (error: HttpErrorResponse) => {
-        console.log(error);
         if (error.status == 401) {
           this.helperService.showError('As credenciais do usuário estão incorretas!');
         }

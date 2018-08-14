@@ -20,13 +20,13 @@ export class AuthInterceptor implements HttpInterceptor {
 
         return next.handle(req).pipe(tap(    
             (res) => {
-                if (res instanceof HttpResponse) {
-                    console.log('---> interceptor res:', res);
-                    console.log('---> interceptor req:', req);
-                }
+                //if (res instanceof HttpResponse) {
+                //    console.log('---> interceptor res:', res);
+                //    console.log('---> interceptor req:', req);
+                //}
             },
             (error: HttpErrorResponse) => {
-                console.log('---> interceptor erro:', error);
+                //console.log('---> interceptor erro:', error);
                 if (error instanceof HttpErrorResponse) {
                     const authService = this.injector.get(AuthService);
                     if (error.status >= 400 && error.status <= 402) {

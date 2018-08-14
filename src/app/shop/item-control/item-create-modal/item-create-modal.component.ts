@@ -71,7 +71,6 @@ export class ItemCreateModalComponent implements OnInit {
           this.form.reset();
         },
         (error: HttpErrorResponse) => {
-          console.log(error);
           this.helperService.hideLoading();
         }
       );

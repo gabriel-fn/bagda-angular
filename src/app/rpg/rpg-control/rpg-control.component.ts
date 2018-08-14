@@ -101,7 +101,6 @@ export class RpgControlComponent implements OnInit {
           this.helperService.hideLoading();
         },
         (error: HttpErrorResponse) => {
-          console.log(error);
           this.helperService.hideLoading();
         }
       );
@@ -126,7 +125,6 @@ export class RpgControlComponent implements OnInit {
                   this.helperService.hideLoading();
                 },
                 (error: HttpErrorResponse) => {
-                  console.log(error);
                   this.helperService.hideLoading();
                 }
               );
@@ -148,7 +146,6 @@ export class RpgControlComponent implements OnInit {
           this.helperService.hideLoading();
         },
         (error: HttpErrorResponse) => {
-          console.log(error);
           this.helperService.hideLoading();
         }
       );    

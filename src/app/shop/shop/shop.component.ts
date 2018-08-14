@@ -72,7 +72,6 @@ export class ShopComponent implements OnInit {
           this.helperService.hideLoading()
         },
         (error: HttpErrorResponse) => {
-          console.log(error);
           this.helperService.hideLoading()
         }
       );
