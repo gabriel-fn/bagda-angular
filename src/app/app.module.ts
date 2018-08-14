@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
 import { RpgModule } from './rpg/rpg.module';
 import { SharedModule } from './shared/shared.module';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SharedModule } from './shared/shared.module';
       progressBar: true,
     }),
     RpgModule,
+    UserModule,
     SharedModule,
     AuthModule,
     AppRoutingModule

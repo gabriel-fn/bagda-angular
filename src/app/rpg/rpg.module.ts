@@ -11,7 +11,7 @@ import { ShopModule } from '../shop/shop.module';
 import { PlayerModule } from '../player/player.module';
 import { RpgControlComponent } from './rpg-control/rpg-control.component';
 import { SharedModule } from '../shared/shared.module';
-import { UserModule } from '../user/user.module';
+import { RpgCreateFormComponent } from './rpg-create-form/rpg-create-form.component';
 
 @NgModule({
   imports: [
@@ -19,17 +19,18 @@ import { UserModule } from '../user/user.module';
     ReactiveFormsModule,
     ShopModule,
     PlayerModule,
-    UserModule,
     SharedModule,
     RpgRoutingModule
   ],
   declarations: [
     RpgComponent, 
     RpgPainelComponent, 
-    RpgControlComponent,
+    RpgControlComponent, 
+    RpgCreateFormComponent,
   ],
   exports: [
-    RpgComponent
+    RpgComponent,
+    RpgCreateFormComponent,
   ],
   providers: [
     RpgService, 
