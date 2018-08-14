@@ -12,7 +12,6 @@ import { AuthLayoutBootstrapComponent } from './auth-layout-bootstrap/auth-layou
 import { LoginMaterialComponent } from './login-material/login-material.component';
 import { RegisterMaterialComponent } from './register-material/register-material.component';
 import { AuthLayoutMaterialComponent } from './auth-layout-material/auth-layout-material.component';
-import { UserPainelComponent } from './user-painel/user-painel.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
@@ -28,7 +27,6 @@ import { SharedModule } from '../shared/shared.module';
     RegisterMaterialComponent,
     AuthLayoutBootstrapComponent,
     AuthLayoutMaterialComponent,
-    UserPainelComponent
   ],
   exports: [
     LoginComponent,
@@ -37,7 +35,6 @@ import { SharedModule } from '../shared/shared.module';
     RegisterMaterialComponent,
     AuthLayoutBootstrapComponent,
     AuthLayoutMaterialComponent,
-    UserPainelComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},

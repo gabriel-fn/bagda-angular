@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { Observable, BehaviorSubject } from 'rxjs';
 
-import { Token, User, HttpSuccessResponse } from '../shared/interfaces';
+import { Token } from '../shared/interfaces';
 import { PasswordClient } from './classes/password-client';
 import { HelperService } from '../shared/helper.service';
 
@@ -54,14 +54,6 @@ export class AuthService {
 
   forbiddenError() {
     this.helperService.showError('Você não está autorizado é realizar está ação!');
-  }
-
-  getUser(): Observable<User> {
-    return this.http.get<User>(`${this.baseUrl}/api/user`);
-  }
-
-  resetPassword(values): Observable<HttpSuccessResponse> {
-    return this.http.put<HttpSuccessResponse>(`${this.baseUrl}/api/user/reset/password`, values);
   }
 
 }
