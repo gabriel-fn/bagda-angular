@@ -20,7 +20,6 @@ export class RpgService {
               private router: Router,
               private helperService: HelperService, 
               private http: HttpClient) { 
-    console.log('rpg service active'); 
     this.rpgInPainel = new BehaviorSubject(null);
     this.seeRpgInPainel = this.rpgInPainel.asObservable();
     this.baseUrl = this.helperService.baseUrl;
@@ -50,7 +49,6 @@ export class RpgService {
           this.helperService.hideLoading(); 
         },
         (error: HttpErrorResponse) => { 
-          console.log(error);
           this.helperService.hideLoading();
         },
       );
@@ -67,7 +65,6 @@ export class RpgService {
           this.helperService.hideLoading(); 
         },
         (error: HttpErrorResponse) => { 
-          console.log(error);
           this.helperService.hideLoading();
         },
       );

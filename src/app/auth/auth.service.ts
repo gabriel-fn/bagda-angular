@@ -20,7 +20,6 @@ export class AuthService {
   constructor(private http: HttpClient,
               private helperService: HelperService,
               private router: Router) { 
-    console.log('auth service active');
     this.baseUrl = this.helperService.baseUrl;
     this.authUser = new BehaviorSubject(this.getToken());
     this.seeAuthUser = this.authUser.asObservable(); 

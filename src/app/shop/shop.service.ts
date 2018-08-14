@@ -15,7 +15,6 @@ export class ShopService {
   constructor(private http: HttpClient,
               private validateService: ValidateService,
               private helperService: HelperService) { 
-    console.log('shops service active'); 
     this.baseUrl = this.helperService.baseUrl;
   }
 
@@ -36,7 +35,6 @@ export class ShopService {
     input.append('max_units', value.max_units);
     input.append('require_test', value.require_test);
     input.append('detail', value.detail);
-    console.log('value.image');
     if (value.image !== null) {
       input.append('image', value.image);
     }

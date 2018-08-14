@@ -15,7 +15,6 @@ export class PlayerService {
   constructor(private helperService: HelperService,
               private validateService: ValidateService,
               private http: HttpClient) { 
-    console.log('player service active'); 
     this.baseUrl = this.helperService.baseUrl;
   }
 
@@ -38,7 +37,6 @@ export class PlayerService {
     input.append('cash', value.cash);
     input.append('detail', value.detail);
     input.append('credential', value.credential);
-    console.log('value.image');
     if (value.image !== null) {
       input.append('image', value.image);
     }
