@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-12 col-md-6">
+        <mat-card *ngFor="let player of user?.players">
+          <mat-card-header>
+            <mat-card-title><h5>{{ player.rpg.name }}</h5></mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            {{ helperService.status(player.credential) }}: {{ player.user.name }} <br>
+            <span class="text-warning">{{ player.gold }} Gold</span> <br>
+            <span class="text-primary">{{ player.cash }} Cash</span> <br>
+          </mat-card-content>
+        </mat-card>
+  </div>
+  <div class="col-12 col-md-6">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>Trocar senha</mat-expansion-panel-header>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <mat-form-field color="accent" appearance="outline">
+            <mat-label>Nova Senha</mat-label> 
+            <input matInput type="password" formControlName="password">
+            <mat-error *ngIf="isFieldInvalid('password')">
+              <strong>O campo senha é obrigatório e deve ter de 4 a 12 caracteres!</strong>
+            </mat-error>
+          </mat-form-field>
+          
+          <mat-form-field color="accent" appearance="outline">
+            <mat-label>Confirmar Nova Senha</mat-label>
+            <input matInput type="password" formControlName="password_confirmation">
+          </mat-form-field>
+        
+          <button mat-stroked-button type="submit" [disabled]="form.invalid">
+            Trocar
+          </button>
+        </form>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

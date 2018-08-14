@@ -3,8 +3,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule } from '@angular/material';
-
 import { AuthGuard } from './guards/auth.guard';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { LoginComponent } from './login/login.component';
@@ -14,15 +12,14 @@ import { AuthLayoutBootstrapComponent } from './auth-layout-bootstrap/auth-layou
 import { LoginMaterialComponent } from './login-material/login-material.component';
 import { RegisterMaterialComponent } from './register-material/register-material.component';
 import { AuthLayoutMaterialComponent } from './auth-layout-material/auth-layout-material.component';
+import { UserPainelComponent } from './user-painel/user-painel.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
+    SharedModule
   ],
   declarations: [
     LoginComponent,
@@ -30,7 +27,8 @@ import { AuthLayoutMaterialComponent } from './auth-layout-material/auth-layout-
     LoginMaterialComponent,
     RegisterMaterialComponent,
     AuthLayoutBootstrapComponent,
-    AuthLayoutMaterialComponent
+    AuthLayoutMaterialComponent,
+    UserPainelComponent
   ],
   exports: [
     LoginComponent,
@@ -38,7 +36,8 @@ import { AuthLayoutMaterialComponent } from './auth-layout-material/auth-layout-
     LoginMaterialComponent,
     RegisterMaterialComponent,
     AuthLayoutBootstrapComponent,
-    AuthLayoutMaterialComponent
+    AuthLayoutMaterialComponent,
+    UserPainelComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},

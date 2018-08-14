@@ -6,6 +6,7 @@
     <button mat-button routerLink="rpgs">Rpgs</button>
     <button mat-button *ngIf="!token" routerLink="login">Login</button>
     <button mat-button *ngIf="token" routerLink="rpgs/user">Meus Rpgs</button>
+    <button mat-button *ngIf="token" routerLink="user">User Painel</button>
     <button mat-button *ngIf="token" (click)="logout()">Logout</button>
     <mat-slide-toggle [checked]="isChecked" color="primary" #turnOn (change)="changeTheme(turnOn.checked)">{{ turnText }}</mat-slide-toggle>
 </mat-toolbar> 
