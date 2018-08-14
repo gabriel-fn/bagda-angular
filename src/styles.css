@@ -9,6 +9,10 @@
     width: 100%;
 }
 
+.eth-tooltip {
+    font-size: 16px;
+}
+
 .eth-between {
     flex: 1 1 auto;
 }

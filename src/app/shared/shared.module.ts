@@ -8,7 +8,7 @@ import {  MatTableModule, MatSortModule, MatPaginatorModule,
           MatCardModule, MatSelectModule, MatExpansionModule, 
           MatListModule, MatDialogModule, MatProgressBarModule, 
           MatSidenavModule, MatToolbarModule, MatTabsModule, 
-          MatChipsModule, MatTooltipModule, MatSlideToggleModule } from '@angular/material';
+          MatChipsModule, MatTooltipModule, MatSlideToggleModule, MatIconModule } from '@angular/material';
 
 import { ValidateInterceptor } from './interceptors/validate.interceptor';
 import { LoaderComponent } from './loader/loader.component';
@@ -37,6 +37,7 @@ import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
     MatChipsModule,
     MatTooltipModule,
     MatSlideToggleModule,
+    MatIconModule,
   ],
   declarations: [
     LoaderComponent, 
@@ -64,6 +65,7 @@ import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
     MatChipsModule,
     MatTooltipModule,
     MatSlideToggleModule,
+    MatIconModule,
   ],
   providers: [
     LoaderService,

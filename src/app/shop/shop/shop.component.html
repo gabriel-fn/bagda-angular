@@ -4,8 +4,14 @@
       <mat-label> Lojas de {{ rpg.name }}</mat-label>
       <mat-select [(ngModel)]="shopId" >
         <!--option [ngValue]="[]">Escolha uma categoria</option-->
-        <mat-option *ngFor="let shop of rpg.shops" [value]="shop.id">{{ shop.name }}</mat-option>
+        <mat-option *ngFor="let shop of rpg.shops" [value]="shop.id">
+          {{ shop.name }} {{ (shop.is_multiple_sale)?'':'[venda única]' }}
+        </mat-option>
       </mat-select>
+      <mat-icon matSuffix matTooltipPosition="left" matTooltipClass="eth-tooltip"
+                matTooltip="Quando a loja é de venda única, o jogador só pode possuir um item desta. Uma segunda compra, irá substituir as anteriores.">
+        announcement
+      </mat-icon>
     </mat-form-field>
   </div>
 </div>
