@@ -109,6 +109,24 @@ export class RpgControlComponent implements OnInit {
     }
   }
 
+  deleteRpg() {
+    if (this.validateService.token() && this.validateService.master()) {
+      this.helperService.showLoading();
+      this.rpgService.delete(this.rpg.id)
+      .subscribe(
+        (response: HttpSuccessResponse) => {
+          this.helperService.showResponse(response);
+          this.rpgService.rpg(this.rpgId);
+          this.helperService.hideLoading();
+        },
+        (error: HttpErrorResponse) => {
+          console.log(error);
+          this.helperService.hideLoading();
+        }
+      );
+    }
+  }
+
   registerResponse(player_id: number, accept: boolean) {
     if (this.validateService.id(player_id) && this.validateService.token() && this.validateService.moderator()) {
       this.helperService.showLoading();

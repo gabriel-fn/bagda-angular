@@ -86,9 +86,14 @@
                 <span class="text-muted">A nova imagem, após ser salva, irá aparecer assim que você recarregar a página!</span>
               </mat-card-content>
             </mat-card>
-            <button mat-stroked-button color="accent" [disabled]="form.invalid" type="submit">
-              Salvar
-            </button>   
+            <div class="container d-flex justify-content-between">
+              <button mat-stroked-button color="accent" [disabled]="form.invalid" type="submit">
+                Salvar
+              </button>    
+              <button mat-stroked-button color="warn" type="button" (click)="deleteRpg()">
+                Deletar
+              </button> 
+            </div> 
           </form>    
         </mat-expansion-panel>     
       </mat-accordion>

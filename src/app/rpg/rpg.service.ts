@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Observable, BehaviorSubject } from 'rxjs';
 
@@ -16,6 +17,7 @@ export class RpgService {
   public seeRpgInPainel: Observable<Rpg>; 
 
   constructor(private authService: AuthService,
+              private router: Router,
               private helperService: HelperService, 
               private http: HttpClient) { 
     console.log('rpg service active'); 
@@ -36,18 +38,38 @@ export class RpgService {
   rpg(rpgId: number): void {
     this.helperService.showLoading();
     if (this.token) {
-      this.http.get<Rpg>(`${this.baseUrl}/api/rpgs/${rpgId}/user`)
+      this.http.get<HttpSuccessResponse>(`${this.baseUrl}/api/rpgs/${rpgId}/user`)
       .subscribe(
-        (rpg: Rpg) => this.rpgInPainel.next(rpg),
-        (error: HttpErrorResponse) => console.log(error),
-        () => this.helperService.hideLoading()
+        (response: HttpSuccessResponse) => { 
+          if (response.error) {
+            this.helperService.showResponse(response);
+            this.router.navigate(['rpgs']);
+          } else {
+            this.rpgInPainel.next(response.data);
+          }
+          this.helperService.hideLoading(); 
+        },
+        (error: HttpErrorResponse) => { 
+          console.log(error);
+          this.helperService.hideLoading();
+        },
       );
     } else {
-      this.http.get<Rpg>(`${this.baseUrl}/api/rpgs/${rpgId}`)
+      this.http.get<HttpSuccessResponse>(`${this.baseUrl}/api/rpgs/${rpgId}`)
       .subscribe(
-        (rpg: Rpg) => this.rpgInPainel.next(rpg),
-        (error: HttpErrorResponse) => console.log(error),
-        () => this.helperService.hideLoading()
+        (response: HttpSuccessResponse) => { 
+          if (response.error) {
+            this.helperService.showResponse(response);
+            this.router.navigate(['rpgs']);
+          } else {
+            this.rpgInPainel.next(response.data);
+          }
+          this.helperService.hideLoading(); 
+        },
+        (error: HttpErrorResponse) => { 
+          console.log(error);
+          this.helperService.hideLoading();
+        },
       );
     }
   }
@@ -71,5 +93,9 @@ export class RpgService {
       input.append('image', value.image);
     }
     return this.http.post<HttpSuccessResponse>(`${this.baseUrl}/api/rpgs/update`, input);
+  }
+
+  delete(rpgId: number): Observable<HttpSuccessResponse> {
+    return this.http.delete<HttpSuccessResponse>(`${this.baseUrl}/api/rpgs/delete/${rpgId}`);
   }
 }
