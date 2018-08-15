@@ -1,3 +1,36 @@
-<p>
-  rpg-create-form works!
-</p>
+<form [formGroup]="form" (ngSubmit)="createRpg()">
+  <mat-form-field appearance="outline">
+    <mat-label>Nome do Rpg</mat-label>
+    <input matInput type="text" placeholder="Digite o nome do rpg" formControlName="name">
+    <mat-error *ngIf="isFieldInvalid('name')">
+      <strong>O nome do rpg não pode ficar em branco e deve ter entre 5 e 25 caracteres!</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Gold Inicial</mat-label>
+    <input matInput type="number" placeholder="Digite o gold inicial" formControlName="gold_starter">
+    <mat-error *ngIf="isFieldInvalid('gold_starter')">
+      <strong>O gold inicial deve ser preenchido com um valor maior ou igual a 0!</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Cash Inicial</mat-label>
+    <input matInput type="number" placeholder="Digite o cash inicial" formControlName="cash_starter">
+    <mat-error *ngIf="isFieldInvalid('cash_starter')">
+      <strong>O cash inicial deve ser preenchido com um valor maior ou igual a 0!</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Rpg público?</mat-label>
+    <mat-select placeholder="Escolha sim ou não" formControlName="is_public">
+      <mat-option [value]="0">Não</mat-option>
+      <mat-option [value]="1">Sim</mat-option>
+    </mat-select>
+    <mat-error *ngIf="isFieldInvalid('is_public')">
+      <strong>Você deve escolher se o rpg é público ou não!</strong>
+    </mat-error> 
+  </mat-form-field>
+  <button mat-stroked-button color="accent" [disabled]="form.invalid" type="submit">
+    Criar
+  </button>    
+</form>   

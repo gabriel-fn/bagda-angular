@@ -92,6 +92,10 @@ export class RpgService {
     return this.http.post<HttpSuccessResponse>(`${this.baseUrl}/api/rpgs/update`, input);
   }
 
+  create(values): Observable<HttpSuccessResponse> {
+    return this.http.put<HttpSuccessResponse>(`${this.baseUrl}/api/rpgs/create`, values);
+  }
+
   delete(rpgId: number): Observable<HttpSuccessResponse> {
     return this.http.delete<HttpSuccessResponse>(`${this.baseUrl}/api/rpgs/delete/${rpgId}`);
   }
