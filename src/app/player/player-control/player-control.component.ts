@@ -7,7 +7,7 @@ import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/m
 
 import { Rpg, Player, HttpSuccessResponse } from '../../shared/interfaces';
 import { RpgService } from '../../rpg/rpg.service';
-import { PlayerEditModalComponent } from '../player-edit-modal/player-edit-modal.component';
+import { PlayerEditModalComponent } from './player-edit-modal/player-edit-modal.component';
 import { HelperService } from '../../shared/helper.service';
 import { PlayerService } from '../player.service';
 

@@ -4,10 +4,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
-import { Player, Item, HttpSuccessResponse } from '../../shared/interfaces';
-import { HelperService } from '../../shared/helper.service';
-import { ValidateService } from '../../shared/validate.service';
-import { PlayerService } from '../player.service';
+import { Player, Item, HttpSuccessResponse } from '../../../shared/interfaces';
+import { HelperService } from '../../../shared/helper.service';
+import { PlayerService } from '../../player.service';
 
 @Component({
   selector: 'eth-player-edit-modal',
@@ -21,7 +20,6 @@ export class PlayerEditModalComponent implements OnInit {
   public player: Player;
 
   constructor(public helperService: HelperService,
-              private validateService: ValidateService,
               private playerService: PlayerService,
               private formBuilder: FormBuilder,
               public dialogRef: MatDialogRef<PlayerEditModalComponent>,

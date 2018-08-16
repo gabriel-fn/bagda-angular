@@ -7,7 +7,7 @@ import { PlayerModalComponent } from './player/player-modal/player-modal.compone
 import { PlayerPainelComponent } from './player-painel/player-painel.component';
 import { PlayerService } from './player.service';
 import { PlayerControlComponent } from './player-control/player-control.component';
-import { PlayerEditModalComponent } from './player-edit-modal/player-edit-modal.component';
+import { PlayerEditModalComponent } from './player-control/player-edit-modal/player-edit-modal.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
