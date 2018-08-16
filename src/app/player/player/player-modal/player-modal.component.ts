@@ -2,8 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 
 import { MAT_DIALOG_DATA } from '@angular/material';
 
-import { Player } from '../../shared/interfaces';
-import { HelperService } from '../../shared/helper.service';
+import { Player } from '../../../shared/interfaces';
+import { HelperService } from '../../../shared/helper.service';
 
 @Component({
   selector: 'eth-player-modal',

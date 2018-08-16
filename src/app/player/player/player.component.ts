@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material';
 
 import { Rpg, Player } from '../../shared/interfaces';
-import { PlayerModalComponent } from '../player-modal/player-modal.component';
+import { PlayerModalComponent } from './player-modal/player-modal.component';
 import { HelperService } from '../../shared/helper.service';
 import { RpgService } from '../../rpg/rpg.service';
 
