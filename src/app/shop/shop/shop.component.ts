@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material';
 
 import { Rpg, Item, Shop, HttpSuccessResponse } from '../../shared/interfaces';
-import { ItemModalComponent } from '../item-modal/item-modal.component';
+import { ItemModalComponent } from './item-modal/item-modal.component';
 import { RpgService } from '../../rpg/rpg.service';
 import { ShopService } from '../shop.service';
 import { HelperService } from '../../shared/helper.service';
