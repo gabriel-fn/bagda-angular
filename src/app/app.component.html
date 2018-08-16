@@ -1,13 +1,44 @@
 <mat-drawer-container>
+<mat-drawer class="p-4 container" #drawer>
+    <h5>Menu</h5>
+    <mat-list>
+        <mat-nav-list>        
+            <mat-list-item><a matLine routerLink="rpgs" (click)="drawer.toggle()">Rpgs</a></mat-list-item>
+            <mat-divider></mat-divider>
+        </mat-nav-list>
+        <mat-nav-list *ngIf="!token">
+            <mat-list-item><a matLine routerLink="login" (click)="drawer.toggle()">Login</a></mat-list-item>
+            <mat-divider></mat-divider>
+        </mat-nav-list>
+        <mat-nav-list *ngIf="token">
+            <mat-list-item><a matLine routerLink="rpgs/user" (click)="drawer.toggle()">Meus Rpgs</a></mat-list-item>
+            <mat-divider></mat-divider>
+        </mat-nav-list>
+        <mat-nav-list *ngIf="token">
+            <mat-list-item><a matLine routerLink="user" (click)="drawer.toggle()">Meu Painel</a></mat-list-item>
+            <mat-divider></mat-divider>
+        </mat-nav-list>
+        <mat-nav-list *ngIf="token">
+            <mat-list-item><a matLine (click)="logout()">Logout</a></mat-list-item>
+            <mat-divider></mat-divider>
+        </mat-nav-list>
+    </mat-list>
+</mat-drawer>
+<mat-drawer-content>
 <div class="page-wrap">
 <mat-toolbar color="primary" class="mb-2">
-    <span class="d-none d-sm-block">Mesa online</span>
+    <button class="d-block d-md-none" mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>Mesa online</span>
     <span class="eth-between"></span>
-    <button mat-button routerLink="rpgs">Rpgs</button>
-    <button mat-button *ngIf="!token" routerLink="login">Login</button>
-    <button mat-button *ngIf="token" routerLink="rpgs/user">Meus Rpgs</button>
-    <button mat-button *ngIf="token" routerLink="user">User Painel</button>
-    <button mat-button *ngIf="token" (click)="logout()">Logout</button>
+    <div class="d-none d-md-block">
+        <button mat-button routerLink="rpgs">Rpgs</button>
+        <button mat-button *ngIf="!token" routerLink="login">Login</button>
+        <button mat-button *ngIf="token" routerLink="rpgs/user">Meus Rpgs</button>
+        <button mat-button *ngIf="token" routerLink="user">Meu Painel</button>
+        <button mat-button *ngIf="token" (click)="logout()">Logout</button>
+    </div>
     <mat-slide-toggle [checked]="isChecked" color="primary" #turnOn (change)="changeTheme(turnOn.checked)">{{ turnText }}</mat-slide-toggle>
 </mat-toolbar> 
 <eth-loader></eth-loader>
@@ -24,4 +55,5 @@
     </div>
 </mat-toolbar>
 </div>
+</mat-drawer-content>
 </mat-drawer-container>
