@@ -50,7 +50,7 @@ export class ItemCreateModalComponent implements OnInit {
       require_test: [ null, [ 
         Validators.required 
       ] ],
-      detail: [ null, [ 
+      detail: [ '', [ 
         Validators.max(5000) 
       ] ],
     });
