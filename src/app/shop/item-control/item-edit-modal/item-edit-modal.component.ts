@@ -31,7 +31,7 @@ export class ItemEditModalComponent implements OnInit {
       item_id: [ this.item.id, [ Validators.required ] ],
       name: [ this.item.name, [ 
         Validators.required,
-        Validators.minLength(5),
+        Validators.minLength(1),
         Validators.maxLength(25), 
       ] ],
       gold_price: [ this.item.gold_price, [ 

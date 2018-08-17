@@ -32,7 +32,7 @@ export class ItemCreateModalComponent implements OnInit {
       shop_id: [ null, [ Validators.required ] ],
       name: [ null, [ 
         Validators.required,
-        Validators.minLength(5),
+        Validators.minLength(1),
         Validators.maxLength(25), 
       ] ],
       gold_price: [ null, [ 

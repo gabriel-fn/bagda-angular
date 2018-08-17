@@ -24,7 +24,7 @@
               <mat-label>Nome do Item</mat-label>
               <input matInput type="text" placeholder="Digite o nome do item" formControlName="name">
               <mat-error *ngIf="isFieldInvalid('name')">
-                <strong>O nome do item não pode ficar em branco e deve ter entre 5 e 25 caracteres!</strong>
+                <strong>O nome do item deve ter entre 1 e 25 caracteres!</strong>
               </mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">

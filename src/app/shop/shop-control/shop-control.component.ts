@@ -35,7 +35,7 @@ export class ShopControlComponent implements OnInit {
       rpg_id: [ null, [ Validators.required ] ],
       name: [ null, [
         Validators.required,
-        Validators.minLength(5),
+        Validators.minLength(1),
         Validators.maxLength(25),
       ] ],
       is_multiple_sale: [ null, [ Validators.required ] ],
