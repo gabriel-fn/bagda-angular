@@ -63,18 +63,23 @@ export class ShopComponent implements OnInit {
 
   buy(item: Item) {
     if (this.shopService.buyValidate(item, this.rpg)) {
-      this.helperService.showLoading();
-      this.shopService.buy(item.id)
-      .subscribe(
-        (response: HttpSuccessResponse) => {
-          this.rpgService.rpg(this.rpgId);
-          this.helperService.showResponse(response);
-          this.helperService.hideLoading()
-        },
-        (error: HttpErrorResponse) => {
-          this.helperService.hideLoading()
+      this.helperService.openConfirm('Tem certeza que deseja realizar esta compra?')
+      .subscribe((result) => {
+        if (result) {
+          this.helperService.showLoading();
+          this.shopService.buy(item.id)
+          .subscribe(
+            (response: HttpSuccessResponse) => {
+              this.rpgService.rpg(this.rpgId);
+              this.helperService.showResponse(response);
+              this.helperService.hideLoading()
+            },
+            (error: HttpErrorResponse) => {
+              this.helperService.hideLoading()
+            }
+          );
         }
-      );
+      });
     }
   }
 
