@@ -44,7 +44,7 @@ export class PlayerComponent implements OnInit {
 
   open(player: Player) {
     this.dialog.open(PlayerModalComponent, {
-      width: '800px',
+      width: '1000px',
       data: {player: player}
     });
   }

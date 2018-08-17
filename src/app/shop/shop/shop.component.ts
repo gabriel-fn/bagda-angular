@@ -85,7 +85,7 @@ export class ShopComponent implements OnInit {
 
   open(item: Item) {
     this.dialog.open(ItemModalComponent, {
-      width: '800px',
+      width: '1000px',
       data: {item: item}
     })
     .beforeClose()
