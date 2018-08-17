@@ -36,11 +36,20 @@
             <mat-chip *ngIf="item.require_test" color="warn" selected> Requer Aprovação </mat-chip>
             <mat-chip *ngIf="item.max_units" color="warn" selected>limite {{ item.max_units }}</mat-chip>
             <mat-chip *ngIf="!item.max_units && !item.require_test">Sem Requisitos</mat-chip>
-        </mat-chip-list>  
+        </mat-chip-list>
+        <mat-list>
+          <mat-list-item>
+            <a class="text-warning">{{ item.gold_price }} Gold</a>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <a class="text-primary">{{ item.cash_price }} Cash</a>
+          </mat-list-item>
+        </mat-list>  
       </mat-card-content>
-      <mat-card-footer class="card-footer text-center">
-        <a class="card-link text-warning">{{ item.gold_price }} Gold</a>
-        <a class="card-link text-primary">{{ item.cash_price }} Cash</a>
+      <mat-card-footer class="card-footer text-right">
+        <!--a class="card-link text-warning">{{ item.gold_price }} Gold</a>
+        <a class="card-link text-primary">{{ item.cash_price }} Cash</a-->
         <button type="button" mat-stroked-button color="accent" class="card-link" (click)="buy(item)">Comprar</button>
       </mat-card-footer>
     </mat-card>
