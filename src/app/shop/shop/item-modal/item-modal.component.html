@@ -14,8 +14,8 @@
     </div>
     <div class="col-12 col-md-6 mt-4">
       <h5>Descrição:</h5>
-      <div [innerHTML]="item.detail | nl2br"></div>
-      <span *ngIf="!item.detail">Item sem descrição...</span>
+      <div *ngIf="item.detail && item.detail != 'null'" [innerHTML]="item.detail | nl2br"></div>
+      <span *ngIf="!item.detail || item.detail == 'null'">Item sem descrição...</span>
     </div>
   </div>
     <mat-card class="mt-4 mb-4">

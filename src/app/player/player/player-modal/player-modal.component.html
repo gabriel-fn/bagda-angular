@@ -1,13 +1,13 @@
 <h1 mat-dialog-title>{{ player.user.name }}</h1>
 <div mat-dialog-content>  
-  <img class="img-fluid rounded mx-auto d-block" src="{{ player.image }}">
-  <div class="row mt-4 mb-4">
-    <div class="col mb-4">
+  <div class="row mb-4">
+    <div class="col-12 col-md-6 mb-4">
+      <img class="img-fluid rounded mx-auto d-block" src="{{ player.image }}">
       <h5>Descrição:</h5>
-      <div [innerHTML]="player.detail | nl2br"></div>
-      <span *ngIf="!player.detail">Jogador sem descrição...</span>
+      <div *ngIf="player.detail && player.detail != 'null'" [innerHTML]="player.detail | nl2br"></div>
+      <span *ngIf="!player.detail || player.detail == 'null'">Jogador sem descrição...</span>
     </div>
-    <div class="col">
+    <div class="col-12 col-md-6">
     <mat-card>
       <mat-card-header>
         <mat-card-title><h5>Informações Gerais</h5></mat-card-title>
