@@ -116,18 +116,23 @@ export class RpgControlComponent implements OnInit {
           this.helperService.openConfirm('REALMENTE tem certeza que deseja apagar este rpg?!')
           .subscribe((result) => { 
             if (result) {
-              this.helperService.showLoading();
-              this.rpgService.delete(this.rpg.id)
-              .subscribe(
-                (response: HttpSuccessResponse) => {
-                  this.helperService.showResponse(response);
-                  this.rpgService.rpg(this.rpgId);
-                  this.helperService.hideLoading();
-                },
-                (error: HttpErrorResponse) => {
-                  this.helperService.hideLoading();
+              this.helperService.openConfirm('Você REALMENTE REALMENTE tem certeza que deseja apagar este rpg?! Definitivamente sem ter como recuperar?!')
+              .subscribe((result) => { 
+                if (result) {
+                  this.helperService.showLoading();
+                  this.rpgService.delete(this.rpg.id)
+                  .subscribe(
+                    (response: HttpSuccessResponse) => {
+                      this.helperService.showResponse(response);
+                      this.rpgService.rpg(this.rpgId);
+                      this.helperService.hideLoading();
+                    },
+                    (error: HttpErrorResponse) => {
+                      this.helperService.hideLoading();
+                    }
+                  );
                 }
-              );
+              });
             }
           });
         }
