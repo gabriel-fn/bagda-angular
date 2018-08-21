@@ -10,10 +10,10 @@
 
 <div class="row" *ngIf="rpg && rpg.players && rpg.players[0]">
   <div class="col-12 col-md-6" *ngFor="let player of players">
-    <mat-card class="mb-4" (click)="open(player)">
-      <img  #playerImage mat-card-image src="{{ player.image }}"
+    <mat-card class="mb-4">
+      <img  #playerImage mat-card-image src="{{ player.image }}" (click)="open(player)"
             [ngStyle]="{'height.px': playerImage.width/2, 'object-fit': 'cover'}">
-      <mat-card-header>
+      <mat-card-header (click)="open(player)">
         <mat-card-title><h5>{{ player.user.name }}</h5></mat-card-title>
       </mat-card-header>
       <mat-list>
@@ -24,7 +24,8 @@
         <mat-list-item class="text-primary">{{ player.cash }} Cash</mat-list-item>
       </mat-list>
       <mat-card-footer class="card-footer text-center">
-        <small class="card-link"> Criado em: {{ player.created_at }}</small> 
+        <small class="card-link"> Criado em: {{ player.created_at }}</small>  
+        <eth-player-edit-button *ngIf="rpg?.player?.credential > 0" [player]="player" (modalClose)="onModalClose()" class="card-link"></eth-player-edit-button>
       </mat-card-footer>
     </mat-card>
   </div>

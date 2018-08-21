@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { Nl2BrPipeModule } from 'nl2br-pipe';
-import {  MatTableModule, MatSortModule, MatPaginatorModule, 
+import {  //MatTableModule, MatSortModule, MatPaginatorModule, 
           MatButtonModule, MatInputModule, MatFormFieldModule, 
           MatCardModule, MatSelectModule, MatExpansionModule, 
           MatListModule, MatDialogModule, MatProgressBarModule, 
@@ -19,9 +19,9 @@ import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
   imports: [
     CommonModule,
     Nl2BrPipeModule,
-    MatTableModule,
-    MatSortModule,
-    MatPaginatorModule,
+    //MatTableModule,
+    //MatSortModule,
+    //MatPaginatorModule,
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
@@ -47,9 +47,9 @@ import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
   exports: [
     LoaderComponent,
     Nl2BrPipeModule,
-    MatTableModule,
-    MatSortModule,
-    MatPaginatorModule,
+    //MatTableModule,
+    //MatSortModule,
+    //MatPaginatorModule,
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,

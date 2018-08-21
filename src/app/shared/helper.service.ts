@@ -15,7 +15,7 @@ import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 export class HelperService {
 
   //baseUrl: string = 'http://localhost:8000';
-  baseUrl: string = 'http://ethrpg.esy.es/painel';
+  baseUrl: string = 'http://methir.com.br/space/bagda';
 
   constructor(private toastr: ToastrService,
               public dialog: MatDialog,

@@ -4,13 +4,12 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
-import { Rpg, HttpSuccessResponse } from '../../../shared/interfaces';
-import { HelperService } from '../../../shared/helper.service';
-import { ValidateService } from '../../../shared/validate.service';
-import { ShopService } from '../../shop.service';
+import { Rpg, HttpSuccessResponse } from '../../../../shared/interfaces';
+import { HelperService } from '../../../../shared/helper.service';
+import { ShopService } from '../../../shop.service';
 
 @Component({
-  selector: 'app-item-create-modal',
+  selector: 'eth-item-create-modal',
   templateUrl: './item-create-modal.component.html',
   styleUrls: ['./item-create-modal.component.css']
 })
@@ -20,7 +19,6 @@ export class ItemCreateModalComponent implements OnInit {
   public form: FormGroup;
 
   constructor(public helperService: HelperService,
-              private validateService: ValidateService,
               private shopService: ShopService,
               private formBuilder: FormBuilder,
               public dialogRef: MatDialogRef<ItemCreateModalComponent>,

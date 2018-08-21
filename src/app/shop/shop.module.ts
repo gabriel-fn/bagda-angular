@@ -6,10 +6,13 @@ import { ShopComponent } from './shop/shop.component';
 import { ShopService } from './shop.service';
 import { ItemModalComponent } from './shop/item-modal/item-modal.component';
 import { SharedModule } from '../shared/shared.module';
-import { ItemEditModalComponent } from './item-control/item-edit-modal/item-edit-modal.component';
-import { ItemControlComponent } from './item-control/item-control.component';
+import { ItemEditModalComponent } from './item-control/item-edit-button/item-edit-modal/item-edit-modal.component';
+//import { ItemControlComponent } from './item-control/item-control.component';
 import { ShopControlComponent } from './shop-control/shop-control.component';
-import { ItemCreateModalComponent } from './item-control/item-create-modal/item-create-modal.component';
+import { ItemCreateModalComponent } from './item-control/item-create-button/item-create-modal/item-create-modal.component';
+import { ItemCreateButtonComponent } from './item-control/item-create-button/item-create-button.component';
+import { ItemEditButtonComponent } from './item-control/item-edit-button/item-edit-button.component';
+import { ItemDeleteButtonComponent } from './item-control/item-delete-button/item-delete-button.component';
 
 @NgModule({
   imports: [
@@ -26,14 +29,17 @@ import { ItemCreateModalComponent } from './item-control/item-create-modal/item-
   declarations: [
     ShopComponent,
     ItemModalComponent,
-    ItemControlComponent,
+    //ItemControlComponent,
     ItemEditModalComponent,
     ShopControlComponent,
-    ItemCreateModalComponent
+    ItemCreateModalComponent,
+    ItemCreateButtonComponent,
+    ItemEditButtonComponent,
+    ItemDeleteButtonComponent
   ],
   exports: [ 
     ShopComponent,
-    ItemControlComponent,
+    //ItemControlComponent,
     ShopControlComponent
   ],
   providers: [

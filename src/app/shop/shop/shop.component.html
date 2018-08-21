@@ -19,6 +19,9 @@
     <mat-form-field appearance="outline">
       <mat-label> Filtro </mat-label>
       <input matInput type="text" (keyup)="applyFilter($event.target.value)" placeholder="Buscar items pelo nome...">
+      <eth-item-create-button matSuffix *ngIf="rpg?.player?.credential > 1"
+                              (modalClose)="onModalClose()" [rpg]="rpg">
+      </eth-item-create-button>
     </mat-form-field>
   </div>
 </div>
@@ -47,10 +50,16 @@
           </mat-list-item>
         </mat-list>  
       </mat-card-content>
-      <mat-card-footer class="card-footer text-right">
+      <mat-card-footer class="card-footer">
+        <div class="d-flex">
+            <eth-item-edit-button *ngIf="rpg?.player?.credential > 1" [item]="item" 
+                                  (modalClose)="onModalClose()">
+            </eth-item-edit-button>
+            <span class="eth-between"></span>
+            <button type="button" mat-stroked-button color="accent" (click)="buy(item)">Comprar</button>
+        </div>
         <!--a class="card-link text-warning">{{ item.gold_price }} Gold</a>
         <a class="card-link text-primary">{{ item.cash_price }} Cash</a-->
-        <button type="button" mat-stroked-button color="accent" class="card-link" (click)="buy(item)">Comprar</button>
       </mat-card-footer>
     </mat-card>
   </div>

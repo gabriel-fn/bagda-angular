@@ -39,7 +39,8 @@
         </ng-template>
       </mat-tab>
       <mat-tab label="Painel" *ngIf="rpg?.player?.credential > 1">
-        <mat-card>
+        <eth-rpg-control></eth-rpg-control> 
+        <!--mat-card>
           <mat-tab-group mat-strech-tabs>
             <mat-tab label="Gerenciar Rpg" *ngIf="rpg?.player?.credential > 1">
               <eth-rpg-control></eth-rpg-control>
@@ -51,7 +52,7 @@
               <eth-player-control></eth-player-control>
             </mat-tab>
           </mat-tab-group>
-        </mat-card>
+        </mat-card-->
       </mat-tab>
     </mat-tab-group>
   </div>

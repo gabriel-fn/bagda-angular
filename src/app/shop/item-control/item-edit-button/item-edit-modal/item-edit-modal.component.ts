@@ -4,9 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
-import { HelperService } from '../../../shared/helper.service';
-import { Item, HttpSuccessResponse } from '../../../shared/interfaces';
-import { ShopService } from '../../shop.service';
+import { HelperService } from '../../../../shared/helper.service';
+import { Item, HttpSuccessResponse } from '../../../../shared/interfaces';
+import { ShopService } from '../../../shop.service';
 
 @Component({
   selector: 'app-item-edit-modal',

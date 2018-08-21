@@ -1,22 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
 
 import { Subscription } from 'rxjs';
 import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 
-import { Rpg, Item, Shop, HttpSuccessResponse } from '../../shared/interfaces';
+import { Rpg, Item, Shop } from '../../shared/interfaces';
 import { RpgService } from '../../rpg/rpg.service';
 import { HelperService } from '../../shared/helper.service';
-import { ItemEditModalComponent } from './item-edit-modal/item-edit-modal.component';
-import { ItemCreateModalComponent } from './item-create-modal/item-create-modal.component';
-import { ShopService } from '../shop.service';
-
-@Component({
+  
+/*@Component({
   selector: 'eth-item-control',
   templateUrl: './item-control.component.html',
   styleUrls: ['./item-control.component.css']
-})
+})*/
 export class ItemControlComponent implements OnInit {
 
   public rpg: Rpg; 
@@ -33,7 +29,6 @@ export class ItemControlComponent implements OnInit {
   private routeSubscription: Subscription;
 
   constructor(private rpgService: RpgService,
-              private shopService: ShopService,
               public helperService: HelperService,
               public dialog: MatDialog,
               private route: ActivatedRoute) { }
@@ -72,46 +67,8 @@ export class ItemControlComponent implements OnInit {
     }
   }
 
-  openEdit(item: Item) {
-    const dialogRef = this.dialog.open(ItemEditModalComponent, {
-      width: '1000px',
-      data: {item: item}
-    });
-    dialogRef.beforeClose().subscribe(result => {
-      this.rpgService.rpg(this.rpgId);
-    });
-  }
-
-  openCreate() {
-    const dialogRef = this.dialog.open(ItemCreateModalComponent, {
-      width: '1000px',
-      data: {rpg: this.rpg}
-    });
-    dialogRef.beforeClose().subscribe(result => {
-      this.rpgService.rpg(this.rpgId);
-    });
-  }
-
-  deleteItem(itemId: number) {
-    if (this.shopService.editShopValidate()) {
-      this.helperService.openConfirm('Tem certeza que quer apagar este item?')
-      .subscribe((result) => {
-        if (result) { 
-          this.helperService.showLoading();
-          this.shopService.deleteItem(itemId)
-          .subscribe(
-            (response: HttpSuccessResponse) => {
-              this.helperService.showResponse(response);
-              this.rpgService.rpg(this.rpgId);
-              this.helperService.hideLoading();
-            },
-            (error: HttpErrorResponse) => {
-              this.helperService.hideLoading();
-            }
-          );
-        }
-      });
-    }
+  onDelete() {
+    this.rpgService.rpg(this.rpgId);
   }
 
   ngOnDestroy(): void {

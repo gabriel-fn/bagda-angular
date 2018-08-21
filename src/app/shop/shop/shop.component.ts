@@ -96,6 +96,10 @@ export class ShopComponent implements OnInit {
     });
   }
 
+  onModalClose() {
+    this.rpgService.rpg(this.rpgId);
+  }
+
   ngOnDestroy(): void {
     this.rpgInPainelSubscription.unsubscribe();
     this.routeSubscription.unsubscribe();
