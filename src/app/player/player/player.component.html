@@ -24,7 +24,7 @@
         <mat-list-item class="text-primary">{{ player.cash }} Cash</mat-list-item>
       </mat-list>
       <mat-card-footer class="card-footer text-center">
-        <small class="card-link"> Criado em: {{ player.created_at }}</small>  
+        <span class="card-link"> Criado em: {{ player.created_at }}</span>  
         <eth-player-edit-button *ngIf="rpg?.player?.credential > 0" [player]="player" (modalClose)="onModalClose()" class="card-link"></eth-player-edit-button>
       </mat-card-footer>
     </mat-card>
