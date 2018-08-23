@@ -13,7 +13,7 @@ import { ShopService } from '../shop.service';
 @Component({
   selector: 'eth-shop-control',
   templateUrl: './shop-control.component.html',
-  styleUrls: ['./shop-control.component.css']
+  //styleUrls: ['./shop-control.component.css']
 })
 export class ShopControlComponent implements OnInit {
 

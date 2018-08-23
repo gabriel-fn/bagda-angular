@@ -11,7 +11,7 @@ import { HelperService } from '../../shared/helper.service';
 @Component({
   selector: 'eth-rpg',
   templateUrl: './rpg.component.html',
-  styleUrls: ['./rpg.component.css']
+  //styleUrls: ['./rpg.component.css']
 })
 export class RpgComponent implements OnInit {
 

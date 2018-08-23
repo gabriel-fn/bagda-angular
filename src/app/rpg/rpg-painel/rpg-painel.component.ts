@@ -12,7 +12,7 @@ import { ValidateService } from '../../shared/validate.service';
 @Component({
   selector: 'eth-rpg-painel',
   templateUrl: './rpg-painel.component.html',
-  styleUrls: ['./rpg-painel.component.css']
+  //styleUrls: ['./rpg-painel.component.css']
 })
 export class RpgPainelComponent implements OnInit {
 

@@ -10,7 +10,7 @@ import { HelperService } from '../../shared/helper.service';
 @Component({
   selector: 'eth-login-material',
   templateUrl: './login-material.component.html',
-  styleUrls: ['./login-material.component.css']
+  //styleUrls: ['./login-material.component.css']
 })
 export class LoginMaterialComponent implements OnInit {
 

@@ -9,7 +9,7 @@ import { HelperService } from '../../../shared/helper.service';
 @Component({
   selector: 'eth-item-create-button',
   templateUrl: './item-create-button.component.html',
-  styleUrls: ['./item-create-button.component.css']
+  //styleUrls: ['./item-create-button.component.css']
 })
 export class ItemCreateButtonComponent implements OnInit {
 

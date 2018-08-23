@@ -8,7 +8,7 @@ import { HelperService } from '../../../shared/helper.service';
 @Component({
   selector: 'eth-player-modal',
   templateUrl: './player-modal.component.html',
-  styleUrls: ['./player-modal.component.css']
+  //styleUrls: ['./player-modal.component.css']
 })
 export class PlayerModalComponent implements OnInit {
 

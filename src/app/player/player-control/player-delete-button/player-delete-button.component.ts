@@ -8,7 +8,7 @@ import { HelperService } from '../../../shared/helper.service';
 @Component({
   selector: 'eth-player-delete-button',
   templateUrl: './player-delete-button.component.html',
-  styleUrls: ['./player-delete-button.component.css']
+  //styleUrls: ['./player-delete-button.component.css']
 })
 export class PlayerDeleteButtonComponent implements OnInit {
 

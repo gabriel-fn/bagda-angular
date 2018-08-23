@@ -9,7 +9,7 @@ import { UserService } from '../user.service';
 @Component({
   selector: 'eth-user-painel',
   templateUrl: './user-painel.component.html',
-  styleUrls: ['./user-painel.component.css']
+  //styleUrls: ['./user-painel.component.css']
 })
 export class UserPainelComponent implements OnInit {
 

@@ -7,7 +7,7 @@ import { Item } from '../../../shared/interfaces';
 @Component({
   selector: 'eth-item-modal',
   templateUrl: './item-modal.component.html',
-  styleUrls: ['./item-modal.component.css']
+  //styleUrls: ['./item-modal.component.css']
 })
 export class ItemModalComponent implements OnInit {
 

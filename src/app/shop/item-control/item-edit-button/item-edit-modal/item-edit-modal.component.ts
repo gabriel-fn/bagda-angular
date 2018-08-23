@@ -11,7 +11,7 @@ import { ShopService } from '../../../shop.service';
 @Component({
   selector: 'app-item-edit-modal',
   templateUrl: './item-edit-modal.component.html',
-  styleUrls: ['./item-edit-modal.component.css']
+  //styleUrls: ['./item-edit-modal.component.css']
 })
 export class ItemEditModalComponent implements OnInit {
 

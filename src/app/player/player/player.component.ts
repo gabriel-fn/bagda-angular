@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'eth-player',
   templateUrl: './player.component.html',
-  styleUrls: ['./player.component.css']
+  //styleUrls: ['./player.component.css']
 })
 export class PlayerComponent implements OnInit {
 

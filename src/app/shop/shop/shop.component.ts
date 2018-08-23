@@ -14,7 +14,7 @@ import { HelperService } from '../../shared/helper.service';
 @Component({
   selector: 'eth-shop',
   templateUrl: './shop.component.html',
-  styleUrls: ['./shop.component.css']
+  //styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
   

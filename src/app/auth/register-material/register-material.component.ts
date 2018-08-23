@@ -9,7 +9,7 @@ import { HttpSuccessResponse } from '../../shared/interfaces';
 @Component({
   selector: 'eth-register-material',
   templateUrl: './register-material.component.html',
-  styleUrls: ['./register-material.component.css']
+  //styleUrls: ['./register-material.component.css']
 })
 export class RegisterMaterialComponent implements OnInit {
   

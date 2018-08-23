@@ -9,7 +9,7 @@ import { HttpErrorResponse } from '../../../../node_modules/@angular/common/http
 @Component({
   selector: 'eth-rpg-create-form',
   templateUrl: './rpg-create-form.component.html',
-  styleUrls: ['./rpg-create-form.component.css']
+  //styleUrls: ['./rpg-create-form.component.css']
 })
 export class RpgCreateFormComponent implements OnInit {
 

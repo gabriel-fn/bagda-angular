@@ -12,7 +12,7 @@ import { PlayerService } from '../player.service';
 @Component({
   selector: 'eth-player-painel',
   templateUrl: './player-painel.component.html',
-  styleUrls: ['./player-painel.component.css']
+  //styleUrls: ['./player-painel.component.css']
 })
 export class PlayerPainelComponent implements OnInit {
 

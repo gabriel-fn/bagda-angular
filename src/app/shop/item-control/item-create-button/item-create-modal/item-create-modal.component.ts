@@ -11,7 +11,7 @@ import { ShopService } from '../../../shop.service';
 @Component({
   selector: 'eth-item-create-modal',
   templateUrl: './item-create-modal.component.html',
-  styleUrls: ['./item-create-modal.component.css']
+  //styleUrls: ['./item-create-modal.component.css']
 })
 export class ItemCreateModalComponent implements OnInit {
 

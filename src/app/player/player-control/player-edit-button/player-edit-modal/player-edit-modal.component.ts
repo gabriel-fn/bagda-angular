@@ -11,7 +11,7 @@ import { PlayerService } from '../../../player.service';
 @Component({
   selector: 'eth-player-edit-modal',
   templateUrl: './player-edit-modal.component.html',
-  styleUrls: ['./player-edit-modal.component.css']
+  //styleUrls: ['./player-edit-modal.component.css']
 })
 export class PlayerEditModalComponent implements OnInit {
   
