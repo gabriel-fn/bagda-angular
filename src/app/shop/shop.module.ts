@@ -7,7 +7,6 @@ import { ShopService } from './shop.service';
 import { ItemModalComponent } from './shop/item-modal/item-modal.component';
 import { SharedModule } from '../shared/shared.module';
 import { ItemEditModalComponent } from './item-control/item-edit-button/item-edit-modal/item-edit-modal.component';
-//import { ItemControlComponent } from './item-control/item-control.component';
 import { ShopControlComponent } from './shop-control/shop-control.component';
 import { ItemCreateModalComponent } from './item-control/item-create-button/item-create-modal/item-create-modal.component';
 import { ItemCreateButtonComponent } from './item-control/item-create-button/item-create-button.component';
@@ -29,7 +28,6 @@ import { ItemDeleteButtonComponent } from './item-control/item-delete-button/ite
   declarations: [
     ShopComponent,
     ItemModalComponent,
-    //ItemControlComponent,
     ItemEditModalComponent,
     ShopControlComponent,
     ItemCreateModalComponent,
@@ -39,7 +37,6 @@ import { ItemDeleteButtonComponent } from './item-control/item-delete-button/ite
   ],
   exports: [ 
     ShopComponent,
-    //ItemControlComponent,
     ShopControlComponent
   ],
   providers: [
