@@ -37,8 +37,8 @@
       <mat-card-content>
         <mat-chip-list>
             <mat-chip *ngIf="item.require_test" color="warn" selected> Requer Aprovação </mat-chip>
-            <mat-chip *ngIf="item.max_units" color="warn" selected>limite {{ item.max_units }}</mat-chip>
-            <mat-chip *ngIf="!item.max_units && !item.require_test">Sem Requisitos</mat-chip>
+            <mat-chip *ngIf="item.max_units" color="warn" selected>Limite {{ item.max_units }}</mat-chip>
+            <mat-chip *ngIf="!item.max_units && !item.require_test">Sem Limite</mat-chip>
         </mat-chip-list>
         <mat-list>
           <mat-list-item>
