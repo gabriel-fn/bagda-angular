@@ -5,10 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AuthGuard } from './guards/auth.guard';
 import { TokenInterceptor } from './interceptors/token.interceptor';
-import { LoginComponent } from './login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
-import { RegisterComponent } from './register/register.component';
-import { AuthLayoutBootstrapComponent } from './auth-layout-bootstrap/auth-layout-bootstrap.component';
 import { LoginMaterialComponent } from './login-material/login-material.component';
 import { RegisterMaterialComponent } from './register-material/register-material.component';
 import { AuthLayoutMaterialComponent } from './auth-layout-material/auth-layout-material.component';
@@ -21,19 +18,13 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule
   ],
   declarations: [
-    LoginComponent,
-    RegisterComponent,
     LoginMaterialComponent,
     RegisterMaterialComponent,
-    AuthLayoutBootstrapComponent,
     AuthLayoutMaterialComponent,
   ],
   exports: [
-    LoginComponent,
-    RegisterComponent,
     LoginMaterialComponent,
     RegisterMaterialComponent,
-    AuthLayoutBootstrapComponent,
     AuthLayoutMaterialComponent,
   ],
   providers: [
