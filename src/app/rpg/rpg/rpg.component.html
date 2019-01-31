@@ -17,7 +17,7 @@
         </mat-list>
       </mat-card-content>
       <mat-card-footer class="card-footer text-center">
-        <span class="card-link"> Criado em: {{ rpg.created_at }}</span>
+        <span class="card-link"> {{ rpg.created_at }}</span>
         <button type="button" mat-stroked-button class="card-link" [routerLink]="['/rpgs', rpg.id]" >Entrar</button>
       </mat-card-footer>
     </mat-card>
