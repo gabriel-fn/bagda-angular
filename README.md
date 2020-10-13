@@ -1,27 +1,22 @@
-# BagdaAngular
+# Aplicação Bagda SPA Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+Aplicação para gerenciar itens de RPG que serão comprados pelos personagens dos jogadores.
 
-## Development server
+Semelhante a um e-commerce para o jogo. Construido de forma a se encaixar em qualquer sistema de RPG.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Sendo uma interface interativa para consumir a [API Bagda Laravel](https://github.com/warcontent/bagda-laravel). 
 
-## Code scaffolding
+Projeto produzido com Angular v6.0.8.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Getting Started
+
+* [Baixe o instalador](https://nodejs.org/) do Node LTS.
+* Instale o Angular CLI globalmente: `npm install -g @angular/cli`
+* Clone esse repositório: `git clone https://github.com/warcontent/bagda-angular.git`.
+* Execute `npm install` na raiz do projeto.
+* Execute `ng serve` no terminal na raiz do projeto.
+* Pronto. :tada:
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Execute `ng build` para construir a aplicação. Os arquivos da aplicação serão armazenados no diretório `dist/`. Use a opção `--prod` para as configurações de produção.
